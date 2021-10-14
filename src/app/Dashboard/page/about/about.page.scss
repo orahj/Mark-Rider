@@ -1,0 +1,43 @@
+.control_big_logo img {
+    text-align: center;
+    width: 95px;
+    height: auto;
+}
+
+.control_big_logo {
+    text-align: center;
+}
+
+ion-list {
+    background: #fff !important;
+    border-radius: 5px;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    border: 1px solid #dbdbdb;
+    margin-bottom: 10px;
+}
+
+.control_list_div {
+    margin-top: 30px;
+}
+
+ion-list ion-label.first_label {
+    text-align: right;
+    padding-right: 15px;
+}
+
+ion-list ion-icon {
+    color: #2699FB;
+}
+
+ion-label.ion_label_style_text{
+    font-family: inherit;
+    color: #707070;
+    font-size: 14px;
+    font-weight: 300;
+}
+
+ion-label.ion-label-style-text {
+    font-size: 12px !important;
+    font-weight: 500;
+}

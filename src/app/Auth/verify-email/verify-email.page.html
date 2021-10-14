@@ -1,0 +1,44 @@
+<ion-header [translucent]="true">
+  <ion-toolbar class="ion-text-center ion-no-border">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>
+      <div class="pawa2_transparent_header">
+        Verify Email
+      </div>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card-header>
+    <ion-card-subtitle class="ion-text-center style_header">Verify Email</ion-card-subtitle>
+  </ion-card-header>
+  <ion-card-content>
+    <form [formGroup]="formdata" (ngSubmit)="formdata.valid && submitForm()">
+      <ion-item>
+        <ion-icon name="mail-outline" slot="start"></ion-icon>
+        <ion-label position="floating">Email</ion-label>
+        <ion-input formControlName="email"></ion-input>
+      </ion-item>
+      
+      <div class="validate_input" *ngIf="formdata.get('email').hasError('required') && formdata.get('email').touched">
+        Email is required
+      </div>
+
+      <div class="validate_input" *ngIf="formdata.get('email').hasError('pattern')">
+        Please enter a valid email address
+      </div>
+
+      <div class="validate_input" *ngIf="formdata.get('email').hasError('maxLength')">
+        Please enter a valid email address
+      </div>
+    <ion-button [disabled]="formdata.invalid" type="submit" expand="block" size="large" class="pawa2u_btn btn_capitalize thin_font_weight small_sized_btn">
+      Verify Email
+    </ion-button>
+
+    
+    </form>
+  </ion-card-content>
+</ion-content>

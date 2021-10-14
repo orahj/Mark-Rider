@@ -1,0 +1,42 @@
+<app-header-two [title]="'Wallet Payment'"></app-header-two>
+<ion-content>
+  <div class="handle_modal_div">
+    <div class="handle_modal_padd_inner">
+      <ion-grid>
+        <ion-row>
+          <ion-col size="12" class="ion-text-center move-lt">
+            <div class="paw2_price_3">
+              Balance
+            </div>
+
+            <div class="paw2_price_2">
+              N 200,000
+            </div>
+          </ion-col>
+          <ion-col size="12" class="ion-text-center">
+            <div class="paw2_price_3">
+              Transaction Amount
+            </div>
+
+            <div class="paw2_price_2">
+             <span class="strike-off">N 20,000</span> <span class="percent">10% off</span>
+            </div>
+          </ion-col>
+          <ion-col class="ion-text-center bk-color" size="12">
+            <div class="paw2_price_3">
+              Discounted amount
+            </div>
+              <ion-col size="12">
+                <div class="paw2_price_2 move-left">
+                  N 18,000
+                </div>
+              </ion-col>
+          </ion-col>
+          <ion-button (click)="payWithWallet()" class="pawa2_u_action_btn_2">
+           Make Payment
+          </ion-button>
+        </ion-row>
+      </ion-grid>
+    </div>
+  </div>
+</ion-content>  

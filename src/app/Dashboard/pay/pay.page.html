@@ -1,0 +1,85 @@
+<app-header-two [title]="'Payment'"></app-header-two>
+
+<ion-content class="ion-padding gray_background">
+  <div class="content_padded">
+    <ion-grid>
+      <ion-row>
+        <ion-col size="6">
+          <div class="payment_small_logo" style="
+            background-image: url('../../../assets/images/macriders/macreider_logo.png');
+            width: 100px;
+            height: 100px;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+          ">
+
+          </div>
+        </ion-col>
+        <ion-col size="6">
+          <div class="payment_small_text_1">
+            kunleoyo@gmail.com
+          </div>
+          <div class="payment_small_text_2">
+            Pay N69000.00
+          </div>
+        </ion-col>
+
+        <ion-col size="12">
+          <div class="payment_small_text_3">
+            Enter your card details to pay
+          </div>
+        </ion-col>
+
+        <ion-col size="12">
+          <ion-row>
+            <ion-col size="12">
+              <ion-item lines="none" class="ion-no-border no-bg style_input no-padding">
+                <ion-label position="stacked">Card number</ion-label>
+                <input  placeholder="1234 5678 3456 2456" [cleave]="{creditCard: true}" class="style_payment_input">
+              </ion-item>
+            </ion-col>
+          </ion-row>
+        </ion-col>
+        
+        <ion-col size="9">
+          <ion-row>
+            <ion-col size="7">
+              <ion-item lines="none" class="ion-no-border no-bg style_input no-padding">
+                <ion-label position="stacked">EXPIRE DATE</ion-label>
+                <input placeholder="05 / 21" [cleave]="{date: true, delimiter: '/', datePattern: ['y', 'm']}" class="style_payment_input">
+              </ion-item>
+            </ion-col>
+            <ion-col size="5">
+              <ion-item lines="none" class="ion-no-border no-bg style_input no-padding">
+                <ion-label position="stacked">CVV</ion-label>
+                <input maxlength="3" placeholder="123" [cleave]="{numeral: true}" class="style_payment_input">
+              </ion-item>
+            </ion-col>
+          </ion-row>
+        </ion-col>
+        
+        <ion-col size="6">
+
+        </ion-col>
+
+        <ion-col size="12">
+          <div class="pawa2_u_checkout_btn_actions">
+
+            <ion-button (click)="payWithCard()" class="pawa2_u_action_btn_2">
+              Pay
+            </ion-button>
+
+          </div>
+        </ion-col>
+
+        <ion-col size="12">
+          <div class="payment_security_text">
+            <ion-icon name="lock-closed"></ion-icon> Secured by Paystack
+          </div>
+        </ion-col>
+
+      </ion-row>
+    </ion-grid>
+  </div>
+</ion-content>

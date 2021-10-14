@@ -1,0 +1,138 @@
+<app-header-two [title]="'Checkout'"></app-header-two>
+
+<ion-content class="ion-no-padding">
+  <div class="content_padded">
+    <div class="cart_list_items">
+
+      <ion-list lines="none">
+        <ion-item>
+
+          <ion-grid class="checkout_ctr_box">
+            <ion-row>
+              <ion-col size="4">
+                <div class="cart_list_item_image" style="
+                  background: url('../../../assets//images/macriders/m1.png');
+                  width: 80px;
+                  height: 80px;
+                  border-radius: 5px;
+                  background-position: center;
+                  background-size: contain;
+                  background-repeat: no-repeat;
+                ">
+                </div>
+              </ion-col>
+              
+              <ion-col size="6">
+                <div class="checkout_item_text_1">
+                  A pair of shoe
+                </div>
+                <div class="checkout_item_text_2">
+                 16km
+                </div>
+                <div class="checkout_item_price">
+                  N 69,000
+                </div>
+
+                <ion-row>
+                  <ion-col class="pl-0" size="8">
+                    <div class="product_meta_qty_sm_left_2">
+                      <ion-row>
+                          <ion-col size="4" class="ion-text-left ion-no-padding">
+                            <ion-button class="incrementor_btn" (click)="increaseOrder()">
+                              <ion-icon name="add-outline"></ion-icon>
+                            </ion-button>
+                            
+                          </ion-col>
+                          <ion-col size="4" class="ion-no-padding">
+                            <input [(ngModel)]="qty" class="product_meta_qty_sm_value" value="300">
+                          </ion-col>
+    
+                          <ion-col size="4"  class="ion-text-right ion-no-padding">
+                            <ion-button class="incrementor_btn" (click)="decreaseOrder()">
+                              <ion-icon name="remove-outline"></ion-icon>
+                            </ion-button>
+                          </ion-col>
+                      </ion-row>
+                    </div>
+                  </ion-col>
+                  <ion-col size="4">
+                  </ion-col>
+                </ion-row>
+
+              </ion-col>
+              <ion-col size="2" class="ion-text-center">
+                <ion-button class="checkout_remove_from_cart_btn">
+                  <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
+                </ion-button>
+              </ion-col>
+             
+            </ion-row>
+          </ion-grid>
+
+        </ion-item>
+      </ion-list>
+
+    </div>  
+  </div>
+
+
+</ion-content>
+
+<ion-footer class="no-border ion-no-border">
+  <div class="checkout_footer_design">
+    <div class="check_footer_design_inner">
+      <div class="checkout_page_inner_2">
+
+        <ion-row>
+          <ion-col size="6">
+            <div class="checkout_total_text">
+              Wallet Balance
+            </div>
+          </ion-col>
+
+          <ion-col size="6" class="ion-text-center">
+            <div class="checkout_total_price">
+              N 249,000
+            </div>
+          </ion-col>
+        </ion-row>
+
+      </div>
+
+
+      <ion-grid>
+        <ion-row>
+
+          <ion-col size="12">
+            <div class="checkout_action_section">
+              <ion-row>
+                <ion-col size="12" class="ion-text-center">
+                  <div class="checkout_action_section_text">
+                    Pay With
+                  </div>
+                </ion-col>
+
+                <ion-col size="12">
+                  <div class="pawa2_u_checkout_btn_actions">
+
+                    <ion-button (click)="payWithCard()" class="pawa2_u_action_btn_2">
+                      Card
+                    </ion-button>
+                    <ion-button (click)="payWithWallet()" class="pawa2_u_action_btn_2 gold">
+                      Wallet Balance
+                    </ion-button>
+                    <ion-button (click)="payWithTransfer()" class="pawa2_u_action_btn_2 gold">
+                      Transfer
+                    </ion-button>
+                  </div>
+                </ion-col>
+
+              </ion-row>
+            </div>
+
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+  </div>
+</ion-footer>

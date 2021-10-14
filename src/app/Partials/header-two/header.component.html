@@ -1,0 +1,18 @@
+<ion-header class="pawa2_u_custom_header">
+  <ion-toolbar class="pawa2_u_custom_toolbar">
+    <ion-buttons slot="start">
+      <ion-menu-button class="ion_menu_btn pawa2_u_menu_button"></ion-menu-button>
+    </ion-buttons>
+    <ion-title class="pawa2_u_menu_title">
+      <div class="paw2u_header_menu" (click)="gotoHome()">
+        Macriders
+      </div>
+    </ion-title>
+    <ion-buttons slot="end">
+        <ion-button (click)="notification()"> <ion-icon class="colorise_menu_icon" slot="icon-only" name="notifications-outline"></ion-icon> </ion-button>
+        <ion-button> <ion-icon class="colorise_menu_icon" slot="icon-only" name="cart-outline"></ion-icon> </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+  <ion-searchbar showCancelButton="never"  animated="true" [(ngModel)]="searchTerm" (ionChange)="focusesInput()" class="the_search_bar" showCancelButton="never" placeholder="Search Product">
+  </ion-searchbar>
+</ion-header>

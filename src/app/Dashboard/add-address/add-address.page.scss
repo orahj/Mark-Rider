@@ -1,0 +1,30 @@
+ion-header {
+    &.header-md:after {
+      background: none;
+    }
+  }
+
+  ion-content.gray_background{
+    --background: #f9f9f9;
+}
+
+
+ion-input.the_form_input {
+
+    border-radius: 3px;
+    border: 1px solid #BCE0FD;
+    --padding-top: 15px;
+    --padding-bottom: 15px;
+    --padding-start: 20px;
+    color: #707070;
+    --background: #fff;
+    font-weight: 300;
+    font-size: 12px;
+
+}
+
+ion-input.the_form_input {
+
+    font-weight: 300;
+
+}

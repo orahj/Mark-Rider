@@ -1,0 +1,109 @@
+<ion-header [translucent]="true">
+  <ion-toolbar class="ion-text-center ion-no-border">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/dashboard"></ion-back-button>
+    </ion-buttons>
+    <ion-title>
+      <div class="pawa2_transparent_header">
+        Notifications
+      </div>
+    </ion-title>
+  </ion-toolbar>
+  <div class="small_ribbon"></div>
+</ion-header>
+
+
+<ion-content>
+  <div class="notification_style_1">
+    <ion-grid>
+     
+      <div class="col_border ion-activatable ripple-parent">
+        <ion-row>
+        <ion-col size="3">
+          <div class="control_notification_style notificaion_icon_bg_gray">
+            <ion-icon slot="icon-only" name="locate-outline"></ion-icon>
+          </div>
+        </ion-col>
+        <ion-col size="9" (click)="gotoDelivery()">
+          <div class="notification_style_1_outer">
+            <div class="notification_style_1_title">
+              You have a new delivery
+              <span class="notification_style1_time_ago">
+               -  Now.
+              </span>
+            </div>
+            
+          </div>
+        </ion-col> 
+      </ion-row>
+      <ion-ripple-effect></ion-ripple-effect>
+      </div>
+        <div class="col_border ion-activatable ripple-parent">
+          <ion-row>
+          <ion-col size="3">
+            <div class="control_notification_style notificaion_icon_bg_gray">
+              <ion-icon slot="icon-only" name="locate-outline"></ion-icon>
+            </div>
+          </ion-col>
+          <ion-col size="9">
+            <div class="notification_style_1_outer">
+              <div class="notification_style_1_title">
+                Felix, macriders Limited started delivery of your product. Click here to track order. 
+                <span class="notification_style1_time_ago">
+                 -  3 Hours ago.
+                </span>
+              </div>
+              
+            </div>
+          </ion-col> 
+        </ion-row>
+        <ion-ripple-effect></ion-ripple-effect>
+        </div>
+        
+        <div class="col_border ion-activatable ripple-parent">
+          <ion-row>
+          <ion-col size="3">
+            <div class="control_notification_style notificaion_icon_bg_green">
+              <ion-icon slot="icon-only" name="card-outline"></ion-icon>
+            </div>
+          </ion-col>
+          <ion-col size="9">
+            <div class="notification_style_1_outer">
+              <div class="notification_style_1_title">
+                Account successfully funded with N50000
+                <span class="notification_style1_time_ago">
+                  - 1 Hour ago.
+                </span>
+              </div>
+              
+            </div>
+          </ion-col>
+        </ion-row>
+        <ion-ripple-effect></ion-ripple-effect>
+        </div>
+
+        <div class="col_border ion-activatable ripple-parent">
+          <ion-row>
+          <ion-col size="3">
+            <div class="control_notification_style notificaion_icon_bg_green">
+              <div class="text_icon_1">AD</div>
+            </div>
+          </ion-col>
+          <ion-col size="9">
+            <div class="notification_style_1_outer">
+              <div class="notification_style_1_title">
+                Happy new month!  This month love more and work on your goals. 
+                <span class="notification_style1_time_ago">
+                  - May 1 2020
+                </span>
+              </div>
+            </div>
+          </ion-col>
+        </ion-row>
+        <ion-ripple-effect></ion-ripple-effect>
+        </div>
+
+
+    </ion-grid>
+  </div>
+</ion-content>

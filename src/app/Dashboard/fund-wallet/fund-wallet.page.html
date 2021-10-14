@@ -1,0 +1,39 @@
+<app-header-two [title]="'Payment'"></app-header-two>
+
+<ion-content class="ion-padding gray_background">
+  <div class="content_padded">
+    <ion-grid>
+      <ion-row>
+
+        <ion-col>
+          <div class="fund_wallet_zone1">
+            How much do you want to fund your wallet with?
+          </div>
+        </ion-col>
+        <ion-col size="12">
+          <div class="fund_wallet_zone2">
+            <ion-row>
+              <ion-col size="12">
+                <ion-item lines="none" class="ion-no-border no-bg style_input no-padding">
+                  <ion-label position="stacked">Enter amount</ion-label>
+                  <input  placeholder="1234 5678 3456 2456" [cleave]="{numeral: true, prefix: '₦', numeralThousandsGroupStyle: 'thousand'}" class="style_payment_input">
+                </ion-item>
+              </ion-col>
+            </ion-row>
+          </div>
+        </ion-col>
+      
+        <ion-col size="12">
+          <div class="pawa2_u_checkout_btn_actions">
+            <ion-button (click)="fundAccount()" class="pawa2_u_action_btn_2">
+              Make Payment
+            </ion-button>
+          </div>
+        </ion-col>
+
+      </ion-row>
+    </ion-grid>
+  </div>
+</ion-content>
+
+

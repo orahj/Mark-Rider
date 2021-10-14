@@ -1,0 +1,7 @@
+{
+  "name": "pawa2u-mobile",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}

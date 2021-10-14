@@ -1,0 +1,61 @@
+<ion-content [fullscreen]="true" class="welcome_style" loop="true">
+  <div class="pawa2_u_logo">
+    <img src="../../assets/images/macriders/macreider_logo.png">
+  </div>
+  <ion-slides pager="true" #mySlider :options="slideOpts" (ionSlidesDidLoad)="slidesDidLoad(mySlider)">
+    <ion-slide class="the_slide_holder slide_height style_active">
+      <div class="pawa_2_u_welcome_slide_intro">
+        <div class="pawa_2_u_welcome_slide_intro_heading_1">
+         
+        </div>
+        <div class="pawa_2_u_welcome_slide_intro_heading_3">
+          
+        </div>
+
+        <ion-button color="light" class="pawa_2_u_welcome_slide_intro_btn" (click)="gotoLogin()">Log in</ion-button>
+        <div class="pawa_2_u_welcome_slide_intro_heading_line"></div>
+        
+        <div class="pawa_2_u_welcome_slide_intro_heading_link" (click)="gotoSignUp()">
+          Create Account
+        </div>
+      </div>
+
+    </ion-slide>
+    <ion-slide class="the_slide_holder_2 slide_height style_active">
+      <div class="pawa_2_u_welcome_slide_intro">
+        <div class="pawa_2_u_welcome_slide_intro_heading_1">
+         
+        </div>
+        <div class="pawa_2_u_welcome_slide_intro_heading_3">
+         
+        </div>
+
+        <ion-button color="light" class="pawa_2_u_welcome_slide_intro_btn" (click)="gotoLogin()">Log in</ion-button>
+        <div class="pawa_2_u_welcome_slide_intro_heading_line"></div>
+        
+        <div class="pawa_2_u_welcome_slide_intro_heading_link" (click)="gotoSignUp()">
+          Create Account
+        </div>
+      </div>
+
+    </ion-slide>
+    <ion-slide class="the_slide_holder_3 slide_height style_active">
+      <div class="pawa_2_u_welcome_slide_intro">
+        <div class="pawa_2_u_welcome_slide_intro_heading_1">
+          Fund you Wallet
+        </div>
+        <div class="pawa_2_u_welcome_slide_intro_heading_3">
+          Don't want to use your card all the <br> time? No worries, fund your wallet.
+        </div>
+
+        <ion-button color="light" class="pawa_2_u_welcome_slide_intro_btn" (click)="gotoLogin()">Log in</ion-button>
+        <div class="pawa_2_u_welcome_slide_intro_heading_line"></div>
+        
+        <div class="pawa_2_u_welcome_slide_intro_heading_link" (click)="gotoSignUp()">
+          Create Account
+        </div>
+      </div>
+
+    </ion-slide>
+  </ion-slides>
+</ion-content>

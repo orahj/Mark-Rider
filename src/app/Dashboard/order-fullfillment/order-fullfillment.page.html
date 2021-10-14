@@ -1,0 +1,40 @@
+<app-header-two [title]="'Order fullfillment'"></app-header-two>
+
+<ion-content class="ion-no-padding blue_background">
+</ion-content>
+<ion-footer class="ion-no-border no-border order_fullfillment_ff">
+  <div class="order_ff_dialog ion-text-center">
+
+    <div class="order_ff_dialog_inner">
+      <div class="order_ff_dialog_text_1">
+        30 Gift card
+      </div>
+      <div class="order_ff_dialog_text_2">
+        Order has been fulfilled 
+      </div>
+      <div class="order_ff_dialog_text_3">
+        by Mark Riders
+      </div>
+    </div>
+
+    <div (click)="acceptOrder()" class="order_ff_dialog_inner_2">
+      <ion-button class="order_ff_dialog_inner_2_btn">
+        <ion-icon  class="order_ff_dialog_inner_2_btn_complete" slot="icon-only" name="checkmark-outline"></ion-icon>
+      </ion-button>
+      <div class="order_ff_dialog_inner_2_text">
+        Accept
+      </div>
+    </div>
+  
+    <div (click)="disputeOrder(2)" class="order_ff_dialog_inner_2">
+      <ion-button class="order_ff_dialog_inner_2_btn_cancel">
+        <ion-icon  class="order_ff_dialog_inner_2_btn_dispute" slot="icon-only" name="close-outline"></ion-icon>
+      </ion-button>
+      <div class="order_ff_dialog_inner_2_text_2">
+        Dispute
+      </div>
+    </div>
+
+
+  </div>
+</ion-footer>

@@ -1,0 +1,95 @@
+
+<app-header></app-header>
+<ion-content class="ion-no-padding gray_background">
+  <div class="content_padded">
+    <ion-grid>
+      <ion-row>
+        <ion-col size="12">
+          <div class="wallet_transaction_recrods">
+            <div class="the_wallet_item_list ion-activatable ripple-parent rider-dashboard">
+              <ion-row (click) ="viewDetails()">
+                <ion-col>
+                  <section class="top">
+                    <label>Your Dashbaord</label>
+                    <div>
+                      <label>Rider No: </label>
+                      <span>34059</span>
+                    </div>
+                  </section>
+                  <section class="middle">
+                    <h2>{{earnings.toFixed(2) | currency: '₦' }}</h2>
+                  </section>
+                  <section>
+                    <ion-label>
+                      <label>Weekly Earnings: </label>
+                      <span>{{weeklyEarning.toFixed(2) | currency: '₦' }}</span>
+                    </ion-label>
+                    <div>
+                      <span>
+                        Rating
+                      </span>
+                      <span>
+                        {{rate}}
+                      </span>
+                    </div>
+                  </section>
+                  
+                </ion-col>
+              </ion-row>
+              <ion-ripple-effect></ion-ripple-effect>
+
+            </div>
+            <div class="wallet_transaction_recrods">
+              <div class="the_wallet_item_list ion-activable ripple-parent">
+               <ion-row>
+                <ion-col>
+                  <ion-item>
+                    <ion-label>Go Online</ion-label>
+                    <ion-toggle slot="start" name="banana" color="warning" [ngModel]="theSate" (ngModelChange)="stateChange($event)" [checked]="_bState"></ion-toggle>
+                  </ion-item>
+                </ion-col>
+               </ion-row>
+              </div>
+            </div>
+          </div>
+
+        
+        </ion-col>
+
+      </ion-row>
+      <ion-list>
+        <app-section-header>Recent Deliveries</app-section-header>
+        <ion-item class="item-one" lines="none" detail="false">
+          <ion-icon name="wallet-outline" slot="start" color="primary"></ion-icon>
+          <ion-label>
+            <h2>Delivery for the other day</h2>
+            <p>07 Jul,2021</p>
+          </ion-label>
+          <label slot="end" class="amount">
+            N5000.00
+          </label>
+        </ion-item>
+        <ion-item class="item-one" lines="none" detail="false">
+          <ion-icon name="wallet-outline" slot="start" color="primary"></ion-icon>
+          <ion-label>
+            <h2>Delivery for the other day</h2>
+            <p>07 Jul,2021</p>
+          </ion-label>
+          <label slot="end" class="amount">
+            N5000.00
+          </label>
+        </ion-item>
+        <ion-item class="item-one" lines="none" detail="false">
+          <ion-icon name="wallet-outline" slot="start" color="primary"></ion-icon>
+          <ion-label>
+            <h2>Delivery for the other day</h2>
+            <p>07 Jul,2021</p>
+          </ion-label>
+          <label slot="end" class="amount">
+            N5000.00
+          </label>
+        </ion-item>
+      </ion-list>
+    </ion-grid>
+  </div>
+</ion-content>

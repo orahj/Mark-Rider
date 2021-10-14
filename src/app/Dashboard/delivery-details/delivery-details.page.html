@@ -1,0 +1,80 @@
+
+<app-header-two></app-header-two>
+<ion-content class="ion-no-padding gray_background">
+  <div class="content_padded">
+    <ion-grid>
+      <ion-row>
+        <ion-col size="12">
+          <div class="map">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3963.9368487402803!2d3.3929456146558845!3d6.529660495277045!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x103b8d194b40e58d%3A0x325f824343149d63!2sAjileye%20St%2C%20Akoka%2C%20Lagos!5e0!3m2!1sen!2sng!4v1614848072080!5m2!1sen!2sng" width="390" height="220" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+          </div>
+        </ion-col>
+        <ion-col>
+          <div class="wallet_transaction_recrods">
+            <div class="the_wallet_item_list ion-activable ripple-parent">
+             <ion-row>
+             <h2>Delivery details</h2>
+             </ion-row>
+            </div>
+          </div>
+        </ion-col>
+        <ion-col size="12">
+           <div class="wallet_transaction_recrods ion-activatable ripple-parent">
+            <div class="the_wallet_item_list ion-activatable ripple-parent">
+              <ion-row>
+                <ion-col size="12">
+                  <div class="">
+                   Four pairs of shoes to be delivered.
+                  </div>
+                </ion-col>
+              </ion-row>
+              <ion-ripple-effect></ion-ripple-effect>
+            </div>
+          </div> 
+
+          <div class="wallet_transaction_recrods ion-activatable ripple-parent">
+            <div class="the_wallet_item_list ion-activatable ripple-parent">
+              <ion-row>
+                <ion-col size="12">
+                  <div (click) ="pickUpLocation()">
+                   Click to view pick up location
+                  </div>
+                </ion-col>
+              </ion-row>
+              <ion-ripple-effect></ion-ripple-effect>
+            </div>
+          </div> 
+          <div class="wallet_transaction_recrods ion-activatable ripple-parent">
+            <div class="the_wallet_item_list ion-activatable ripple-parent">
+              <ion-row>
+                <ion-col size="12">
+                  <div>
+                   Call Details
+                  </div>
+                </ion-col>
+              </ion-row>
+              <ion-ripple-effect></ion-ripple-effect>
+            </div>
+          </div> 
+          <div class="wallet_transaction_recrods ion-activatable ripple-parent">
+            <div class="the_wallet_item_list ion-activatable ripple-parent">
+              <ion-row>
+                <ion-col size="12">
+                  <div (click) ="DeliveryAddress()">
+                  View Delivery Address
+                  </div>
+                </ion-col>
+              </ion-row>
+              <ion-ripple-effect></ion-ripple-effect>
+            </div>
+          </div> 
+        </ion-col>
+       
+      </ion-row>
+    </ion-grid>
+
+  </div>
+  <ion-button (click)="startDelivery()" expand="block" size="large" class="pawa2u_btn btn_capitalize thin_font_weight small_sized_btn mt-15">
+    Start Delivery
+  </ion-button>
+</ion-content>

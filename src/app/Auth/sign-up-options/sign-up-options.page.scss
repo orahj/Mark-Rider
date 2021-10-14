@@ -1,0 +1,74 @@
+ion-header {
+    &.header-md:after {
+      background: none;
+    }
+  }
+
+
+ion-item {
+
+    border: 1px solid #C8C8C8;
+    margin-top: 20px;
+    border-radius: 5px;
+    font-size: 12px;
+    color: #707070 !important;
+    padding-top: 0px;
+    padding-bottom: 0 !important;
+    height: 54px;
+    --highlight-height: 0;
+
+}
+
+ion-segment{
+    --background: #fff;
+}
+
+ion-card-subtitle.style_header {
+    --color: #0A1857;
+    font-weight: 500;
+    font-size: 16px;
+    font-weight: 300;
+}
+
+ion-segment-button.pawa2u_segment {
+
+   // --color-checked: #fff !important;
+    --background-checked: #ffa500;
+    --color-checked: #ffa500;
+    color: #ffa500;
+}
+
+ion-segment {
+    --background: #fff;
+    border-top: 1px solid #707070;
+    border-bottom: 1px solid #707070;
+
+}
+
+.pawa2u_segment_text{
+    color: #000;
+}
+
+.ion_card_style ion-item ion-label {
+    color: #707070 !important;
+    font-family: 'Montserrat' , sans-serif !important;
+    font-weight: 300;
+}
+
+ion-button.button-disabled {
+    --background: #7C8ACB !important;
+    opacity: 1;
+}
+.control_login_logo {
+
+    text-align: center;
+    background: #fff;
+    padding: 0;
+    
+}
+.control_login_logo img{
+    object-fit: contain;
+    width: 150px;
+    height: 150px;
+    margin-bottom: 0;
+}

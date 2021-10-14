@@ -1,0 +1,135 @@
+<app-header-two [title]="'Details'"></app-header-two>
+
+<ion-content class="ion-padding gray_background">
+  <div class="content_padded">
+    <ion-grid>
+      <ion-row>
+
+        <ion-col size="9">
+          <div class="product_intro_category_name">
+            Solar Panels
+          </div>
+          <div class="product_intro_category_name_light">
+            Sunlight energy to electricity
+          </div>
+        </ion-col>
+
+        <ion-col size="12">
+          <div class="product_main_image" style="
+          background-image: url('../../../assets/images/disel_image_large.png');
+          height: 200px;
+          width: 100%;
+          background-repeat: no-repeat;
+          background-position: center;
+          background-size: cover;
+          border-radius: 5px;
+        ">
+          </div>
+        </ion-col>
+        <ion-col size="12">
+          <div class="product_main_meta">
+            <ion-row>
+              <ion-col size="6">
+                <div class="product_meta_sm_left">
+                  Price per litre
+                </div>
+              </ion-col>
+
+              <ion-col size="6">
+                <div class="product_meta_sm_right">
+                  N 230
+                </div>
+              </ion-col>
+
+
+              <ion-col size="6">
+                <div class="product_meta_sm_left">
+                  Minimum Order
+                </div>
+              </ion-col>
+
+              <ion-col size="6">
+                <div class="product_meta_sm_right">
+                  300 litres
+                </div>
+              </ion-col>
+
+              <ion-col size="6">
+                <div class="product_meta_sm_left">
+                  Order Increment
+                </div>
+              </ion-col>
+
+              <ion-col size="6">
+                <div class="product_meta_sm_right">
+                  50 litres
+                </div>
+              </ion-col>
+
+            </ion-row>
+
+          </div>
+        </ion-col>
+
+        <ion-col size="12">
+          <div class="product_main_meta">
+            <ion-row>
+
+              <ion-col size="5">
+                <div class="product_meta_qty_sm_left">
+                  Quantity
+                </div>
+              </ion-col>
+
+              <ion-col size="7">
+                <div class="product_meta_qty_sm_right">
+                  Total
+                </div>
+              </ion-col>
+
+              <ion-col size="12">
+                <div class="control_qty_padding">
+                  <ion-row>
+                    <ion-col size="6">
+                      <div class="product_meta_qty_sm_left_2">
+                        <ion-row>
+                            <ion-col size="4" class="ion-text-left">
+                              <ion-button class="incrementor_btn" (click)="increaseOrder()">
+                                <ion-icon name="add-outline"></ion-icon>
+                              </ion-button>
+                              
+                            </ion-col>
+                            <ion-col size="4" class="ion-no-padding">
+                              <input [(ngModel)]="qty" class="product_meta_qty_sm_value" value="300">
+                            </ion-col>
+
+                            <ion-col size="4"  class="ion-text-right">
+                              <ion-button class="incrementor_btn" (click)="decreaseOrder()">
+                                <ion-icon name="remove-outline"></ion-icon>
+                              </ion-button>
+                            </ion-col>
+                        </ion-row>
+                      </div>
+                    </ion-col>
+      
+                    <ion-col size="6">
+                      <div class="product_meta_qty_sm_right_big">
+                        N 690,000
+                      </div>
+                    </ion-col>
+                  </ion-row>
+                </div>
+              </ion-col>
+              
+
+            </ion-row>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+</ion-content>
+
+<ion-footer class="ion-no-border no-border">
+  <ion-button class="order_btn_footer" (click)="orderProduct()"> Order </ion-button>
+</ion-footer>

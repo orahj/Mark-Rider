@@ -1,0 +1,64 @@
+.order_ff_dialog_text_2 {
+    font-size: 12px;
+    font-weight: 300;
+    color: #707070;
+}
+
+.order_ff_dialog_text_1 {
+    margin-top: 40px;
+    font-weight: 500;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.order_ff_dialog_text_3 {
+    font-size: 12px;
+    margin-top: 5px;
+    margin-bottom: 20px;
+    color: #707070;
+    font-weight: 300;
+}
+
+.order_ff_dialog_inner_2_text, .order_ff_dialog_inner_2_text_2 {
+    font-size: 12px;
+    font-weight: 500;
+    color: #000;
+}
+
+.order_ff_dialog_inner_2 {
+    margin-bottom: 50px;
+}
+
+ion-button.order_ff_dialog_inner_2_btn {
+
+    width: 50px;
+    height: 50px;
+    --border-radius: 100px !important;
+    --background: #27ae60;
+    margin-bottom: 10px;
+    --padding-start: 0 !important;
+    --padding-end: 0;
+
+}
+
+ion-button.order_ff_dialog_inner_2_btn_cancel {
+
+    --border-radius: 100px;
+    width: 40px;
+    height: 40px;
+    --padding-start: 0 !important;
+    --padding-end: 0;
+    --background: #c0392b;
+    margin-bottom: 10px;
+}
+
+ion-footer.ion-no-border.no-border.order_fullfillment_ff {
+    border-top: 5px solid #DAC67B;
+}
+
+ion-button.order_ff_dialog_inner_2_btn_cancel ion-icon, ion-button.order_ff_dialog_inner_2_btn ion-icon {
+
+    font-size: 30px !important;
+    --ionicon-stroke-width: 50px !important;
+
+}

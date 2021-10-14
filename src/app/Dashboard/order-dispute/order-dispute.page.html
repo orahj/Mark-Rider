@@ -1,0 +1,42 @@
+<app-header-two [title]="'Order Disputed'"></app-header-two>
+
+<ion-content class="ion-no-padding blue_background">
+</ion-content>
+<ion-footer class="ion-no-border no-border order_fullfillment_ff">
+  <div class="order_ff_dialog ion-text-center">
+
+    <div class="order_dispute_dialog_inner">
+      <div class="order_dispute_dialog_inner_svg">
+        <svg width="61" height="61" viewBox="0 0 61 61" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M54.9 30.5C54.9 24.0287 52.3293 17.8225 47.7534 13.2466C43.1775 8.67071 36.9713 6.1 30.5 6.1C24.0287 6.1 17.8225 8.67071 13.2466 13.2466C8.67071 17.8225 6.1 24.0287 6.1 30.5C6.1 36.9713 8.67071 43.1775 13.2466 47.7534C17.8225 52.3293 24.0287 54.9 30.5 54.9C36.9713 54.9 43.1775 52.3293 47.7534 47.7534C52.3293 43.1775 54.9 36.9713 54.9 30.5ZM61 30.5C61 38.5891 57.7866 46.3469 52.0668 52.0668C46.3469 57.7866 38.5891 61 30.5 61C26.4947 61 22.5286 60.2111 18.8282 58.6783C15.1277 57.1456 11.7654 54.8989 8.93324 52.0668C3.21338 46.3469 0 38.5891 0 30.5C0 22.4109 3.21338 14.6531 8.93324 8.93324C14.6531 3.21338 22.4109 0 30.5 0C34.5053 0 38.4714 0.788906 42.1718 2.32167C45.8723 3.85444 49.2346 6.10106 52.0668 8.93324C54.8989 11.7654 57.1456 15.1277 58.6783 18.8282C60.2111 22.5286 61 26.4947 61 30.5ZM41.175 18.3C43.615 18.3 45.75 20.435 45.75 22.875C45.75 25.315 43.615 27.45 41.175 27.45C38.735 27.45 36.6 25.315 36.6 22.875C36.6 20.435 38.735 18.3 41.175 18.3ZM24.4 22.875C24.4 25.315 22.265 27.45 19.825 27.45C17.385 27.45 15.25 25.315 15.25 22.875C15.25 20.435 17.385 18.3 19.825 18.3C22.265 18.3 24.4 20.435 24.4 22.875ZM30.5 36.6C35.8375 36.6 40.5345 38.796 43.2795 42.1205L38.9485 46.4515C37.576 44.225 34.3125 42.7 30.5 42.7C26.6875 42.7 23.424 44.225 22.0515 46.4515L17.7205 42.1205C20.4655 38.796 25.1625 36.6 30.5 36.6Z" fill="#2A397A"/>
+          </svg>                 
+      </div>
+    </div>
+
+    <div class="order_ff_dialog_inner">
+      <div class="order_ff_dialog_text_1">
+        Sorry about your order!
+      </div>
+      <div class="order_ff_dialog_text_2">
+        Select complaint type
+      </div>
+
+      <div (click)="orderDisputeReport(2, 'in-complete')" class="order_ff_dialog_inner_action">
+        <div class="order_ff_dialog_inner_action_inner">
+          <ion-button class="order_dispte_btn_action">In-complete</ion-button>
+        </div>
+        
+        <div (click)="orderDisputeReport(2, 'late-arrivial')" class="order_ff_dialog_inner_action_inner">
+          <ion-button class="order_dispte_btn_action">Late arrival</ion-button>
+        </div>
+        
+        <div (click)="orderDisputeReport(2, 'damaged')" class="order_ff_dialog_inner_action_inner">
+          <ion-button class="order_dispte_btn_action">Damaged</ion-button>
+        </div>
+        
+      </div>
+    </div>
+
+
+  </div>
+</ion-footer>

@@ -1,0 +1,219 @@
+
+.wallet_style_inner ion-icon {
+    font-size: 91px;
+    color: #707070;
+}
+
+.ion-text-center.wallet_text_2 {
+    font-size: 12px;
+    margin-top: 20px;
+}
+
+.wallet_style_inner {
+    text-align: center;
+}
+
+.handle_fund_wallet_padd {
+    padding-left: 80px;
+    padding-right: 80px;
+    margin-bottom: 50px;
+}
+
+.fund_histroy {
+    margin-bottom: 10px;
+    font-size: 11px;
+    text-transform: uppercase;
+    color: #707070;
+    font-weight: 400;
+}
+
+.wallet_transaction_ref_date {
+    font-size: 14px;
+    text-align: left;
+    color: #707070;
+    margin-bottom: 5px;
+    font-weight: 500;
+}
+
+.wallet_transaction_ref_number {
+    font-size: 14px;
+    color: #707070;
+    margin-bottom: 5px;
+}
+
+.wallet_transaction_status_text {
+    font-size: 11px;
+    color: #0A1857;
+}
+
+.wallet_transaction_amount {
+    font-size: 15px;
+    color: #707070;
+    margin-bottom: 5px;
+}
+
+.wallet_transaction_amount_type_text {
+    font-size: 11px;
+    color: #07594B;
+}
+
+.the_wallet_item_list {
+    padding: 10px 15px;
+    border: 1px solid #eae7e7;
+    position: relative;
+    overflow: hidden;
+    background: #fff;
+    border-radius: 3px;
+    margin-bottom: 5px;
+}
+
+.has_fund_in_wallet.ion-text-center {
+    margin-top: 50px;
+}
+
+.wallet_fund_title {
+    font-size: 19px;
+    color: #707070;
+    margin-bottom: 10px;
+}
+
+.wallet_fund_available_balance {
+    font-size: 50px;
+    margin-bottom: 10px;
+    font-weight: 500;
+}
+
+.wallet_fund_available_balance_text2 {
+    font-size: 12px;
+    color: #707070;
+    margin-bottom: 30px;
+}
+
+.has_fund_in_wallet.ion-text-center {
+    margin-top: 70px;
+    margin-bottom: 40px;
+}
+
+.orders_history_title {
+    font-weight: 300;
+    background: #EFF0F4;
+    padding: 15px 10px;
+}
+
+.orders_histroy_title_left {
+    font-size: 15px;
+    font-weight: 300;
+    color: #707070;
+}
+
+.orders_history_title_right{
+    font-size: 12px;
+    font-weight: 300;
+    color: #707070;
+}
+
+.wallet_transaction_ref_date_2 {
+    font-size: 13px;
+    color: #707070;
+    margin-bottom: 10px;
+}
+
+.order_details_rate_text_2 {
+    font-size: 16px;
+    color: #07594B;
+    font-weight: 500;
+    margin-top: 5px;
+}
+
+.order_details_rate_text {
+    font-size: 10px;
+    color: #07594B;
+}
+
+ion-item.review_message {
+    --background: transparent;
+    --box-shadow: 0 !important;
+    border: 1px solid #E3E3E3;
+    border-radius: 5px;
+    margin-left: 30px;
+    margin-right: 30px;
+    margin-top: 30px;
+    --highlight-height: 0;
+    --border-width: 0;
+}
+
+.order_details_rate.ion-text-center {
+
+    padding: 20px;
+    background: #fff;
+    border-radius: 3px;
+    border: 1px solid #eae7e7;
+
+}
+
+ion-button.pawa2_u_action_btn_2 {
+
+    width: 100%;
+    --background: #0A1857;
+    text-transform: capitalize;
+    --padding-top: 19px;
+    --padding-bottom: 19px;
+    font-size: 12px;
+    text-transform: none;
+}
+
+.pawa2_u_checkout_btn_actions {
+    margin-top: 10px;
+    margin-left: 60px;
+    margin-right: 60px;
+}
+
+.product_item_2_starrate_inner {
+    text-align: center;
+    width: 100px;
+    margin: 0 auto;
+}
+
+.checkout_action_section {
+    margin-bottom: 20px;
+}
+
+.checkout_item_text_1 {
+
+    font-size: 13px;
+    font-weight: 500;
+    margin-bottom: 5px;
+    margin-top: 10px;
+
+}
+
+.checkout_item_text_2 {
+
+    font-size: 10px;
+    margin-bottom: 5px;
+    font-weight: 300;
+    color: #07594B;
+
+}
+
+.checkout_item_price {
+
+    color: #07594B;
+    font-weight: 500;
+    font-size: 15px;
+
+}
+
+ion-item.order_details_item_box {
+    border: 1px solid #eae7e7;
+    border-radius: 3px;
+}
+
+ion-list.order_details_item_list{
+    background: transparent;
+}
+
+ion-textarea {
+    font-size: 11px !important;
+    color: #000 !important;
+}

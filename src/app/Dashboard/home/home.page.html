@@ -1,0 +1,262 @@
+
+<app-header></app-header>
+<ion-content class="ion-no-padding gray_background">
+  <div class="content_padded">
+    <ion-grid>
+      <ion-row>
+
+        <ion-col size="12">
+         
+          <ion-select #C interface="popover" placeholder="Select One" (ionChange)="onChange(C.value)" class="mark-drop-down">
+            <ion-select-option value="single">Single</ion-select-option>
+            <ion-select-option value="bulk">Bulk Delivery</ion-select-option>
+            <ion-select-option (click)="notavailble()"  value="cargo">Cargo</ion-select-option>
+            <ion-select-option (click)="notavailble()" class="not-available" value="interstate">Inter-state</ion-select-option>
+          </ion-select>
+        </ion-col>
+        <ion-col size="12">
+          <div class="map">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3963.9368487402803!2d3.3929456146558845!3d6.529660495277045!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x103b8d194b40e58d%3A0x325f824343149d63!2sAjileye%20St%2C%20Akoka%2C%20Lagos!5e0!3m2!1sen!2sng!4v1614848072080!5m2!1sen!2sng" width="390" height="130" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+          </div>
+        </ion-col>
+        <ion-col size="12">
+          <div class="wallet_transaction_recrods">
+            <div class="the_wallet_item_list ion-activatable ripple-parent">
+              <ion-row>
+                <ion-col>
+                  <div class="wallet_transaction_ref_date">
+                    <span class="compliment">Nice to see you</span>
+                    <h5>How may we serve you ?</h5>
+                  </div>
+                </ion-col>
+              </ion-row>
+              <ion-ripple-effect></ion-ripple-effect>
+
+            </div>
+            <div class="wallet_transaction_recrods">
+              <div class="the_wallet_item_list ion-activable ripple-parent">
+               <ion-row>
+                <ion-col>
+                  <ion-item mode="md">
+                    <ion-icon name="gift" slot="start" mode="md"></ion-icon>
+                    <ion-label position="floating" mode="md">Item to be delivered</ion-label>
+                    <ion-input placeholder="A pair of shoe" mode="md"></ion-input>
+                  </ion-item>
+                </ion-col>
+               </ion-row>
+              </div>
+            </div>
+            <div class="wallet_transaction_recrods">
+              <div class="the_wallet_item_list ion-activable ripple-parent">
+                <ion-row>
+                  <ion-col>
+                    <ion-item mode="md">
+                      <ion-icon name="location-outline" slot="start" mode="md"></ion-icon>
+                      <ion-label position="floating" mode="md">Pick up address</ion-label>
+                      <ion-input mode="md"></ion-input>
+                    </ion-item>
+                  </ion-col>
+                 
+                </ion-row>
+               <ion-row>
+                <ion-col>
+                  <ion-item mode="md">
+                    <ion-icon name="call" slot="start" mode="md"></ion-icon>
+                    <ion-label position="floating" mode="md">Pick up Phone number</ion-label>
+                    <ion-input placeholder="+234-" mode="md"></ion-input>
+                  </ion-item>
+                </ion-col>
+               </ion-row>
+              </div>
+            </div>
+           
+            <div *ngIf="single" class="wallet_transaction_recrods">
+              <div class="the_wallet_item_list ion-activable ripple-parent">
+                <ion-row>
+                  <ion-col>
+                    <ion-item mode="md">
+                      <ion-icon name="location-outline" slot="start" mode="md"></ion-icon>
+                      <ion-label position="floating" mode="md">Drop off address</ion-label>
+                      <ion-input mode="md"></ion-input>
+                    </ion-item>
+                  </ion-col>
+                </ion-row>
+                <ion-row>
+                  <ion-col>
+                    <ion-item mode="md">
+                      <ion-icon name="call" slot="start" mode="md"></ion-icon>
+                      <ion-label position="floating" mode="md">Drop off Phone number</ion-label>
+                      <ion-input placeholder="+234-" mode="md"></ion-input>
+                    </ion-item>
+                  </ion-col>
+                 </ion-row>
+              </div>
+            </div>
+            <div *ngIf="bulkdelivery" class="wallet_transaction_recrods">
+              <div class="the_wallet_item_list ion-activable ripple-parent">
+                <ion-row>
+                  <ion-col>
+                    <ion-item mode="md">
+                      <ion-icon name="location-outline" slot="start" mode="md"></ion-icon>
+                      <ion-label position="floating" mode="md">Drop off address</ion-label>
+                      <ion-input mode="md"></ion-input>
+                    </ion-item>
+                  </ion-col>
+                </ion-row>
+                <ion-row>
+                  <ion-col>
+                    <ion-item mode="md">
+                      <ion-icon name="call" slot="start" mode="md"></ion-icon>
+                      <ion-label position="floating" mode="md">Drop off Phone number</ion-label>
+                      <ion-input placeholder="+234-" mode="md"></ion-input>
+                    </ion-item>
+                  </ion-col>
+                 </ion-row>
+              </div>
+              
+              <div class="the_wallet_item_list ion-activable ripple-parent">
+                <ion-row>
+                 <ion-col size="5">
+                  <ion-fab-button color="#ffa500">
+                    <ion-icon (click)="addAddress()" class="add-address" name="add"></ion-icon>
+                  </ion-fab-button>
+                 </ion-col>
+                 <ion-col>
+                  <p>Click to add more addresses</p>
+                  <a (click)="addresslist()">View address list</a>
+                 </ion-col>
+                </ion-row>
+               
+              </div>
+            </div>
+            <div class="wallet_transaction_recrods">
+              <div class="the_wallet_item_list ion-activable ripple-parent">
+                <ion-row>
+                  <ion-list>
+                    <ion-radio-group value="grape">
+                      <ion-item>
+                        <ion-label>Right Away</ion-label>
+                        <ion-radio mode="md"  slot="start" color="success" value="1" (click)="rightaway()"></ion-radio>
+                      </ion-item>
+                      <ion-item>
+                        <ion-label>Schedule for later</ion-label>
+                        <ion-radio mode="md"  slot="start" color="success" value="2" (click)="scheduled()"></ion-radio>
+                      </ion-item>
+                     
+                    </ion-radio-group>
+                  </ion-list>
+                </ion-row>
+              </div>
+            </div>
+            <div *ngIf="isscheduled" class="wallet_transaction_recrods">
+              <div class="the_wallet_item_list ion-activable ripple-parent">
+               
+                <ion-row>
+                  <ion-col >
+                    <ion-item mode="md">
+                     
+                      <ion-label position="floating" mode="md">Delivery Date</ion-label>
+                      <ion-datetime value="2019-10-01T15:43:40.394Z" display-timezone="utc"></ion-datetime>
+                     
+                    </ion-item>
+                  </ion-col>
+                 </ion-row>
+              </div>
+            </div>
+            <div class="wallet_transaction_recrods">
+              <div class="the_wallet_item_list ion-activable ripple-parent">
+               
+               
+                 <ion-row>
+                  <ion-col>
+                    <div> 
+                      <ion-avatar slot="start">
+                      <ion-img class="mark-carriers" src="../../../assets//images/macriders/m2.png"></ion-img>
+                    </ion-avatar>
+                  </div>
+                  </ion-col>
+                  <ion-col>
+                    <div>
+                      <ion-avatar slot="start">
+                        <ion-img class="mark-carriers" src="../../../assets//images/macriders/m3.png"></ion-img>
+                      </ion-avatar>
+                    </div>
+                  </ion-col>
+                  <ion-col>
+                    <div>
+                      <ion-avatar slot="start">
+                        <ion-img class="mark-carriers" src="../../../assets//images/macriders/m1.png"></ion-img>
+                      </ion-avatar>
+                    </div>
+                  </ion-col>
+                </ion-row>
+              </div>
+            </div>
+            <ion-button (click)="orderProduct()" expand="block" size="large" class="pawa2u_btn btn_capitalize thin_font_weight small_sized_btn mt-15">
+              Proceed
+            </ion-button>
+          </div>
+
+          <!-- <div (click)="orderdetails()" class="wallet_transaction_recrods ion-activatable ripple-parent">
+            <div class="the_wallet_item_list ion-activatable ripple-parent">
+              <ion-row>
+                <ion-col size="2">
+                  <div class="wallet_transaction_ref_date">
+                    14 Apr
+                  </div>
+                </ion-col>
+                <ion-col size="6">
+                  <div class="wallet_transaction_ref_number">
+                    #PA-23782393
+                  </div>
+                  <div class="wallet_transaction_status_text">
+                    Successful
+                  </div>
+                </ion-col>
+                <ion-col size="4" class="ion-text-right">
+                  <div class="wallet_transaction_amount">
+                    N10000
+                  </div>
+                  <div class="wallet_transaction_amount_type_text">
+                    Credit
+                  </div>
+                </ion-col>
+              </ion-row>
+              <ion-ripple-effect></ion-ripple-effect>
+            </div>
+          </div> -->
+
+          <!-- <div (click)="orderdetails()" class="wallet_transaction_recrods ion-activatable ripple-parent">
+            <div class="the_wallet_item_list ion-activatable ripple-parent">
+              <ion-row>
+                <ion-col size="2">
+                  <div class="wallet_transaction_ref_date">
+                    14 Apr
+                  </div>
+                </ion-col>
+                <ion-col size="6">
+                  <div class="wallet_transaction_ref_number">
+                    #PA-23782393
+                  </div>
+                  <div class="wallet_transaction_status_text">
+                    Successful
+                  </div>
+                </ion-col>
+                <ion-col size="4" class="ion-text-right">
+                  <div class="wallet_transaction_amount">
+                    N10000
+                  </div>
+                  <div class="wallet_transaction_amount_type_text">
+                    Credit
+                  </div>
+                </ion-col>
+              </ion-row>
+              <ion-ripple-effect></ion-ripple-effect>
+            </div>
+          </div> -->
+        </ion-col>
+
+      </ion-row>
+    </ion-grid>
+  </div>
+</ion-content>

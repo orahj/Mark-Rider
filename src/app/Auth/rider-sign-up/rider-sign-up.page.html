@@ -1,0 +1,152 @@
+<ion-header [translucent]="true">
+  <ion-toolbar class="ion-text-center ion-no-border">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>
+      <div class="pawa2_transparent_header">
+        Rider Sign Up
+      </div>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-padding">
+  <div *ngIf="segmentModel === 'individual'" class="ion_card_style">
+   
+    <ion-card-content>
+      <form [formGroup]="individualFormData"  (ngSubmit)="individualFormData.valid && submitIndividualForm()">
+
+      <ion-item>
+        <ion-icon name="medical-outline" slot="start"></ion-icon>
+        <ion-label position="floating">First Name</ion-label>
+        <ion-input formControlName="firstName"></ion-input>
+      </ion-item>
+
+      <div class="validate_input" *ngIf="individualFormData.get('firstName').hasError('required') && individualFormData.get('firstName').touched">
+        First name is required
+      </div>
+      <div class="validate_input" *ngIf="individualFormData.get('firstName').hasError('maxLength')">
+        Please enter a valid input
+      </div>
+
+
+      <ion-item>
+        <ion-icon name="medical-outline" slot="start"></ion-icon>
+        <ion-label position="floating">Last Name</ion-label>
+        <ion-input formControlName="lastName"></ion-input>
+      </ion-item>
+
+      <div class="validate_input" *ngIf="individualFormData.get('lastName').hasError('required') && individualFormData.get('lastName').touched">
+        Last name is required
+      </div>
+      <div class="validate_input" *ngIf="individualFormData.get('lastName').hasError('maxLength')">
+        Please enter a valid input
+      </div>
+
+
+
+      <ion-item>
+        <ion-icon name="mail-unread-outline" slot="start"></ion-icon>
+        <ion-label position="floating">Email</ion-label>
+        <ion-input formControlName="email"></ion-input>
+      </ion-item>
+
+      <div class="validate_input" *ngIf="individualFormData.get('email').hasError('required') && individualFormData.get('email').touched">
+        Email is required
+      </div>
+      <div class="validate_input" *ngIf="individualFormData.get('email').hasError('maxLength')">
+        Please enter a valid input
+      </div>
+      <div class="validate_input" *ngIf="individualFormData.get('email').hasError('pattern')">
+        Please enter a valid email address
+      </div>
+
+
+      <ion-item>
+        <ion-icon name="call-outline" slot="start"></ion-icon>
+        <ion-label position="floating">Phone Number</ion-label>
+        <ion-input formControlName="phone"></ion-input>
+      </ion-item>
+
+      
+      <div class="validate_input" *ngIf="individualFormData.get('phone').hasError('required') && individualFormData.get('phone').touched">
+        Phone number is required
+      </div>
+      <div class="validate_input" *ngIf="individualFormData.get('phone').hasError('pattern')">
+        Please enter a valid input
+      </div>
+
+
+      <ion-item>
+        <ion-icon name="business-outline" slot="start"></ion-icon>
+        <ion-label position="floating">Address</ion-label>
+        <ion-input formControlName="address"></ion-input>
+      </ion-item>
+
+          
+      <div class="validate_input" *ngIf="individualFormData.get('address').hasError('required') && individualFormData.get('address').touched">
+        Address is required
+      </div>
+      <div class="validate_input" *ngIf="individualFormData.get('address').hasError('maxLength')">
+        Please enter a valid input
+      </div>
+
+      <ion-item>
+        <ion-icon name="business-outline" slot="start"></ion-icon>
+        <ion-label position="floating">Rider Card Number</ion-label>
+        <ion-input formControlName="idnumber"></ion-input>
+      </ion-item>
+
+          
+      <div class="validate_input" *ngIf="individualFormData.get('idnumber').hasError('required') && individualFormData.get('idnumber').touched">
+        Rider Card number is required
+      </div>
+      <div class="validate_input" *ngIf="individualFormData.get('idnumber').hasError('maxLength')">
+        Please enter a valid input
+      </div>
+      <ion-item>
+        <ion-icon name="key-outline" slot="start"></ion-icon>
+        <ion-label position="floating">Password</ion-label>
+        <ion-input type="password" formControlName="password"></ion-input>
+      </ion-item>
+
+      <div class="validate_input" *ngIf="individualFormData.get('password').hasError('required') && individualFormData.get('password').touched">
+        Password is required
+      </div>
+      <div class="validate_input" *ngIf="individualFormData.get('password').hasError('maxLength')">
+        Please enter a valid input
+      </div>
+
+      
+
+      <ion-item>
+        <ion-icon name="key-outline" slot="start"></ion-icon>
+        <ion-label position="floating">Confirm Password</ion-label>
+        <ion-input type="password" formControlName="confirm_password"></ion-input>
+      </ion-item>
+
+      <div class="validate_input" *ngIf="individualFormData.get('confirm_password').hasError('required') && individualFormData.get('confirm_password').touched">
+        Password confirmation is required
+      </div>
+      <div class="validate_input" *ngIf="individualFormData.get('confirm_password').hasError('maxLength')">
+        Please enter a valid input
+      </div>
+
+
+      <div class="small_footer_note">
+        By creating an account you agree to our <br>
+        Terms of Service and Privacy Policy
+      </div>
+
+      <!-- <ion-button type="submit" [disabled]="individualFormData.invalid" expand="block" size="large" class="pawa2u_btn">
+        <ion-icon fill name="arrow-forward-outline"></ion-icon>
+      </ion-button> -->
+      <ion-button expand="block" size="large" class="pawa2u_btn btn_capitalize thin_font_weight small_sized_btn">
+        Sign Up
+      </ion-button>   
+       </form>
+    </ion-card-content>
+
+  </div>
+</ion-content>

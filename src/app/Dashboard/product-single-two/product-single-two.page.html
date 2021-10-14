@@ -1,0 +1,99 @@
+<app-header-two [title]="'Details'"></app-header-two>
+
+<ion-content class="ion-padding gray_background_3">
+  <div class="content_padded">
+    <div class="product_item_2">
+      <div class="product-item_2_image">
+        <ion-slides pager="true" [options]="slideOpts">
+          <ion-slide style="
+            background-image: url('../../../assets/images/solar_3.png');
+            height: 165px;
+            margin-bottom: 20px;
+            background-position: top;
+            background-repeat: no-repeat;
+            background-size: contain;
+            background-color: #fff;
+            margin-bottom: 20px;
+          ">
+          </ion-slide>
+          <ion-slide style="
+          background-image: url('../../../assets/images/solor_image_1.png');
+          height: 165px;
+          margin-bottom: 20px;
+          background-position: top;
+          background-repeat: no-repeat;
+          background-size: contain;
+          background-color: #fff;
+          margin-bottom: 20px;
+        ">
+          </ion-slide>
+        </ion-slides>
+      </div>
+
+      <div class="control_product_signle_two_items">
+        <div class="product_item_2_header">
+          280W 24V solar panel
+        </div>
+        <div class="product_item_2_header_small">
+          by Auxano
+        </div>
+
+        <div class="product_item_2_starrate">
+          <div class="product_item_2_price">
+            N 180,000
+          </div>
+          <div class="product_item_2_starrate_inner">
+            <bar-rating class="the_product_rate" [rate]="'4.5'" [max]="'5'" [readOnly]="true"></bar-rating>
+          </div>
+          <div class="product_item_2_starrate_text">
+            ( No rating available)
+          </div>
+
+          <div class="padd_buttons_inner">
+            <ion-button (click)="addToCart()"  class="pawa2_u_action_btn_2">
+              Add to cart
+            </ion-button>
+          </div>
+
+          <div class="product_item_2_description">
+            Product Description
+          </div>
+          <div class="product_item_2_description_text">
+            Get powered using solar energy. Easy to fix and install.
+            Maintenance free.
+          </div>
+
+
+          <div class="product_item_2_description">
+            Customer Feedback
+          </div>
+          <div class="product_item_2_starrate_inner_customer">
+            <bar-rating class="the_product_rate_customer" [rate]="'4.5'" [max]="'5'" [readOnly]="true"></bar-rating>
+          </div>
+          <div class="product_item_2_feedback_content">
+            Strong and reliable product. I like it
+          </div>
+          <div class="product_item_2_feedback_author">
+            - Kenneth Udu
+          </div>
+
+          <div class="product_item_2_starrate_inner_customer">
+            <bar-rating class="the_product_rate_customer" [rate]="'3.5'" [max]="'5'" [readOnly]="true"></bar-rating>
+          </div>
+          <div class="product_item_2_feedback_content">
+            Strong and reliable product. I like it
+          </div>
+          <div class="product_item_2_feedback_author">
+            - Kenneth Udu
+          </div>
+
+
+
+
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</ion-content>

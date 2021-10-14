@@ -1,0 +1,91 @@
+<app-header></app-header>
+<ion-content class="ion-padding gray_background">
+  <div class="content_padded">
+    <ion-grid>
+      <ion-row>
+        <ion-col size="12">
+          <div class="header_style_3">
+           <!-- {{this.userinfo?.firstName | titlecase}} {{this.userinfo?.lastName | titlecase}} -->
+           Orah Isaac
+          </div>
+        </ion-col>
+        <ion-col size="12">
+          <ion-input class="the_form_input"  readonly>09059493939</ion-input>
+        </ion-col>
+        <ion-col size="6">
+          <ion-input class="the_form_input" readonly> Orah </ion-input>
+        </ion-col>
+        
+        <ion-col size="6">
+          <ion-input class="the_form_input" readonly>Isaac</ion-input>
+        </ion-col>
+
+        
+        <ion-col size="12">
+          <ion-input class="the_form_input"  readonly>isaacorah@gmai.com</ion-input>
+        </ion-col>
+
+        <ion-col size="12">
+          <div class="small_footer_note_2">
+            Reciept would be sent to this email
+          </div>
+        
+          <div class="ion-text-center">
+            <a [routerLink]="['/dashboard/edit-profile']" class="small_footer_note_3 mt-5 the_footer_size2">
+              Update your personal data
+            </a>
+          </div>
+          <div class="ion-text-center">
+            <a [routerLink]="['/dashboard/edit-profile-rider']" class="small_footer_note_3 mt-5 the_footer_size2">
+              Update your personal data Rider
+            </a>
+          </div>
+        </ion-col>
+
+        <ion-col size="12">
+          <div class="header_style_3 mt-15">
+            Address 
+          </div>
+        </ion-col>
+
+        <ion-col size="12" class="handle_address_border">
+          <ion-row class="the_address_row_handle">
+            <ion-col size="2" class="ion-text-center">
+              <ion-icon class="location-outline-icon active" name="location-outline"></ion-icon>
+            </ion-col>
+            <ion-col size="10">
+              <div class="location_text">
+                21 Ajileye, street, Ilaje road, Shomolu, lagos
+              </div>
+            </ion-col>
+          </ion-row>
+          <ion-row class="the_address_row_handle">
+            <ion-col size="2" class="ion-text-center">
+              <ion-icon class="location-outline-icon" name="location-outline"></ion-icon>
+            </ion-col>
+            <ion-col size="10">
+              <div class="location_text">
+                21 Ajileye, street, Ilaje road, Shomolu, lagos
+              </div>
+            </ion-col>
+          </ion-row>
+        </ion-col>
+        
+        <ion-col size="12">
+          <div class="ion-text-center">
+            <a [routerLink]="['/dashboard/add-address']" class="small_footer_note_3 mt-5 the_footer_size2 display_block">
+              Add address
+            </a>
+          </div>
+        </ion-col>
+       
+        <ion-col size="12" class="mt-35">
+          <div class="log_out_text ion-text-center" (click) = "logOut()">
+            <ion-icon name="log-out-outline"></ion-icon>
+            LOG OUT
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+</ion-content>

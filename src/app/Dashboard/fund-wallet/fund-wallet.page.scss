@@ -1,0 +1,72 @@
+
+
+.fund_wallet_zone1 {
+
+    font-size: 14px;
+    text-align: center;
+    margin: 30px;
+    color: #707070;
+    line-height: 1.7;
+    font-weight: 300
+}
+
+ion-button.pawa2_u_action_btn_2 {
+
+    width: 100%;
+    --background: #ffa500;
+    text-transform: capitalize;
+    --padding-top: 19px;
+    --padding-bottom: 19px;
+}
+
+ion-button.gold{
+    --background: #dac67b;
+}
+
+
+ion-item.no-bg{
+    --background: transparent;
+}
+
+ion-item.no-padding{
+    --padding-start: 0;
+    --padding-end: 0;
+}
+
+ion-item.style_input ion-input {
+
+    background: #fff;
+    margin-top: 10px;
+    padding: 5px 20px !important;
+    border: 1px solid #ffa500;
+    border-radius: 4px;
+
+}
+
+ion-item.style_input ion-label {
+
+    text-transform: uppercase;
+    color: #ffa500 !important;
+    font-weight: 600;
+    font-size: 12px !important;
+
+}
+
+.style_payment_input {
+
+    width: 100%;
+    height: 45px;
+    display: block;
+    margin-top: 10px;
+    border-radius: 3px;
+    border: 1px solid #ffa500;
+    outline: 0;
+    padding: 0 10px;
+    font-size: 15px;
+}
+
+.pawa2_u_checkout_btn_actions {
+    margin-left: 50px;
+    margin-right: 50px;
+    margin-top: 30px;
+}
