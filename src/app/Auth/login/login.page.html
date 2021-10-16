@@ -52,7 +52,8 @@
 
         <ion-button type="submit" expand="block" size="large" class="pawa2u_btn btn_capitalize thin_font_weight small_sized_btn">
           Login
-        </ion-button>    
+        </ion-button>  
+        
       <!-- <ion-button [disabled]="formData.invalid" type="submit" expand="block" size="large" class="pawa2u_btn btn_capitalize thin_font_weight small_sized_btn">
         Login
       </ion-button> -->
@@ -60,11 +61,11 @@
       
       </form>
 
+      <p class="account-p" (click)="gotoSignup()">Don't have an account?<span class="signup-link"> &nbsp;Sign Up</span></p>  
 
-
-      <ion-button (click)="gotoSignup()" expand="block" size="large" class="pawa2u_btn btn_capitalize thin_font_weight small_sized_btn mt-15">
+      <!-- <ion-button (click)="gotoSignup()" expand="block" size="large" class="pawa2u_btn btn_capitalize thin_font_weight small_sized_btn mt-15">
         Create account
-      </ion-button>
+      </ion-button> -->
     
     </ion-card-content>
   </div>

@@ -1,6 +1,7 @@
 ion-item {
 
-    border: 1px solid #f38303;
+    // border: 1px solid #f38303;
+    border: 1px solid #ccc;
     margin-top: 20px;
     border-radius: 5px;
     font-size: 12px;
@@ -9,6 +10,7 @@ ion-item {
     padding-bottom: 0 !important;
     height: 54px;
     --highlight-height: 0;
+    margin-bottom: 30px;
 
 }
 
@@ -33,7 +35,6 @@ ion-header {
   }
 
   .control_login_logo {
-
     text-align: center;
     background: #fff;
     padding: 0;
@@ -41,13 +42,17 @@ ion-header {
 }
 .control_login_logo img{
     object-fit: contain;
-    width: 150px;
-    height: 150px;
+    width: 220px;
+    height: 220px;
     margin-bottom: 0;
 }
 .small_styled{
     font-weight: 600;
-    font-size: 11px;
+    font-size: 12px;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    letter-spacing: 1px;
+    cursor: pointer;
 }
 
 ion-button.fixed-width {
@@ -65,4 +70,19 @@ ion-button.fixed-width {
 ion-button.button-disabled {
     --background: #7C8ACB !important;
     opacity: 1;
+}
+
+.account-p {
+    text-align: center;
+    color: #818181;
+    font-weight: 500;
+    margin-top: 40px;
+}
+
+.signup-link {
+    color:#ffa500;
+    text-transform: uppercase;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
 }
