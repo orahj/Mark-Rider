@@ -1,13 +1,23 @@
 
 <ion-header class="paw2_login_header_ctr">
-  <ion-toolbar>
+  <!-- <ion-toolbar>
       <div class="control_login_logo">
         <img src="../../../assets/images/macriders/macreider_logo.png">
       </div>
-  </ion-toolbar>
-</ion-header>
+  </ion-toolbar> -->
+    <ion-toolbar class="ion-text-center ion-no-border">
+      <ion-title>
+        <div class="nav-button">
+          <a routerLink="/login">
+            <ion-icon name="arrow-back-outline" ></ion-icon>
+          </a>
+        </div>
+      </ion-title>
+    </ion-toolbar>
+  </ion-header>
+  
 <ion-content [fullscreen]="true" class="ion-padding">
-  <div class="mt-100">
+  <!-- <div class="mt-100">
     <ion-card-content>
       <ion-button (click)="gotouserSignup()" expand="block" size="large" class="pawa2u_btn btn_capitalize thin_font_weight small_sized_btn">
         User Sign Up
@@ -16,6 +26,33 @@
        Riders
       </ion-button>   
       </ion-card-content>
+  </div> -->
+
+  <div class="signup-summary">
+      <h1>Who would you like to sign up as?</h1>
+
+      <div class="text-spacing">
+        <div class="type" (click)="gotouserSignup()">
+          <div class="user-type">
+            <ion-icon name="person-outline"></ion-icon>
+            <h4>Sign up as a User</h4>
+        </div>
+        <ion-icon class="next-icon" name="chevron-forward-outline"></ion-icon>
+        <p>
+          Sign up as a user to create shipment request, track shipment and fund your wallet and view shipment and transcation process.
+        </p>
+      </div>
+      <div class="type" (click)="gotoriderSignup()">
+        <div class="user-type">
+          <ion-icon name="bicycle-outline"></ion-icon>
+          <h4>Sign up as a Rider</h4>
+      </div>
+      <ion-icon class="next-icon" name="chevron-forward-outline"></ion-icon>
+      <p>
+        Sign up as a rider to pick shipment request, track shipment and fund your wallet and view shipment and transcation process.
+      </p>
+      </div>
+    </div>
   </div>
     
 </ion-content>

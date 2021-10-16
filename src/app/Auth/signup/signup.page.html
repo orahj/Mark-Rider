@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar class="ion-text-center ion-no-border">
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="/home"></ion-back-button>
+      <ion-back-button defaultHref="/sign-up-options"></ion-back-button>
     </ion-buttons>
     <ion-title>
       <div class="pawa2_transparent_header">
@@ -31,15 +31,20 @@
 
 <ion-content [fullscreen]="true" class="ion-padding">
   <div *ngIf="segmentModel === 'individual'" class="ion_card_style">
-    <ion-card-header>
-      <ion-card-subtitle class="ion-text-center style_header">Create an account</ion-card-subtitle>
-    </ion-card-header>
+    <div class="page-summary">
+      <p>
+        Sign up as a user to create shipment request, track shipment and fund your wallet and view shipment and transcation process.
+      </p>
+   </div>
+    <!-- <ion-card-header>
+      <ion-card-subtitle class="ion-text-center style_header">Create an Indivdual Account</ion-card-subtitle>
+    </ion-card-header> -->
   
     <ion-card-content>
       <form [formGroup]="individualFormData"  (ngSubmit)="individualFormData.valid && submitIndividualForm()">
 
       <ion-item>
-        <ion-icon name="medical-outline" slot="start"></ion-icon>
+        <!-- <ion-icon name="medical-outline" slot="start"></ion-icon> -->
         <ion-label position="floating">First Name</ion-label>
         <ion-input formControlName="firstName"></ion-input>
       </ion-item>
@@ -53,7 +58,7 @@
 
 
       <ion-item>
-        <ion-icon name="medical-outline" slot="start"></ion-icon>
+        <!-- <ion-icon name="medical-outline" slot="start"></ion-icon> -->
         <ion-label position="floating">Last Name</ion-label>
         <ion-input formControlName="lastName"></ion-input>
       </ion-item>
@@ -68,7 +73,7 @@
 
 
       <ion-item>
-        <ion-icon name="mail-unread-outline" slot="start"></ion-icon>
+        <!-- <ion-icon name="mail-unread-outline" slot="start"></ion-icon> -->
         <ion-label position="floating">Email</ion-label>
         <ion-input formControlName="email"></ion-input>
       </ion-item>
@@ -85,7 +90,7 @@
 
 
       <ion-item>
-        <ion-icon name="call-outline" slot="start"></ion-icon>
+        <!-- <ion-icon name="call-outline" slot="start"></ion-icon> -->
         <ion-label position="floating">Phone Number</ion-label>
         <ion-input formControlName="phone"></ion-input>
       </ion-item>
@@ -100,7 +105,7 @@
 
 
       <ion-item>
-        <ion-icon name="business-outline" slot="start"></ion-icon>
+        <!-- <ion-icon name="business-outline" slot="start"></ion-icon> -->
         <ion-label position="floating">Address</ion-label>
         <ion-input formControlName="address"></ion-input>
       </ion-item>
@@ -114,7 +119,7 @@
       </div>
 
       <ion-item>
-        <ion-icon name="business-outline" slot="start"></ion-icon>
+        <!-- <ion-icon name="business-outline" slot="start"></ion-icon> -->
         <ion-label position="floating">Valid ID</ion-label>
         <ion-input formControlName="idnumber"></ion-input>
       </ion-item>
@@ -127,7 +132,7 @@
         Please enter a valid input
       </div>
       <ion-item>
-        <ion-icon name="key-outline" slot="start"></ion-icon>
+        <!-- <ion-icon name="key-outline" slot="start"></ion-icon> -->
         <ion-label position="floating">Password</ion-label>
         <ion-input type="password" formControlName="password"></ion-input>
       </ion-item>
@@ -142,7 +147,7 @@
       
 
       <ion-item>
-        <ion-icon name="key-outline" slot="start"></ion-icon>
+        <!-- <ion-icon name="key-outline" slot="start"></ion-icon> -->
         <ion-label position="floating">Confirm Password</ion-label>
         <ion-input type="password" formControlName="confirm_password"></ion-input>
       </ion-item>
@@ -171,23 +176,27 @@
 
   </div>
   <div *ngIf="segmentModel === 'sme'" class="ion_card_style">
-    <ion-card-header>
-      <ion-card-subtitle class="ion-text-center style_header">Create a business account</ion-card-subtitle>
-    </ion-card-header>
-  
+    <!-- <ion-card-header>
+      <ion-card-subtitle class="ion-text-center style_header">Create a Business Account</ion-card-subtitle>
+    </ion-card-header> -->
+    <div class="page-summary">
+      <p>
+        Sign up as a SME user to get <span>5%</span> off shipment request, track shipment and fund your wallet and view shipment and transcation process.
+      </p>
+   </div>
     <ion-card-content>
       
       <form [formGroup]="companyFormData" (ngSubmit)="companyFormData.valid && submitCompanyForm()">
 
 
       <ion-item>
-        <ion-icon name="business-outline" slot="start"></ion-icon>
+        <!-- <ion-icon name="business-outline" slot="start"></ion-icon> -->
         <ion-label position="floating">Business Name</ion-label>
         <ion-input></ion-input>
       </ion-item>
 
       <ion-item>
-        <ion-icon name="medical-outline" slot="start"></ion-icon>
+        <!-- <ion-icon name="medical-outline" slot="start"></ion-icon> -->
         <ion-label position="floating">BN Number</ion-label>
         <ion-input></ion-input>
       </ion-item>
@@ -199,13 +208,13 @@
         Please enter a valid input
       </div>
       <ion-item>
-        <ion-icon name="medical-outline" slot="start"></ion-icon>
+        <!-- <ion-icon name="medical-outline" slot="start"></ion-icon> -->
         <ion-label position="floating">First Name</ion-label>
         <ion-input></ion-input>
       </ion-item>
 
       <ion-item>
-        <ion-icon name="medical-outline" slot="start"></ion-icon>
+        <!-- <ion-icon name="medical-outline" slot="start"></ion-icon> -->
         <ion-label position="floating">Last Name</ion-label>
         <ion-input></ion-input>
       </ion-item>
@@ -219,7 +228,7 @@
       </div>
 
       <ion-item>
-        <ion-icon name="mail-unread-outline" slot="start"></ion-icon>
+        <!-- <ion-icon name="mail-unread-outline" slot="start"></ion-icon> -->
         <ion-label position="floating">Email</ion-label>
         <ion-input></ion-input>
       </ion-item>
@@ -236,7 +245,7 @@
       </div>
 
       <ion-item>
-        <ion-icon name="call-outline" slot="start"></ion-icon>
+        <!-- <ion-icon name="call-outline" slot="start"></ion-icon> -->
         <ion-label position="floating">Phone Number</ion-label>
         <ion-input></ion-input>
       </ion-item>
@@ -249,7 +258,7 @@
       </div>
 
       <ion-item>
-        <ion-icon name="home-outline" slot="start"></ion-icon>
+        <!-- <ion-icon name="home-outline" slot="start"></ion-icon> -->
         <ion-label position="floating">Address</ion-label>
         <ion-input></ion-input>
       </ion-item>
@@ -263,7 +272,7 @@
 
 
       <ion-item>
-        <ion-icon name="key-outline" slot="start"></ion-icon>
+        <!-- <ion-icon name="key-outline" slot="start"></ion-icon> -->
         <ion-label position="floating">Password</ion-label>
         <ion-input></ion-input>
       </ion-item>
@@ -277,7 +286,7 @@
 
 
       <ion-item>
-        <ion-icon name="key-outline" slot="start"></ion-icon>
+        <!-- <ion-icon name="key-outline" slot="start"></ion-icon> -->
         <ion-label position="floating">Confirm Password</ion-label>
         <ion-input></ion-input>
       </ion-item>
@@ -310,27 +319,31 @@
     </ion-card-content>
   </div>
   <div *ngIf="segmentModel === 'company'" class="ion_card_style">
-    <ion-card-header>
-      <ion-card-subtitle class="ion-text-center style_header">Create a company account</ion-card-subtitle>
-    </ion-card-header>
-  
+    <!-- <ion-card-header>
+      <ion-card-subtitle class="ion-text-center style_header">Create a Company Account</ion-card-subtitle>
+    </ion-card-header> -->
+    <div class="page-summary">
+      <p>
+        Sign up as a SME user to get <span>10%</span> off shipment request, track shipment and fund your wallet and view shipment and transcation process.
+      </p>
+   </div>
     <ion-card-content>
       
       <form [formGroup]="companyFormData" (ngSubmit)="companyFormData.valid && submitCompanyForm()">
 
 
       <ion-item>
-        <ion-icon name="business-outline" slot="start"></ion-icon>
+        <!-- <ion-icon name="business-outline" slot="start"></ion-icon> -->
         <ion-label position="floating">Company Name</ion-label>
         <ion-input></ion-input>
       </ion-item>
       <ion-item>
-        <ion-icon name="medical-outline" slot="start"></ion-icon>
+        <!-- <ion-icon name="medical-outline" slot="start"></ion-icon> -->
         <ion-label position="floating">RC Number</ion-label>
         <ion-input></ion-input>
       </ion-item>
       <ion-item>
-        <ion-icon name="medical-outline" slot="start"></ion-icon>
+        <!-- <ion-icon name="medical-outline" slot="start"></ion-icon> -->
         <ion-label position="floating">First Name</ion-label>
         <ion-input></ion-input>
       </ion-item>
@@ -344,7 +357,7 @@
 
 
       <ion-item>
-        <ion-icon name="medical-outline" slot="start"></ion-icon>
+        <!-- <ion-icon name="medical-outline" slot="start"></ion-icon> -->
         <ion-label position="floating">Last Name</ion-label>
         <ion-input></ion-input>
       </ion-item>
@@ -358,7 +371,7 @@
       </div>
 
       <ion-item>
-        <ion-icon name="mail-unread-outline" slot="start"></ion-icon>
+        <!-- <ion-icon name="mail-unread-outline" slot="start"></ion-icon> -->
         <ion-label position="floating">Email</ion-label>
         <ion-input></ion-input>
       </ion-item>
@@ -375,7 +388,7 @@
       </div>
 
       <ion-item>
-        <ion-icon name="call-outline" slot="start"></ion-icon>
+        <!-- <ion-icon name="call-outline" slot="start"></ion-icon> -->
         <ion-label position="floating">Phone Number</ion-label>
         <ion-input></ion-input>
       </ion-item>
@@ -388,7 +401,7 @@
       </div>
 
       <ion-item>
-        <ion-icon name="home-outline" slot="start"></ion-icon>
+        <!-- <ion-icon name="home-outline" slot="start"></ion-icon> -->
         <ion-label position="floating">Address</ion-label>
         <ion-input></ion-input>
       </ion-item>
@@ -402,7 +415,7 @@
 
 
       <ion-item>
-        <ion-icon name="key-outline" slot="start"></ion-icon>
+        <!-- <ion-icon name="key-outline" slot="start"></ion-icon> -->
         <ion-label position="floating">Password</ion-label>
         <ion-input></ion-input>
       </ion-item>
@@ -416,7 +429,7 @@
 
 
       <ion-item>
-        <ion-icon name="key-outline" slot="start"></ion-icon>
+        <!-- <ion-icon name="key-outline" slot="start"></ion-icon> -->
         <ion-label position="floating">Confirm Password</ion-label>
         <ion-input></ion-input>
       </ion-item>
