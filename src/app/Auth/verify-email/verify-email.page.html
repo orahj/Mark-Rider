@@ -12,9 +12,9 @@
 </ion-header>
 
 <ion-content>
-  <ion-card-header>
+  <!-- <ion-card-header>
     <ion-card-subtitle class="ion-text-center style_header">Verify Email</ion-card-subtitle>
-  </ion-card-header>
+  </ion-card-header> -->
   <ion-card-content>
     <form [formGroup]="formdata" (ngSubmit)="formdata.valid && submitForm()">
       <ion-item>
@@ -35,7 +35,7 @@
         Please enter a valid email address
       </div>
     <ion-button [disabled]="formdata.invalid" type="submit" expand="block" size="large" class="pawa2u_btn btn_capitalize thin_font_weight small_sized_btn">
-      Verify Email
+      Verify
     </ion-button>
 
     
