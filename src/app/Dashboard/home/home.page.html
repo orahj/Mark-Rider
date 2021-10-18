@@ -4,24 +4,22 @@
   <div class="content_padded">
     <ion-grid>
       <ion-row>
-
         <ion-col size="12">
-         
-          <ion-select #C interface="popover" placeholder="Select One" (ionChange)="onChange(C.value)" class="mark-drop-down">
-            <ion-select-option value="single">Single</ion-select-option>
+          <div class="map">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3963.9368487402803!2d3.3929456146558845!3d6.529660495277045!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x103b8d194b40e58d%3A0x325f824343149d63!2sAjileye%20St%2C%20Akoka%2C%20Lagos!5e0!3m2!1sen!2sng!4v1614848072080!5m2!1sen!2sng" width="390" height="130" style="border:0; width: 100%" allowfullscreen="" loading="lazy"></iframe>
+          </div>
+        </ion-col>
+        <ion-col size="12">
+          <ion-select #C interface="popover" placeholder="Select Shipment Type" (ionChange)="onChange(C.value)" class="mark-drop-down">
+            <ion-select-option value="single" selected>Single</ion-select-option>
             <ion-select-option value="bulk">Bulk Delivery</ion-select-option>
             <ion-select-option (click)="notavailble()"  value="cargo">Cargo</ion-select-option>
             <ion-select-option (click)="notavailble()" class="not-available" value="interstate">Inter-state</ion-select-option>
           </ion-select>
         </ion-col>
         <ion-col size="12">
-          <div class="map">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3963.9368487402803!2d3.3929456146558845!3d6.529660495277045!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x103b8d194b40e58d%3A0x325f824343149d63!2sAjileye%20St%2C%20Akoka%2C%20Lagos!5e0!3m2!1sen!2sng!4v1614848072080!5m2!1sen!2sng" width="390" height="130" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-          </div>
-        </ion-col>
-        <ion-col size="12">
           <div class="wallet_transaction_recrods">
-            <div class="the_wallet_item_list ion-activatable ripple-parent">
+            <!-- <div class="the_wallet_item_list ion-activatable ripple-parent">
               <ion-row>
                 <ion-col>
                   <div class="wallet_transaction_ref_date">
@@ -31,21 +29,9 @@
                 </ion-col>
               </ion-row>
               <ion-ripple-effect></ion-ripple-effect>
+            </div> -->
 
-            </div>
-            <div class="wallet_transaction_recrods">
-              <div class="the_wallet_item_list ion-activable ripple-parent">
-               <ion-row>
-                <ion-col>
-                  <ion-item mode="md">
-                    <ion-icon name="gift" slot="start" mode="md"></ion-icon>
-                    <ion-label position="floating" mode="md">Item to be delivered</ion-label>
-                    <ion-input placeholder="A pair of shoe" mode="md"></ion-input>
-                  </ion-item>
-                </ion-col>
-               </ion-row>
-              </div>
-            </div>
+
             <div class="wallet_transaction_recrods">
               <div class="the_wallet_item_list ion-activable ripple-parent">
                 <ion-row>
@@ -69,8 +55,8 @@
                </ion-row>
               </div>
             </div>
-           
-            <div *ngIf="single" class="wallet_transaction_recrods">
+
+            <div class="wallet_transaction_recrods">
               <div class="the_wallet_item_list ion-activable ripple-parent">
                 <ion-row>
                   <ion-col>
@@ -92,6 +78,22 @@
                  </ion-row>
               </div>
             </div>
+
+            <div class="wallet_transaction_recrods">
+              <div class="the_wallet_item_list ion-activable ripple-parent">
+               <ion-row>
+                <ion-col>
+                  <ion-item mode="md">
+                    <ion-icon name="gift" slot="start" mode="md"></ion-icon>
+                    <ion-label position="floating" mode="md">Item to be delivered</ion-label>
+                    <ion-input placeholder="A pair of shoe" mode="md"></ion-input>
+                  </ion-item>
+                </ion-col>
+               </ion-row>
+              </div>
+            </div>
+      
+          
             <div *ngIf="bulkdelivery" class="wallet_transaction_recrods">
               <div class="the_wallet_item_list ion-activable ripple-parent">
                 <ion-row>
@@ -126,7 +128,7 @@
                   <a (click)="addresslist()">View address list</a>
                  </ion-col>
                 </ion-row>
-               
+
               </div>
             </div>
             <div class="wallet_transaction_recrods">
@@ -142,7 +144,6 @@
                         <ion-label>Schedule for later</ion-label>
                         <ion-radio mode="md"  slot="start" color="success" value="2" (click)="scheduled()"></ion-radio>
                       </ion-item>
-                     
                     </ion-radio-group>
                   </ion-list>
                 </ion-row>

@@ -17,11 +17,21 @@
   </ion-card-header> -->
   <ion-card-content>
     <form [formGroup]="formdata" (ngSubmit)="formdata.valid && submitForm()">
+
+      <div class="page-note">
+        Enter the OPT send to your tomisin@gmail.com to verify your Email
+      </div>
+
       <ion-item>
-        <ion-icon name="mail-outline" slot="start"></ion-icon>
-        <ion-label position="floating">Email</ion-label>
+        <!-- <ion-icon name="mail-outline" slot="start"></ion-icon> -->
+        <ion-icon name="key-outline" slot="start"></ion-icon>
+        <ion-label position="floating">Enter OTP</ion-label>
         <ion-input formControlName="email"></ion-input>
       </ion-item>
+
+      <div class="resent-otp">
+        <p>Reent Otp</p>
+      </div>
       
       <div class="validate_input" *ngIf="formdata.get('email').hasError('required') && formdata.get('email').touched">
         Email is required

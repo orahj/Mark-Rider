@@ -1,75 +1,73 @@
 ion-item.no_item_padd {
-    --padding-start: 0;
+  --padding-start: 0;
 }
 
 .nav_item_inner_padd {
-    padding-left: 20px;
-    font-weight: 300;
-    font-size: 14px;
-    color: #707070;
+  padding-left: 20px;
+  font-weight: 300;
+  font-size: 14px;
+  color: #707070;
 }
 
 .nav_item_inner_padd ion-icon {
-    padding-right: 10px;
-    vertical-align: sub;
+  padding-right: 10px;
+  vertical-align: sub;
 }
 
 .nav_item_inner_padd ion-icon {
-    --ionicon-stroke-width: 50px;
-    font-size: 18px;
-    color: #ffa500;
+  --ionicon-stroke-width: 50px;
+  font-size: 18px;
+  color: #ffa500;
+}
+
+ion-item:hover {
+  background-color: #ffa500;
 }
 
 .small_width_btn {
-    width: 170px;
-    margin: 0 auto;
-        margin-bottom: 0px;
-    --border-radius: 100px;
-    padding-top: 50px;
-    --padding-top: 19px;
-    --padding-bottom: 19px;
-    font-size: 12px;
-    font-weight: 300;
-    margin-bottom: 30px;
-    --box-shadow: none;
-    text-transform: initial;
+  width: 170px;
+  margin: 0 auto;
+  margin-bottom: 0px;
+  --border-radius: 100px;
+  padding-top: 50px;
+  --padding-top: 19px;
+  --padding-bottom: 19px;
+  font-size: 12px;
+  font-weight: 300;
+  margin-bottom: 30px;
+  --box-shadow: none;
+  text-transform: initial;
 }
 
-.handle_footer{
-    border-top: 1px solid #EBEBEB;
+.handle_footer {
+  border-top: 1px solid #ebebeb;
 }
 
 .menu_user_meta_link {
-    font-size: 11px;
-    font-weight: 300;
-    padding-top: 5px;
-    color: #ffa500;
+  font-size: 11px;
+  font-weight: 300;
+  padding-top: 5px;
+  color: #ffa500;
 }
 
 .menu_user_meta_name {
-
-    color: #707070;
-    font-size: 15px;
-    font-weight: 500;
-
+  color: #707070;
+  font-size: 15px;
+  font-weight: 500;
 }
 
 .menu_user_meta {
-
-    padding: 20px 0;
-    border-bottom: 1px solid #EBEBEB;
-
+  padding: 20px 0;
+  border-bottom: 1px solid #ebebeb;
 }
 
 .manage_profile_width {
-
-    width: 40px;
-    height: 40px;
-    background-repeat: no-repeat;
-    margin: 0 auto;
-
+  width: 40px;
+  height: 40px;
+  background-repeat: no-repeat;
+  margin: 0 auto;
 }
 
-.list_padd_bottom{
-    padding-bottom: 100px;
+.list_padd_bottom {
+  padding-bottom: 100px;
 }
