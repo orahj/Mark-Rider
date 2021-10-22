@@ -1,13 +1,45 @@
 <app-header-two [title]="'Checkout'"></app-header-two>
 
 <ion-content class="ion-no-padding">
-  <div class="content_padded">
-    <div class="cart_list_items">
 
+
+  <div class="content_padded">
+    <ion-grid>
+      <ion-row>
+        <ion-col size="12">
+          <div class="wallet_transaction_recrods">
+            <div class="the_wallet_item_list">
+              <ion-row>
+                <ion-col size="12">
+                  <div class="wallet_transaction_ref_date">
+                    Pick Up Address
+                  </div>
+                  <div class="wallet_transaction_ref_date_2">
+                    15, Akinjide street, off olowo road ketu, Lagos.
+                  </div>
+                </ion-col>
+                <ion-col size="12">
+                  <div class="wallet_transaction_ref_date">
+                    Drop-off Address
+                  </div>
+                  <div class="wallet_transaction_ref_date_2">
+                    10, Femi Kolade street, off abimbola street, Lagos.
+                  </div>
+                </ion-col>
+              </ion-row>
+            </div>
+
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    </div>  
+
+  <div class="content_padded">
+    <div class="cart_list_items pad-top">
       <ion-list lines="none">
         <ion-item>
-
-          <ion-grid class="checkout_ctr_box">
+          <ion-grid class="checkout_ctr_box" style="margin-top: -10px;">
             <ion-row>
               <ion-col size="4">
                 <div class="cart_list_item_image" style="
@@ -61,13 +93,21 @@
 
               </ion-col>
               <ion-col size="2" class="ion-text-center">
-                <ion-button class="checkout_remove_from_cart_btn">
+                <button class="checkout_remove_from_cart_btn edit-icon">
+                  <ion-icon name="create-outline"></ion-icon>
+                </button>
+
+                <button class="checkout_remove_from_cart_btn trash-icon">
+                  <ion-icon name="trash-outline"></ion-icon>
+                </button>
+
+                <!-- <ion-button class="checkout_remove_from_cart_btn">
                   <ion-icon name="create-outline"></ion-icon>
                 </ion-button>
                 <ion-button class="checkout_remove_from_cart_btn">
                   <ion-icon name="create-outline"></ion-icon>
                   <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
-                </ion-button>
+                </ion-button> -->
               </ion-col>
              
             </ion-row>
@@ -90,13 +130,31 @@
         <ion-row>
           <ion-col size="6">
             <div class="checkout_total_text">
-              Wallet Balance
+              Wallet Balance :
             </div>
           </ion-col>
 
           <ion-col size="6" class="ion-text-center">
             <div class="checkout_total_price">
               N 249,000
+            </div>
+          </ion-col>
+        </ion-row>
+
+      </div>
+
+      <div class="checkout_page_inner_2">
+
+        <ion-row>
+          <ion-col size="6">
+            <div class="checkout_total_text">
+              Total :
+            </div>
+          </ion-col>
+
+          <ion-col size="6" class="ion-text-center">
+            <div class="checkout_total_price">
+              N 2,500
             </div>
           </ion-col>
         </ion-row>
@@ -110,20 +168,20 @@
           <ion-col size="12">
             <div class="checkout_action_section">
               <ion-row>
-                <ion-col size="12" class="ion-text-center">
+                <!-- <ion-col size="12" class="ion-text-center">
                   <div class="checkout_action_section_text">
                     Pay With
                   </div>
-                </ion-col>
+                </ion-col> -->
 
                 <ion-col size="12">
                   <div class="pawa2_u_checkout_btn_actions">
 
                     <ion-button (click)="payWithCard()" class="pawa2_u_action_btn_2">
-                      Card
+                      Pay with Card
                     </ion-button>
                     <ion-button (click)="payWithWallet()" class="pawa2_u_action_btn_2 gold">
-                      Wallet Balance
+                      Pay with Wallet
                     </ion-button>
                     <ion-button (click)="payWithTransfer()" class="pawa2_u_action_btn_2 gold">
                       Transfer
