@@ -41,7 +41,7 @@ ion-button.gold {
 .wallet_transaction_ref_date {
   font-size: 14px;
   text-align: center;
-  color: #707070;
+  color: #a19f9f;
 }
 
 .wallet_transaction_ref_number {
@@ -66,6 +66,7 @@ ion-button.gold {
 .wallet_transaction_amount_type_text {
   font-size: 11px;
   color: #07594b;
+  font-weight: 500;
 }
 
 .the_wallet_item_list {
@@ -108,8 +109,8 @@ ion-button.gold {
 }
 
 .extra-p {
-  border-left: 1px solid #e4dbcb;
-  border-right: 1px solid #ebebeb;
+  border-left: 1px solid #db8e0a;
+  border-right: 1px solid #db8e0a;
 }
 
 .has_fund_in_wallet.ion-text-center {
@@ -124,7 +125,21 @@ ion-button.gold {
 .wallet-summary {
   background-color: #fff;
   margin: 10px;
+  margin-top: -2px;
+
+}
+
+ion-toolbar{
   margin-top: -60px;
+  width: 95%;
+  margin-left: 10px;
   border-top-right-radius: 20px;
   border-top-left-radius: 20px;
+}
+
+ion-segment-button {
+  --background: none !important;
+  --color: #f19e04;
+  --color-checked: #f19e04;
+    --border-radius: 10px !important;
 }

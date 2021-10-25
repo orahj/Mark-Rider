@@ -24,9 +24,9 @@
             <div class="wallet_fund_title">You have</div>
             <div class="wallet_fund_available_balance">N50,000</div>
             <div class="wallet_fund_available_balance_text2">
-              <p>Send</p>
-              <p class="extra-p" (click)="fundWallet()">Fund</p>
-              <p>Transfer</p>
+              <p>12<span>Orders</span></p>
+              <p class="extra-p" (click)="showFundModal()">Fund</p>
+              <p (click)="showTrackModal()">Track</p>
             </div>
           </div>
         </ion-col>
@@ -43,8 +43,20 @@
         </ion-col> -->
 
         <ion-col size="12">
+          <ion-toolbar>
+            <ion-segment (ionChange)="segmentChanged($event)">
+              <ion-segment-button (click)="switchOrder()">
+                <!-- <ion-icon name="camera"></ion-icon> -->
+                Orders
+              </ion-segment-button>
+              <ion-segment-button (click)="switchWallet()">
+                <!-- <ion-icon name="bookmark"></ion-icon> -->
+                Wallet
+              </ion-segment-button>
+            </ion-segment>
+          </ion-toolbar>
 
-          <div class="wallet-summary">
+          <div class="wallet-summary" *ngIf="wallet">
             <div (click)="walletTransaction()" class="wallet_transaction_recrods">
               <div class="the_wallet_item_list ion-activatable ripple-parent">
                 <ion-row>
@@ -71,14 +83,14 @@
               <div class="the_wallet_item_list ion-activatable ripple-parent">
                 <ion-row>
                   <ion-col size="2">
-                    <div class="wallet_transaction_ref_date">14 Apr</div>
+                    <div class="wallet_transaction_ref_date">10 Apr</div>
                   </ion-col>
                   <ion-col size="6">
                     <div class="wallet_transaction_ref_number">#PA-23782393</div>
                     <div class="wallet_transaction_status_text">Successful</div>
                   </ion-col>
                   <ion-col size="4" class="ion-text-right">
-                    <div class="wallet_transaction_amount">N10000</div>
+                    <div class="wallet_transaction_amount">N30000</div>
                     <div class="wallet_transaction_amount_type_text">Credit</div>
                   </ion-col>
                 </ion-row>
@@ -101,7 +113,66 @@
                   </ion-col>
                   <ion-col size="4" class="ion-text-right">
                     <div class="wallet_transaction_amount">N10000</div>
-                    <div class="wallet_transaction_amount_type_text">Debit</div>
+                    <div [ngStyle]="{'color': 'red'}" class="wallet_transaction_amount_type_text">Debit</div>
+                  </ion-col>
+                </ion-row>
+                <ion-ripple-effect></ion-ripple-effect>
+              </div>
+            </div>
+          </div>
+
+          <div class="wallet-summary" *ngIf="order">
+            <div (click)="walletTransaction()" class="wallet_transaction_recrods">
+              <div class="the_wallet_item_list ion-activatable ripple-parent">
+                <ion-row>
+                  <ion-col size="2">
+                    <div class="wallet_transaction_ref_date">14 Apr</div>
+                  </ion-col>
+                  <ion-col size="6">
+                    <div class="wallet_transaction_ref_number">#PA-23782393</div>
+                  </ion-col>
+                  <ion-col size="4" class="ion-text-right">
+                    <div class="wallet_transaction_amount">N10000</div>
+                  </ion-col>
+                </ion-row>
+                <ion-ripple-effect></ion-ripple-effect>
+              </div>
+            </div>
+  
+            <div
+              (click)="walletTransaction()"
+              class="wallet_transaction_recrods ion-activatable ripple-parent"
+            >
+              <div class="the_wallet_item_list ion-activatable ripple-parent">
+                <ion-row>
+                  <ion-col size="2">
+                    <div class="wallet_transaction_ref_date">10 Apr</div>
+                  </ion-col>
+                  <ion-col size="6">
+                    <div class="wallet_transaction_ref_number">#PA-23782393</div>
+                  </ion-col>
+                  <ion-col size="4" class="ion-text-right">
+                    <div class="wallet_transaction_amount">N30000</div>
+                  </ion-col>
+                </ion-row>
+                <ion-ripple-effect></ion-ripple-effect>
+              </div>
+            </div>
+  
+            <div
+              (click)="walletTransaction()"
+              class="wallet_transaction_recrods ion-activatable ripple-parent"
+            >
+              <div class="the_wallet_item_list ion-activatable ripple-parent">
+                <ion-row>
+                  <ion-col size="2">
+                    <div class="wallet_transaction_ref_date">14 Apr</div>
+                  </ion-col>
+                  <ion-col size="6">
+                    <div class="wallet_transaction_ref_number">#PA-23782393</div>
+                  </ion-col>
+                  <ion-col size="4" class="ion-text-right">
+                    <div class="wallet_transaction_amount">N10000</div>
                   </ion-col>
                 </ion-row>
                 <ion-ripple-effect></ion-ripple-effect>
