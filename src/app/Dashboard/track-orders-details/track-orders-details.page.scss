@@ -1,6 +1,6 @@
 .tracking_order_details_box {
 
-    background: #ED1F33;
+    background: #000000;
     margin-left: 20px;
     margin-right: 20px;
     margin-top: 30px;
@@ -49,7 +49,9 @@ ion-button.tracking_order_details_btn {
     width: 50px;
     height: 50px;
     --background: #fff;
-    color: #2699FB;
+    color: #ffa500;
     --box-shadow: none;
+    --border-radius: 50px;
+    margin-top: 20px;
 
 }

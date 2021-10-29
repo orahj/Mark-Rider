@@ -60,4 +60,9 @@ export class AppComponent {
     this.menu.close();
   }
 
+  addAddress() {
+    this.route.navigate(['/dashboard/add-address']);
+    this.menu.close();
+  }
+
 }

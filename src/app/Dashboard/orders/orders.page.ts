@@ -16,4 +16,9 @@ export class OrdersPage implements OnInit {
   gotoOrderDetails(id){
     this.route.navigate(['/dashboard/orders-details', id]);
   }
+
+  trackShipment() {
+    this.route.navigate(['/dashboard/track-orders']);
+  }
 }
+

@@ -39,6 +39,7 @@
     font-size: 14px;
     color: #707070;
     margin-bottom: 5px;
+    font-weight: 500;
 }
 
 .wallet_transaction_status_text {
@@ -47,9 +48,10 @@
 }
 
 .wallet_transaction_amount {
-    font-size: 15px;
-    color: #707070;
+    font-size: 10px;
+    color: #b41010;
     margin-bottom: 5px;
+    font-weight: 600;
 }
 
 .wallet_transaction_amount_type_text {
@@ -59,10 +61,10 @@
 
 .the_wallet_item_list {
     padding: 10px 15px;
-    border: 1px solid #eae7e7;
+    // border: 1px solid #eae7e7;
     position: relative;
     overflow: hidden;
-    background: #fff;
+    // background: #fff;
     border-radius: 3px;
     margin-bottom: 5px;
 }
@@ -104,19 +106,16 @@
 }
 
 .orders_history_title {
-
     font-size: 15px;
-    font-weight: 300;
+    font-weight: 500;
     background: #EFF0F4;
     padding: 15px 10px;
     text-align: center;
-
 }
 
 .wallet_transaction_ref_date_2 {
-
     font-size: 10px;
-    color: #707070;
+    color: #929191;
 
 }
 
@@ -141,3 +140,26 @@
     color: #707070;
 
 }
+.mark-carriers {
+    border-radius: 50%;
+    background: #ffa500;
+    cursor: pointer;
+    margin-left: 15px;
+  }
+  .mark-carriers:hover {
+    background-color: #bd7c03;
+  }
+
+  .bike-div {
+    margin:30px;
+    display: flex;
+    justify-content: center;
+  }
+
+  .in-progress {
+      color: rgb(228, 177, 10);
+  }
+
+  .delivery {
+      color: green;
+  }

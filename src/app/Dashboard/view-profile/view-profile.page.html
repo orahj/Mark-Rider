@@ -3,29 +3,71 @@
   <div class="content_padded">
     <ion-grid>
       <ion-row>
-        <ion-col size="12">
-          <div class="header_style_3">
-           <!-- {{this.userinfo?.firstName | titlecase}} {{this.userinfo?.lastName | titlecase}} -->
-           Orah Isaac
+        <ion-col size="3">
+          <div class="manage_profile_width"
+            style="
+            background-image: url('../../../assets/images/no-user.png');
+            background-position: top;
+            background-size: cover;
+            "
+          >
+          <input type="file" class="file-upload" >
           </div>
         </ion-col>
+        <ion-col size="9">
+          <div class="menu_user_meta_name">
+            Isaac
+          </div>
+          <div class="menu_user_meta_link" (click)="changePassword()">
+            Change Password
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    <ion-grid>
+      <ion-row> 
         <ion-col size="12">
-          <ion-input class="the_form_input"  readonly>09059493939</ion-input>
+          <form>
+            <ion-item>
+              <!-- <ion-icon name="medical-outline" slot="start"></ion-icon> -->
+              <ion-label position="floating">First Name</ion-label>
+              <ion-input >Mark</ion-input>
+            </ion-item>
+      
+            <ion-item>
+              <!-- <ion-icon name="medical-outline" slot="start"></ion-icon> -->
+              <ion-label position="floating">Last Name</ion-label>
+              <ion-input>Cole</ion-input>
+            </ion-item>
+      
+            <ion-item>
+              <!-- <ion-icon name="mail-unread-outline" slot="start"></ion-icon> -->
+              <ion-label position="floating">Email</ion-label>
+              <ion-input readonly>markcole@gmail.com</ion-input>
+            </ion-item>
+      
+            <ion-item>
+              <!-- <ion-icon name="call-outline" slot="start"></ion-icon> -->
+              <ion-label position="floating">Phone Number</ion-label>
+              <ion-input></ion-input>
+            </ion-item><br>
+      
+            <!-- <ion-button type="submit" [disabled]="individualFormData.invalid" expand="block" size="large" class="pawa2u_btn">
+              <ion-icon fill name="arrow-forward-outline"></ion-icon>
+            </ion-button> -->
+            <ion-button expand="block" size="large" class="pawa2u_btn btn_capitalize thin_font_weight small_sized_btn">
+              Update
+            </ion-button>   
+             </form>
+  
         </ion-col>
-        <ion-col size="6">
-          <ion-input class="the_form_input" readonly> Orah </ion-input>
-        </ion-col>
-        
-        <ion-col size="6">
-          <ion-input class="the_form_input" readonly>Isaac</ion-input>
-        </ion-col>
-
-        
-        <ion-col size="12">
-          <ion-input class="the_form_input"  readonly>isaacorah@gmai.com</ion-input>
-        </ion-col>
-
-        <ion-col size="12">
+        <ion-col size="12" class="mt-35">
+          <div class="log_out_text ion-text-center" (click) = "logOut()">
+            <ion-icon name="power-outline"></ion-icon>
+            LOG OUT
+          </div>
+        </ion-col> 
+        <!-- <ion-col size="12">
           <div class="small_footer_note_2">
             Reciept would be sent to this email
           </div>
@@ -84,7 +126,7 @@
             <ion-icon name="log-out-outline"></ion-icon>
             LOG OUT
           </div>
-        </ion-col>
+        </ion-col> -->
       </ion-row>
     </ion-grid>
   </div>

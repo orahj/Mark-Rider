@@ -60,23 +60,25 @@ ion-button.gold{
 
 .wallet_transaction_amount {
     font-size: 15px;
-    color: #707070;
+    color: #07594B;
     margin-bottom: 5px;
+    font-weight: 600;
 }
 
-.wallet_transaction_amount_type_text {
-    font-size: 11px;
-    color: #07594B;
-}
+// .wallet_transaction_amount_type_text {
+//     font-size: 11px;
+//     color: #07594B;
+// }
 
 .the_wallet_item_list {
-    padding: 10px 15px;
-    border: 1px solid #eae7e7;
+    padding: 19px 15px;
+    border-top-right-radius: 30px;
+    border-top-left-radius: 30px;
     position: relative;
-    overflow: hidden;
     background: #fff;
-    border-radius: 3px;
     margin-bottom: 5px;
+    margin-top: -70px;
+    overflow: scroll;
 }
 
 .has_fund_in_wallet.ion-text-center {
@@ -86,9 +88,8 @@ ion-button.gold{
 }
 
 .wallet_fund_title {
-
-    font-size: 19px;
-    color: #707070;
+    font-size: 14px;
+    color: #643a3a;
     margin-bottom: 10px;
 }
 
@@ -254,3 +255,89 @@ section {
       }
     }
   }
+  
+  .wallet_fund_available_balance {
+    font-size: 50px;
+    margin-bottom: 10px;
+    font-weight: 500;
+  }
+  
+  .wallet_fund_available_balance_text2 {
+    display: flex;
+    font-size: 12px;
+    color: #f8f5f5;
+    margin-bottom: 30px;
+    justify-content: center;
+  }
+  
+  .wallet_fund_available_balance_text2 p {
+    background-color: #f19e04;
+    padding: 17px;
+  }
+  
+  .extra-p {
+    border-left: 1px solid #db8e0a;
+    border-right: 1px solid #db8e0a;
+  }
+  
+  .has_fund_in_wallet.ion-text-center {
+    margin-top: -10px;
+    width: 110%;
+    padding: 40px;
+    color: #fff;
+    margin-left: -10px;
+    background-color: orange;
+  }
+  .product_item_2_starrate_inner {
+    text-align: center;
+    width: 100px;
+    margin: 0 auto;
+    margin-top: -25px;
+    color: #ebebeb !important;
+}
+.bar-rating.the_product_rate .br {
+  margin-top: 0 !important;
+}
+.toggle-div {
+  display: flex;
+  justify-content: center;
+}
+.toggle-div h6 {
+  margin-top: 10px;
+}
+.wallet-summary {
+  background-color: #fff;
+  margin: 10px;
+  margin-top: -2px;
+
+}
+.wallet_transaction_ref_date {
+  font-size: 14px;
+  text-align: center;
+  color: #a19f9f;
+}
+
+.wallet_transaction_ref_number {
+  font-size: 14px;
+  color: #707070;
+  margin-bottom: 5px;
+  margin-left: 20px;
+}
+
+.wallet_transaction_status_text {
+  font-size: 11px;
+  color: #0a1857;
+  margin-left: 20px;
+}
+
+// .wallet_transaction_amount {
+//   font-size: 15px;
+//   color: #707070;
+//   margin-bottom: 5px;
+// }
+
+.wallet_transaction_amount_type_text {
+  font-size: 11px;
+  color: #07594b;
+  font-weight: 500;
+}

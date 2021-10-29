@@ -1,6 +1,6 @@
 <ion-header [translucent]="true">
   <ion-toolbar class="ion-text-center ion-no-border">
-    <ion-buttons slot="start">
+    <ion-buttons slot="start" class="back-btn">
       <ion-back-button defaultHref="/dashboard"></ion-back-button>
     </ion-buttons>
     <ion-title>
@@ -18,6 +18,35 @@
       <ion-row>
         <ion-col size="12">
           <ion-input class="the_form_input" placeholder="Enter Address" ></ion-input>
+        </ion-col>
+
+        <ion-col size="12">
+          <div class="header_style_3 mt-15">
+            Saved Address
+          </div>
+        </ion-col>
+
+        <ion-col size="12" class="handle_address_border">
+          <ion-row class="the_address_row_handle">
+            <ion-col size="2" class="ion-text-center">
+              <ion-icon class="location-outline-icon active" name="location-outline"></ion-icon>
+            </ion-col>
+            <ion-col size="10">
+              <div class="location_text">
+                21 Ajileye, street, Ilaje road, Shomolu, lagos
+              </div>
+            </ion-col>
+          </ion-row>
+          <ion-row class="the_address_row_handle">
+            <ion-col size="2" class="ion-text-center">
+              <ion-icon class="location-outline-icon" name="location-outline"></ion-icon>
+            </ion-col>
+            <ion-col size="10">
+              <div class="location_text">
+                21 Ajileye, street, Ilaje road, Shomolu, lagos
+              </div>
+            </ion-col>
+          </ion-row>
         </ion-col>
       </ion-row>
     </ion-grid>

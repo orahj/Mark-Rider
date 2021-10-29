@@ -1,13 +1,111 @@
-<app-header-two [title]="'Orders'"></app-header-two>
+<app-header-two [title]="'Orders Summary'"></app-header-two>
 
 <ion-content class="ion-no-padding gray_background">
-  <div class="orders_history_title">Orders histroy</div>
+  <div class="orders_history_title">Order Id: PA-908787</div>
   <div class="content_padded">
     <ion-grid>
       <ion-row>
 
         <ion-col size="12">
-          <div (click)="gotoOrderDetails(1)" class="wallet_transaction_recrods">
+          <div class="shipment-div">
+            <div (click)="gotoOrderDetails(1)" class="address-div">
+              <div class="the_wallet_item_list ion-activatable ripple-parent">
+                <ion-row>
+                  <ion-col size="12">
+                    <div class="wallet_transaction_ref_date">
+                      Idodo Street, Ketu
+                    </div>
+                  </ion-col>
+                </ion-row>
+                <ion-ripple-effect></ion-ripple-effect>
+                <ion-row>
+                  <ion-col size="12">
+                    <div class="wallet_transaction_ref_date2" >
+                      <ion-icon name="location-outline"></ion-icon>
+                      13, Akintola Street, off Idodo Street, Ketu
+                    </div>
+                  </ion-col>
+                  <!-- <ion-col size="5">
+                    <div class="wallet_transaction_ref_number">
+                      Gift Cards
+                    </div>
+                    <div class="wallet_transaction_status_text">
+                      Pending approval.
+                    </div>
+                  </ion-col> -->
+                  <!-- <ion-col size="4" class="ion-text-right">
+                    <div class="wallet_transaction_amount">
+                      N10000
+                    </div>
+                  </ion-col> -->
+                </ion-row>
+              </div>
+            </div>
+  
+            <div (click)="gotoOrderDetails(2)" class="wallet_transaction_recrods">
+              <div class="the_wallet_item_list ion-activatable ripple-parent">
+                <ion-row>
+                  <ion-col size="8">
+                    <div class="wallet_transaction_ref_number">
+                      5 Boxes of chocolate 
+                    </div>
+                    <div class="wallet_transaction_status_text">
+                        Right Away
+                    </div>
+                  </ion-col>
+                  <ion-col size="4" class="ion-text-right">
+                    <div class="wallet_transaction_amount">
+                      N1,000
+                    </div>
+                  </ion-col>
+                </ion-row>
+                <ion-row>
+                  <ion-col size="8">
+                    <div class="wallet_transaction_ref_number">
+                      5 Boxes of chocolate 
+                    </div>
+                    <div class="wallet_transaction_status_text">
+                        Right Away
+                    </div>
+                  </ion-col>
+                  <ion-col size="4" class="ion-text-right">
+                    <div class="wallet_transaction_amount">
+                      N1,000
+                    </div>
+                  </ion-col>
+                </ion-row>
+                <ion-row>
+                  <ion-col size="8">
+                    <div class="wallet_transaction_ref_number">
+                      5 Boxes of chocolate 
+                    </div>
+                    <div class="wallet_transaction_status_text">
+                        Right Away
+                    </div>
+                  </ion-col>
+                  <ion-col size="4" class="ion-text-right">
+                    <div class="wallet_transaction_amount">
+                      N1,000
+                    </div>
+                  </ion-col>
+                </ion-row>
+                <ion-ripple-effect></ion-ripple-effect>
+  
+              </div>
+             
+            </div>
+          </div>
+          
+          <div (click)="gotoOrderDetails(1)" class="address-div">
+            <div class="the_wallet_item_list ion-activatable ripple-parent">
+              <div class="price-section">
+                <h5>Total:</h5>
+                <p>8000</p>
+              </div>
+            </div>
+            </div>
+
+          <!-- <div (click)="gotoOrderDetails(3)" class="wallet_transaction_recrods">
             <div class="the_wallet_item_list ion-activatable ripple-parent">
               <ion-row>
                 <ion-col size="3">
@@ -36,72 +134,15 @@
 
             </div>
            
-          </div>
-
-          <div (click)="gotoOrderDetails(2)" class="wallet_transaction_recrods">
-            <div class="the_wallet_item_list ion-activatable ripple-parent">
-              <ion-row>
-                <ion-col size="3">
-                  <div class="wallet_transaction_ref_date">
-                    PA-9344
-                  </div>
-                  <div class="wallet_transaction_ref_date_2">
-                    2020-03-06
-                  </div>
-                </ion-col>
-                <ion-col size="5">
-                  <div class="wallet_transaction_ref_number">
-                    Gift Cards
-                  </div>
-                  <div class="wallet_transaction_status_text">
-                    Pending approval.
-                  </div>
-                </ion-col>
-                <ion-col size="4" class="ion-text-right">
-                  <div class="wallet_transaction_amount">
-                    N10000
-                  </div>
-                </ion-col>
-              </ion-row>
-              <ion-ripple-effect></ion-ripple-effect>
-
-            </div>
-           
-          </div>
-
-          <div (click)="gotoOrderDetails(3)" class="wallet_transaction_recrods">
-            <div class="the_wallet_item_list ion-activatable ripple-parent">
-              <ion-row>
-                <ion-col size="3">
-                  <div class="wallet_transaction_ref_date">
-                    PA-9344
-                  </div>
-                  <div class="wallet_transaction_ref_date_2">
-                    2020-03-06
-                  </div>
-                </ion-col>
-                <ion-col size="5">
-                  <div class="wallet_transaction_ref_number">
-                    Gift Cards
-                  </div>
-                  <div class="wallet_transaction_status_text">
-                    Pending approval.
-                  </div>
-                </ion-col>
-                <ion-col size="4" class="ion-text-right">
-                  <div class="wallet_transaction_amount">
-                    N10000
-                  </div>
-                </ion-col>
-              </ion-row>
-              <ion-ripple-effect></ion-ripple-effect>
-
-            </div>
-           
-          </div>
+          </div> -->
 
         </ion-col>
       </ion-row>
     </ion-grid>
+    <div class="pawa2_u_checkout_btn_actions">
+      <ion-button (click)="trackShipment()" class="pawa2_u_action_btn_2">
+        Track Shipment
+      </ion-button>
+    </div>
   </div>
 </ion-content>

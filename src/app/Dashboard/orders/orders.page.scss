@@ -28,28 +28,41 @@
 }
 
 .wallet_transaction_ref_date {
-    font-size: 14px;
+    font-size: 16px;
     text-align: left;
-    color: #707070;
-    font-weight: 500;
+    color: #1d1c1c;
+    font-weight: 600;
     margin-bottom: 10px;
 }
 
+.wallet_transaction_ref_date2 {
+    font-size: 10px;
+    text-align: left;
+    color: #817e7e;
+    margin-top: -12px;
+}
+
+
+
 .wallet_transaction_ref_number {
     font-size: 14px;
-    color: #707070;
+    color: #0e0d0d;
     margin-bottom: 5px;
+    font-weight: 500;
 }
 
 .wallet_transaction_status_text {
     font-size: 11px;
-    color: #0A1857;
+    color: #817e7e;
 }
 
 .wallet_transaction_amount {
-    font-size: 15px;
-    color: #707070;
+    font-size: 12px;
+    color: #817e7e;
     margin-bottom: 5px;
+}
+.bg-color {
+    background-color: #2b2828;
 }
 
 .wallet_transaction_amount_type_text {
@@ -59,10 +72,10 @@
 
 .the_wallet_item_list {
     padding: 10px 15px;
-    border: 1px solid #eae7e7;
+    // border: 1px solid #eae7e7;
     position: relative;
     overflow: hidden;
-    background: #fff;
+    // background: #fff;
     border-radius: 3px;
     margin-bottom: 5px;
 }
@@ -118,4 +131,32 @@
     font-size: 10px;
     color: #707070;
 
+}
+.shipment-div {
+    background-color: white;
+    border: 1px solid 2px solid grey;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+}
+.address-div {
+    padding: 10px 15px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 3px;
+    margin-bottom: 5px;
+    background-color: rgb(245, 245, 245);
+}
+.price-section {
+    display: flex;
+    justify-content:space-between;
+}
+.pawa2_u_checkout_btn_actions {
+  text-align: center;
+}
+ion-button.pawa2_u_action_btn_2 {
+
+    width: 50%;
+    --background: #ffa500;
+    text-transform: capitalize;
+    --padding-top: 19px;
+    --padding-bottom: 19px;
 }

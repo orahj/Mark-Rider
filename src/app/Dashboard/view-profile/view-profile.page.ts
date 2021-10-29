@@ -43,6 +43,10 @@ export class ViewProfilePage implements OnInit {
     //   });
     // }
   }
+
+  changePassword() {
+    this.router.navigate(['/dashboard/edit-profile']);
+  }
   logOut() {
     localStorage.removeItem('token');
     this.router.navigate(['/login']);

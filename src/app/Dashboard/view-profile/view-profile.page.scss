@@ -61,9 +61,11 @@ ion-icon.location-outline-icon.active {
 }
 
 .log_out_text {
-    margin-bottom: 50px;
+    // margin-bottom: 50px;
     font-size: 12px;
     font-weight: 500;
+    color: rgb(202, 200, 200);
+    cursor: pointer;
 }
 
 .log_out_text.ion-text-center ion-icon {
@@ -75,3 +77,46 @@ ion-icon.location-outline-icon.active {
 .display_block{
     display: block;
 }
+ion-item {
+
+    border: 1px solid #C8C8C8;
+    margin-top: 20px;
+    border-radius: 5px;
+    font-size: 12px;
+    color: #707070 !important;
+    padding-top: 0px;
+    padding-bottom: 0 !important;
+    height: 54px;
+    --highlight-height: 0;
+
+}
+.menu_user_meta_link {
+    font-size: 11px;
+    font-weight: 300;
+    padding-top: 5px;
+    color: #ffa500;
+    cursor: pointer;
+  }
+  
+  .menu_user_meta_name {
+    color: #707070;
+    font-size: 15px;
+    font-weight: 500;
+  }
+  
+  .menu_user_meta {
+    padding: 20px 0;
+    border-bottom: 1px solid #ebebeb;
+  }
+  
+  .manage_profile_width {
+    width: 40px;
+    height: 40px;
+    background-repeat: no-repeat;
+    margin: 0 auto;
+  }
+  .file-upload {
+      width: 30px;
+      margin-top: 7px;
+      opacity: 0;
+  }
