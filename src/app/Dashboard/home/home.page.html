@@ -11,8 +11,8 @@
         </ion-col>
         <ion-col size="12">
           <ion-select #C interface="popover" placeholder="Select Shipment Type" (ionChange)="onChange(C.value)" class="mark-drop-down">
-            <ion-select-option value="single" selected>Single</ion-select-option>
-            <ion-select-option value="bulk">Bulk Delivery</ion-select-option>
+            <ion-select-option value="single" selected>Single Shipment</ion-select-option>
+            <ion-select-option value="bulk">Multiple Shipment</ion-select-option>
             <ion-select-option (click)="notavailble()"  value="cargo">Cargo</ion-select-option>
             <ion-select-option (click)="notavailble()" class="not-available" value="interstate">Inter-state</ion-select-option>
           </ion-select>
