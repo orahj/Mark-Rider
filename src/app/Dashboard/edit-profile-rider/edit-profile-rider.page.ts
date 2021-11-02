@@ -53,7 +53,7 @@ export class EditProfileRiderPage implements OnInit {
         confirmpassword: [null, [Validators.maxLength(100), Validators.required]]
       });
     }
-  
+
     showSuccess(){
       debugger;
       this.alertService.showSuccessAlert('Profile updated succesful !');
@@ -100,4 +100,5 @@ export class EditProfileRiderPage implements OnInit {
         }
       }
     }
+
 }

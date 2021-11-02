@@ -1,9 +1,7 @@
 ion-button.pawa2_u_action_btn_2 {
 
     width: 100%;
-    margin-left: 30px;
-    margin-right: 30px;
-    --background: #0A1857;
+    --background: #555558;
     margin-top: 30px;
     text-transform: capitalize;
     --padding-top: 23px;
@@ -15,4 +13,38 @@ ion-button.pawa2_u_action_btn_2 {
     padding-bottom: 50px;
 
 }
+ion-input.the_form_input {
+    border-radius: 3px;
+    border: 1px solid #c3c4c5;
+    --padding-top: 15px;
+    --padding-bottom: 15px;
+    --padding-start: 20px;
+    color: #707070;
+    --background: #fff;
+    font-weight: 500;
+    font-size: 12px;
+  }
+  .accordion {
+     background-color: #ffffff;
+    //  box-shadow: #727272;
+     margin-bottom: 30px;
+     margin-top: 20px;
+     box-shadow: -5px 10px 5px -9px rgba(217,216,216,0.81);
+    //  padding: 20px
+  }
+
+  .accordion-header {
+      background-color: #c0c0c0;
+      padding: 20px;
+      margin-top: -20px;
+      width: 100%;
+      color: #727272;
+      font-weight: 500;
+      display: flex;
+      justify-content: space-between;
+  }
+
+  .accordion-content {
+      padding: 20px;
+  }
 

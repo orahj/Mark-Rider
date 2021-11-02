@@ -35,6 +35,12 @@ export class AppComponent {
     this.menu.close();
   }
 
+    
+  gotoRiderProfile(){
+    this.route.navigate(['/dashboard/edit-profile-rider']);
+    this.menu.close();
+  }
+
   gotoAbout(){
     this.route.navigate(['/dashboard/page/about']);
     this.menu.close();
