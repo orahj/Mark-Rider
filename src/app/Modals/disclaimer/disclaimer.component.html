@@ -1,0 +1,21 @@
+<ion-content>
+  <div class="handle_modal_div">
+    <div class="handle_modal_network_error">
+        <div class="fund_wallet_zone2">
+          <ion-row>
+            <ion-col size="12">
+              <ion-item lines="none" class="ion-no-border no-bg style_input no-padding">
+                <ion-label position="stacked">Enter amount</ion-label>
+                <input  placeholder="" [cleave]="{numeral: true, prefix: '₦', numeralThousandsGroupStyle: 'thousand'}" class="style_payment_input">
+              </ion-item>
+            </ion-col>
+          </ion-row>
+        </div>
+    </div>
+    <div class="pawa2_u_checkout_btn_actions">
+      <ion-button (click)="fundAccount()" class="pawa2_u_action_btn_2">
+        Pay
+      </ion-button>
+    </div>
+  </div>
+</ion-content>  

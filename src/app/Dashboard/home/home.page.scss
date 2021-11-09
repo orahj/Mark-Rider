@@ -195,3 +195,21 @@ ion-select {
   --placeholder-color: black;
   --placeholder-opacity : 1;
 }
+
+.item_list {
+  padding: 20px 20px;
+  border: 1px solid #eae7e7;
+  position: relative;
+  overflow: hidden;
+  background: #fff;
+  border-radius: 5px;
+  margin-bottom: 5px;
+  height: 100px;
+  overflow: scroll;
+}
+.trash-icon {
+  color: red;
+  font-weight: 700;
+  background-color: transparent;
+  font-size: 14px;
+}
