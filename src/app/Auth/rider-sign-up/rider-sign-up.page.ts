@@ -19,6 +19,9 @@ export class RiderSignUpPage implements OnInit {
   segmentModel = 'individual';
   model: RegistrationDto;
   ress: Result;
+  public States : any
+  public Countries : any;
+  public submitted = false;
   constructor(
     private router: Router,
     private form: FormBuilder,
@@ -29,32 +32,78 @@ export class RiderSignUpPage implements OnInit {
     ) { }
 
   ngOnInit() {
-    this.individualFormData = this.form.group({
-      firstName: [null, [Validators.required, Validators.maxLength(10)]],
-      lastName: [null, [Validators.required, Validators.maxLength(100)]],
-      email: [null, [Validators.required, Validators.maxLength(100), Validators.pattern('[a-z0-9!#$%&\'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&\'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?')]],
-      // Phone Validation for Nigeria Numbers - Regex Pattern - ^[0]\\d{10}$ - verify it starts with 0 and total length is 11.
-      phone: [null, [Validators.required, Validators.pattern('^[0]\\d{10}$')]],
-      address: [null, [Validators.required, Validators.maxLength(130)]],
-      idnumber:[null, [Validators.required]],
-      password: [null, [Validators.required, Validators.maxLength(130)]],
-      confirm_password: [null, [Validators.required, Validators.maxLength(130)]],
-    },
-    );
+    this.riderForm();
+    this.getState();
+    this.getCountries();
   }
 
   segmentChanged(segment){
     // reset input fileds on segment change
   }
 
+
+  get i() { return this.individualFormData.controls; }
+
+  riderForm(){
+    this.individualFormData = this.form.group({
+      firstName: [null, [Validators.required]],
+      lastName: [null, [Validators.required]],
+      email: [null, [Validators.required,  Validators.pattern('[a-z0-9!#$%&\'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&\'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?')]],
+      // Phone Validation for Nigeria Numbers - Regex Pattern - ^[0]\\d{10}$ - verify it starts with 0 and total length is 11.
+      phone: [null, [Validators.required, Validators.pattern('^[0]\\d{10}$')]],
+      address: [null, [Validators.required, Validators.maxLength(130)]],
+      gender:[0, [Validators.required]],
+      state:[0, [Validators.required]],
+      country:[0, [Validators.required]],
+      riderCardNo : ['', Validators.required],
+      password: [null, [Validators.required, Validators.maxLength(130)]],
+      confirm_password: [null, [Validators.required, Validators.maxLength(130)]],
+    },
+    );
+
+    // this.individualFormData = this.form.group({
+    //   firstName: ['', [Validators.required]],
+    //   lastName: ['', [Validators.required]],
+    //   email: ['', [Validators.required, Validators.maxLength(100), Validators.pattern('[a-z0-9!#$%&\'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&\'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?')]],
+    //   // Phone Validation for Nigeria Numbers - Regex Pattern - ^[0]\\d{10}$ - verify it starts with 0 and total length is 11.
+    //   phone: ['', [Validators.required, Validators.pattern('^[0]\\d{10}$')]],
+    //   address: ['', [Validators.required]],
+    //   gender:[0, [Validators.required]],
+    //   state:[0, [Validators.required]],
+    //   country:[0, [Validators.required]],
+    //   password: ['', [Validators.required]],
+    //   confirm_password: ['', [Validators.required]],
+    // },
+    // );
+  }
+
+
+
   public submitIndividualForm(): void {
+    this.submitted = true;
+    if(this.individualFormData.invalid){
+      return;
+    }
+    this.loading.showLoader();
+    console.table(this.individualFormData.value);
+      this.model = Object.assign({}, this.individualFormData.value);
+      this.model.userTypes = 3;
+      this.model.userCategory = 4;
+      this.model.userName = this.model.email;
+      console.log('Model', this.model);
+      this.authService.register(this.model).subscribe((res: any) =>{
+        this.loading.closeLoader();
+      });
+  }
+
+  public submitIndividualForm1(): void {
     this.loading.showLoader();
     console.table(this.individualFormData.value);
     if(this.individualFormData.valid) {
       this.model = Object.assign({}, this.individualFormData.value);
-      this.model.roles = ['user'];
+
       this.model.deviceType = 1;
-      this.authService.register(this.model).subscribe((res: Result) =>{
+      this.authService.register(this.model).subscribe((res: any) =>{
         debugger;
         this.ress = res;
         if(res.isSuccessful) {
@@ -69,5 +118,19 @@ export class RiderSignUpPage implements OnInit {
     // this.loading.showLoader();
     // this.loading.closeLoader();
   }
+  }
+
+  getState(){
+    this.authService.getstate().subscribe((res : any) => {
+      console.log(res);
+      this.States = res.returnedObject.returnedObject;
+    })
+  }
+
+  getCountries() {
+    this.authService.getcountries().subscribe((res : any) => {
+      console.log(res);
+      this.Countries = res.returnedObject.returnedObject;
+    })
   }
 }

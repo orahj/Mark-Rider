@@ -2,11 +2,10 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
 import { JwtModule } from '@auth0/angular-jwt';
-
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
-
+import { JwtInterceptor } from './interceptors/jwt.interceptor';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HeaderComponentModule } from '../app/Partials/header/header.component.module';
@@ -18,6 +17,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { IonicStorageModule } from '@ionic/storage';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SectionHeaderModule } from './Partials/section-header/section-header.module';
+import { AgmCoreModule } from '@agm/core';
 export function tokenGetter() {
   return localStorage.getItem('token');
 }
@@ -35,6 +35,10 @@ export function tokenGetter() {
     BarRatingModule,
     NgxCleaveDirectiveModule,
     FormsModule, ReactiveFormsModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyAq84iD_-IGQEzZj5VET55rWthHgh75DSQ',
+      libraries: ['places']
+    }),
     IonicStorageModule.forRoot(),
     JwtModule.forRoot({
       config: {
@@ -48,6 +52,7 @@ export function tokenGetter() {
     StatusBar,
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true  },
     LoadingService,
   ],
   bootstrap: [AppComponent]

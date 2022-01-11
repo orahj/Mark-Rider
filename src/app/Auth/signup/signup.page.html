@@ -36,9 +36,6 @@
         Sign up as a user to create shipment request, track shipment and fund your wallet and view shipment and transcation process.
       </p>
    </div>
-    <!-- <ion-card-header>
-      <ion-card-subtitle class="ion-text-center style_header">Create an Indivdual Account</ion-card-subtitle>
-    </ion-card-header> -->
   
     <ion-card-content>
       <form [formGroup]="individualFormData"  (ngSubmit)="submitIndividualForm()">
@@ -46,26 +43,20 @@
         <ion-label position="floating">First Name</ion-label>
         <ion-input formControlName="firstName"></ion-input>
       </ion-item>
-
       <div class="validate_input" *ngIf="i.firstName.touched || i.firstName.invalid && submitted">
         <div *ngIf="i.firstName.errors?.required">First name is required</div>
       </div>
 
 
       <ion-item>
-        <!-- <ion-icon name="medical-outline" slot="start"></ion-icon> -->
         <ion-label position="floating">Last Name</ion-label>
         <ion-input formControlName="lastName"></ion-input>
       </ion-item>
-
       <div class="validate_input" *ngIf="i.lastName.touched || i.lastName.invalid && submitted">
         <div *ngIf="i.lastName.errors?.required">Last name is required</div>
       </div>
 
-
-
       <ion-item>
-        <!-- <ion-icon name="mail-unread-outline" slot="start"></ion-icon> -->
         <ion-label position="floating">Email</ion-label>
         <ion-input formControlName="email"></ion-input>
       </ion-item>
@@ -82,22 +73,18 @@
 
 
       <ion-item>
-        <!-- <ion-icon name="call-outline" slot="start"></ion-icon> -->
         <ion-label position="floating">Phone Number</ion-label>
         <ion-input formControlName="phone"></ion-input>
       </ion-item>
-
       <div class="validate_input" *ngIf="i.phone.touched || i.phone.invalid && submitted">
         <div *ngIf="i.phone.errors?.required">Phone Number is required</div>
       </div>
 
 
       <ion-item>
-        <!-- <ion-icon name="business-outline" slot="start"></ion-icon> -->
         <ion-label position="floating">Address</ion-label>
         <ion-input formControlName="address"></ion-input>
       </ion-item>
-
       <div class="validate_input" *ngIf="i.address.touched || i.address.invalid && submitted">
         <div *ngIf="i.address.errors?.required">Address is required</div>
       </div>
@@ -106,14 +93,12 @@
         <ion-select-option [value]=1 >Male</ion-select-option>
         <ion-select-option [value]=2>Female</ion-select-option>
       </ion-select>
-
       <div class="validate_input" *ngIf="i.gender.touched || i.gender.invalid && submitted">
         <div *ngIf="i.gender.errors?.required">Gender is required</div>
       </div>
 
       <ion-select interface="popover" placeholder="Select State" formControlName="state"  class="mark-drop-down">
-        <ion-select-option value="single" >Single Shipment</ion-select-option>
-        <ion-select-option value="bulk">Multiple Shipment</ion-select-option>
+        <ion-select-option [value]=state.id *ngFor="let state of States" >{{state.name}}</ion-select-option>
       </ion-select>
       <div class="validate_input" *ngIf="i.state.touched || i.state.invalid && submitted">
         <div *ngIf="i.state.errors?.required">State is required</div>
@@ -121,29 +106,14 @@
    
 
       <ion-select interface="popover" placeholder="Select Country" formControlName="country" class="mark-drop-down">
-        <ion-select-option value="single" >Single Shipment</ion-select-option>
-        <ion-select-option value="bulk">Multiple Shipment</ion-select-option>
+        <ion-select-option [value]=country.id *ngFor="let country of Countries">{{country.name}}</ion-select-option>
       </ion-select>
       <div class="validate_input" *ngIf="i.country.touched || i.country.invalid && submitted">
         <div *ngIf="i.country.errors?.required">Country is required</div>
       </div>
    
-   
 
-      <!-- <ion-item>
-        <ion-label position="floating">Valid ID</ion-label>
-        <ion-input formControlName="idnumber"></ion-input>
-      </ion-item>
-
-          
-      <div class="validate_input" *ngIf="individualFormData.get('idnumber').hasError('required') && individualFormData.get('idnumber').touched">
-        ID number is required
-      </div>
-      <div class="validate_input" *ngIf="individualFormData.get('idnumber').hasError('maxLength')">
-        Please enter a valid input
-      </div> -->
       <ion-item>
-        <!-- <ion-icon name="key-outline" slot="start"></ion-icon> -->
         <ion-label position="floating">Password</ion-label>
         <ion-input type="password" formControlName="password"></ion-input>
       </ion-item>
@@ -151,10 +121,7 @@
         <div *ngIf="i.password.errors?.required">Password is required</div>
       </div>
 
-      
-
       <ion-item>
-        <!-- <ion-icon name="key-outline" slot="start"></ion-icon> -->
         <ion-label position="floating">Confirm Password</ion-label>
         <ion-input type="password" formControlName="confirm_password"></ion-input>
       </ion-item>
@@ -168,9 +135,6 @@
         Terms of Service and Privacy Policy
       </div>
 
-      <!-- <ion-button type="submit" [disabled]="individualFormData.invalid" expand="block" size="large" class="pawa2u_btn">
-        <ion-icon fill name="arrow-forward-outline"></ion-icon>
-      </ion-button> -->
       <ion-button expand="block" size="large" type="submit" class="pawa2u_btn btn_capitalize thin_font_weight small_sized_btn">
         Sign Up
       </ion-button>   
@@ -188,52 +152,46 @@
       </p>
    </div>
     <ion-card-content>
-      
       <form [formGroup]="smeFormData" (ngSubmit)="submitSmeForm()">
 
       <ion-item>
-        <!-- <ion-icon name="business-outline" slot="start"></ion-icon> -->
         <ion-label position="floating">Business Name</ion-label>
         <ion-input formControlName="businessName"></ion-input>
       </ion-item>
-      <div class="validate_input" *ngIf="s.businessName.touched || s.businessName.invalid && submitted3">
+      <div class="validate_input" *ngIf="s.businessName.touched || s.businessName.invalid && submitted2">
         <div *ngIf="s.businessName.errors?.required">Business Name is required</div>
       </div>
 
       <ion-item>
-        <!-- <ion-icon name="medical-outline" slot="start"></ion-icon> -->
         <ion-label position="floating">Business Number</ion-label>
         <ion-input formControlName="businessNumber"></ion-input>
       </ion-item>
-      <div class="validate_input" *ngIf="s.businessNumber.touched || s.businessNumber.invalid && submitted3">
+      <div class="validate_input" *ngIf="s.businessNumber.touched || s.businessNumber.invalid && submitted2">
         <div *ngIf="s.businessNumber.errors?.required">Business Number is required</div>
       </div>
 
       <ion-item>
-        <!-- <ion-icon name="medical-outline" slot="start"></ion-icon> -->
         <ion-label position="floating">First Name</ion-label>
         <ion-input formControlName="firstName"></ion-input>
       </ion-item>
-      <div class="validate_input" *ngIf="s.firstName.touched || s.firstName.invalid && submitted3">
+      <div class="validate_input" *ngIf="s.firstName.touched || s.firstName.invalid && submitted2">
         <div *ngIf="s.firstName.errors?.required">First Name is required</div>
       </div>
 
       <ion-item>
-        <!-- <ion-icon name="medical-outline" slot="start"></ion-icon> -->
         <ion-label position="floating">Last Name</ion-label>
         <ion-input formControlName="lastName"></ion-input>
       </ion-item>
-      <div class="validate_input" *ngIf="s.lastName.touched || s.lastName.invalid && submitted3">
+      <div class="validate_input" *ngIf="s.lastName.touched || s.lastName.invalid && submitted2">
         <div *ngIf="s.lastName.errors?.required">Last Name is required</div>
       </div>
 
       <ion-item>
-        <!-- <ion-icon name="mail-unread-outline" slot="start"></ion-icon> -->
         <ion-label position="floating">Email</ion-label>
         <ion-input formControlName="email"></ion-input>
       </ion-item>
 
-      <div *ngIf="s.email.touched || s.email.invalid && submitted3">
+      <div *ngIf="s.email.touched || s.email.invalid && submitted2">
         <div class="validate_input" *ngIf="s.email.errors?.required">
           Email is required
         </div>
@@ -241,49 +199,54 @@
           Please enter a valid email address
         </div>
       </div>
-     
-
+    
 
       <ion-item>
-        <!-- <ion-icon name="call-outline" slot="start"></ion-icon> -->
         <ion-label position="floating">Phone Number</ion-label>
         <ion-input formControlName="phone"></ion-input>
       </ion-item>
 
-      <div class="validate_input" *ngIf="s.phone.touched || s.phone.invalid && submitted3">
+      <div class="validate_input" *ngIf="s.phone.touched || s.phone.invalid && submitted2">
         <div *ngIf="s.phone.errors?.required">Phone Number is required</div>
       </div>
 
 
       <ion-item>
-        <!-- <ion-icon name="business-outline" slot="start"></ion-icon> -->
         <ion-label position="floating">Address</ion-label>
         <ion-input formControlName="address"></ion-input>
       </ion-item>
-
-      <div class="validate_input" *ngIf="s.address.touched || s.address.invalid && submitted3">
+      <div class="validate_input" *ngIf="s.address.touched || s.address.invalid && submitted2">
         <div *ngIf="s.address.errors?.required">Address is required</div>
+      </div>
+
+      <ion-select interface="popover" placeholder="Select State" formControlName="state"  class="mark-drop-down">
+        <ion-select-option [value]=state.id *ngFor="let state of States" >{{state.name}}</ion-select-option>
+      </ion-select>
+      <div class="validate_input" *ngIf="s.state.touched || s.state.invalid && submitted2">
+        <div *ngIf="s.state.errors?.required">State is required</div>
       </div>
    
 
+      <ion-select interface="popover" placeholder="Select Country" formControlName="country" class="mark-drop-down">
+        <ion-select-option [value]=country.id *ngFor="let country of Countries">{{country.name}}</ion-select-option>
+      </ion-select>
+      <div class="validate_input" *ngIf="s.country.touched || s.country.invalid && submitted2">
+        <div *ngIf="s.country.errors?.required">Country is required</div>
+      </div>
 
       <ion-item>
-        <!-- <ion-icon name="key-outline" slot="start"></ion-icon> -->
         <ion-label position="floating">Password</ion-label>
         <ion-input type="password" formControlName="password"></ion-input>
       </ion-item>
-      <div class="validate_input" *ngIf="s.password.touched || s.password.invalid && submitted3">
+      <div class="validate_input" *ngIf="s.password.touched || s.password.invalid && submitted2">
         <div *ngIf="s.password.errors?.required">Password is required</div>
       </div>
 
-      
-
       <ion-item>
-        <!-- <ion-icon name="key-outline" slot="start"></ion-icon> -->
         <ion-label position="floating">Confirm Password</ion-label>
         <ion-input type="password" formControlName="confirm_password"></ion-input>
       </ion-item>
-      <div class="validate_input" *ngIf="s.confirm_password.touched || s.confirm_password.invalid && submitted3">
+      <div class="validate_input" *ngIf="s.confirm_password.touched || s.confirm_password.invalid && submitted2">
         <div *ngIf="s.confirm_password.errors?.required">Confirm Password is required</div>
       </div>
 
@@ -299,29 +262,28 @@
         Sign Up
       </ion-button>    
     </form>
-
     </ion-card-content>
   </div>
+
+
+
   <div *ngIf="segmentModel === 'company'" class="ion_card_style">
-    <!-- <ion-card-header>
-      <ion-card-subtitle class="ion-text-center style_header">Create a Company Account</ion-card-subtitle>
-    </ion-card-header> -->
     <div class="page-summary">
       <p>
         Sign up as a SME user to get <span>10%</span> off shipment request, track shipment and fund your wallet and view shipment and transcation process.
       </p>
    </div>
-    <ion-card-content>
-      
-      <form [formGroup]="companyFormData" (ngSubmit)="submitCompanyForm()">
+   <ion-card-content>
+    <form [formGroup]="companyFormData" (ngSubmit)="submitCompanyForm()">
       <ion-item>
         <!-- <ion-icon name="business-outline" slot="start"></ion-icon> -->
         <ion-label position="floating">Company Name</ion-label>
-        <ion-input formControlName="company_name"></ion-input>
+        <ion-input formControlName="companyName"></ion-input>
       </ion-item>
-      <div class="validate_input" *ngIf="c.company_name.touched || c.company_name.invalid && submitted1">
-        <div *ngIf="c.company_name.errors?.required">Company Name is required</div>
+      <div class="validate_input" *ngIf="c.companyName.touched || c.companyName.invalid && submitted1">
+        <div *ngIf="c.companyName.errors?.required">Company Name is required</div>
       </div>
+  
       <ion-item>
         <!-- <ion-icon name="medical-outline" slot="start"></ion-icon> -->
         <ion-label position="floating">RC Number</ion-label>
@@ -340,7 +302,6 @@
         <div *ngIf="c.firstName.errors?.required">FirstName is required</div>
       </div>
 
-
       <ion-item>
         <!-- <ion-icon name="medical-outline" slot="start"></ion-icon> -->
         <ion-label position="floating">Last Name</ion-label>
@@ -349,15 +310,14 @@
       <div class="validate_input" *ngIf="c.lastName.touched || c.lastName.invalid && submitted1">
         <div *ngIf="c.lastName.errors?.required">LastName is required</div>
       </div>
-
-
+      
       <ion-item>
         <!-- <ion-icon name="mail-unread-outline" slot="start"></ion-icon> -->
         <ion-label position="floating">Email</ion-label>
         <ion-input formControlName="email"></ion-input>
       </ion-item>
-
-      <div *ngIf="c.email.touched || c.email.invalid && submitted">
+  
+      <div *ngIf="c.email.touched || c.email.invalid && submitted1">
         <div class="validate_input" *ngIf="c.email.errors?.required">
           Email is required
         </div>
@@ -371,11 +331,12 @@
         <ion-label position="floating">Phone Number</ion-label>
         <ion-input formControlName="phone"></ion-input>
       </ion-item>
-
-      <div *ngIf="c.phone.touched || c.phone.invalid && submitted">
+  
+      <div *ngIf="c.phone.touched || c.phone.invalid && submitted1">
         <div class="validate_input" *ngIf="c.phone.errors?.required">
           PhoneNumber is required
         </div>
+      </div>
 
       <ion-item>
         <!-- <ion-icon name="home-outline" slot="start"></ion-icon> -->
@@ -383,48 +344,47 @@
         <ion-input formControlName="address"></ion-input>
       </ion-item>
       
-      <div *ngIf="c.address.touched || c.address.invalid && submitted">
+      <div *ngIf="c.address.touched || c.address.invalid && submitted1">
         <div class="validate_input" *ngIf="c.address.errors?.required">
           Address is required
         </div>
-
+      </div>
 
       <ion-item>
         <!-- <ion-icon name="key-outline" slot="start"></ion-icon> -->
         <ion-label position="floating">Password</ion-label>
         <ion-input formControlName="password"></ion-input>
       </ion-item>
-      <div *ngIf="c.password.touched || c.password.invalid && submitted">
+      <div *ngIf="c.password.touched || c.password.invalid && submitted1">
         <div class="validate_input" *ngIf="c.password.errors?.required">
           Password is required
         </div>
-  
-
+      </div>
 
       <ion-item>
         <ion-label position="floating">Confirm Password</ion-label>
         <ion-input></ion-input>
       </ion-item>
       
-      <div *ngIf="c.confirm_password.touched || c.confirm_password.invalid && submitted">
+      <div *ngIf="c.confirm_password.touched || c.confirm_password.invalid && submitted1">
         <div class="validate_input" *ngIf="c.confirm_password.errors?.required">
           Confirm Password is required
         </div>
-  
+      </div>
 
       <div class="small_footer_note">
         By creating an account you agree to our <br>
         Terms of Service and Privacy Policy
       </div>
 
-      <!-- <ion-button type="submit" expand="block" size="large" class="pawa2u_btn">
-        <ion-icon fill name="arrow-forward-outline"></ion-icon>
-      </ion-button> -->
-      <ion-button expand="block" size="large" class="pawa2u_btn btn_capitalize thin_font_weight small_sized_btn">
+      <ion-button expand="block" type="submit" size="large" class="pawa2u_btn btn_capitalize thin_font_weight small_sized_btn">
         Sign Up
-      </ion-button>    
-    </form>
+      </ion-button> 
+  
+      
 
-    </ion-card-content>
+    </form>
+  </ion-card-content>
   </div>
+
 </ion-content>

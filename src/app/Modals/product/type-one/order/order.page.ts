@@ -8,8 +8,15 @@ import { AddToCartPage } from '../add-to-cart/add-to-cart.page';
   styleUrls: ['./order.page.scss'],
 })
 export class OrderPage implements OnInit {
+  public deliveryObj = JSON.parse(localStorage.getItem('deliveryObj'));
+  public returnObj = JSON.parse(localStorage.getItem('deliveryReturnedObj'));
+  itemList = this.deliveryObj[0];
+  user = JSON.parse(localStorage.getItem('userobj'));
 
-  constructor(private modalController: ModalController,private router: Router) { }
+  constructor(
+    private modalController: ModalController,
+    private router: Router
+    ) { }
 
   ngOnInit() {
   }

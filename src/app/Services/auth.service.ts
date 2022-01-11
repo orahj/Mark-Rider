@@ -48,11 +48,14 @@ decordedToken: any;
     //return !this.jwtHelper.isTokenExpired(token);
   }
   register(registerdto: RegistrationDto) {
-    return this.http.post(this.baseUrl + 'Account/register', registerdto);
+    return this.http.post(this.baseUrl + 'Account/register', registerdto)
+    .pipe(map((Response : any) => {
+      this.router.navigateByUrl('/login');
+    }));
   }
 
-  resetlink(email : string) {
-    return this.http.post(this.baseUrl + 'Account/send-password-resetLink', email);
+  resetlink(model : any) {
+    return this.http.post(this.baseUrl + 'Account/send-password-resetLink', model);
   }
 
   resetpassword(model : any){

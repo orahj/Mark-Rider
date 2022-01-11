@@ -37,6 +37,9 @@ export class SignupPage implements OnInit {
   ngOnInit() {
     this.companyForm();
     this.individualForm();
+    this.smeForm();
+    this.getCountries();
+    this.getState();
   }
 
   segmentChanged(segment){
@@ -52,31 +55,21 @@ export class SignupPage implements OnInit {
     if(this.individualFormData.invalid){
       return;
     }
-    // this.loading.showLoader();
+    this.loading.showLoader();
     console.table(this.individualFormData.value);
-    if(this.individualFormData.valid) {
       this.model = Object.assign({}, this.individualFormData.value);
-      this.model.deviceType = 1;
       this.model.userTypes = 4;
       this.model.userCategory = 1;
-      this.authService.register(this.model).subscribe((res: Result) =>{
-        this.ress = res;
+      this.model.userName = this.model.email;
+      console.log('Model', this.model);
+      this.authService.register(this.model).subscribe((res: any) =>{
         this.loading.closeLoader();
-        // if(res.isSuccessful) {
-        //   this.loading.closeLoader();
-        //   this.router.navigate(['/verify-email']);
-        // }
-        // else {
-        //   this.loading.closeLoader();
-        //   this.alertService.showErrorAlert(res.message);
-        // }
       });
-    // this.loading.showLoader();
-    // this.loading.closeLoader();
+
   }
-  }
+
   public submitCompanyForm(): void {
-    this.submitted = true;
+    this.submitted1 = true;
     if(this.companyFormData.invalid){
       return;
     }
@@ -84,14 +77,16 @@ export class SignupPage implements OnInit {
     this.model = Object.assign({}, this.companyFormData.value);
     this.model.userTypes = 4;
     this.model.userCategory = 3;
-    this.authService.register(this.model).subscribe((res: Result) =>{
+    this.model.userName = this.model.email;
+    this.loading.showLoader();
+    this.authService.register(this.model).subscribe((res: any) =>{
       this.ress = res;
       this.loading.closeLoader();
     });
   }
 
   public submitSmeForm(): void {
-    this.submitted = true;
+    this.submitted2 = true;
     if(this.smeFormData.invalid){
       return;
     }
@@ -99,7 +94,9 @@ export class SignupPage implements OnInit {
     console.table(this.smeFormData.value);
     this.model.userTypes = 4;
     this.model.userCategory = 2;
-    this.authService.register(this.model).subscribe((res: Result) =>{
+    this.model.userName = this.model.email;
+    this.loading.showLoader();
+    this.authService.register(this.model).subscribe((res: any) =>{
       this.ress = res;
       this.loading.closeLoader();
     });
@@ -107,28 +104,29 @@ export class SignupPage implements OnInit {
 
   individualForm() {
     this.individualFormData = this.form.group({
-      firstName: [null, [Validators.required]],
-      lastName: [null, [Validators.required]],
-      email: [null, [Validators.required, Validators.maxLength(100), Validators.pattern('[a-z0-9!#$%&\'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&\'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?')]],
+      firstName: ['', [Validators.required]],
+      lastName: ['', [Validators.required]],
+      email: ['', [Validators.required, Validators.maxLength(100), Validators.pattern('[a-z0-9!#$%&\'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&\'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?')]],
       // Phone Validation for Nigeria Numbers - Regex Pattern - ^[0]\\d{10}$ - verify it starts with 0 and total length is 11.
-      phone: [null, [Validators.required, Validators.pattern('^[0]\\d{10}$')]],
-      address: [null, [Validators.required]],
+      phone: ['', [Validators.required, Validators.pattern('^[0]\\d{10}$')]],
+      address: ['', [Validators.required]],
       gender:[0, [Validators.required]],
       state:[0, [Validators.required]],
       country:[0, [Validators.required]],
-      password: [null, [Validators.required]],
-      confirm_password: [null, [Validators.required]],
+      password: ['', [Validators.required]],
+      confirm_password: ['', [Validators.required]],
     },
     );
   }
 
   companyForm() {
     this.companyFormData = this.form2.group({
-      company_name: [null, [Validators.required]],
+      companyName: [null, [Validators.required]],
       firstName: [null, [Validators.required]],
       lastName: [null, [Validators.required, Validators.maxLength(100)]],
       email: [null, [Validators.required, Validators.pattern('[a-z0-9!#$%&\'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&\'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?')]],
       // Phone Validation for Nigeria Numbers - Regex Pattern - ^[0]\\d{10}$ - verify it starts with 0 and total length is 11.
+      rcNumber:[0, [Validators.required]],
       state:[0, [Validators.required]],
       country:[0, [Validators.required]],
       phone: [null, [Validators.required, Validators.pattern('^[0]\\d{10}$')]],
@@ -140,30 +138,32 @@ export class SignupPage implements OnInit {
 
   smeForm() {
     this.smeFormData = this.form3.group({
-      businessName: [null, [Validators.required]],
-      businessNumber: [null, [Validators.required]],
-      firstName: [null, [Validators.required]],
-      lastName: [null, [Validators.required, Validators.maxLength(100)]],
-      email: [null, [Validators.required, Validators.pattern('[a-z0-9!#$%&\'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&\'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?')]],
+      businessName: ['', [Validators.required]],
+      businessNumber: ['', [Validators.required]],
+      firstName: ['', [Validators.required]],
+      lastName: ['', [Validators.required, Validators.maxLength(100)]],
+      email: ['', [Validators.required, Validators.pattern('[a-z0-9!#$%&\'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&\'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?')]],
       // Phone Validation for Nigeria Numbers - Regex Pattern - ^[0]\\d{10}$ - verify it starts with 0 and total length is 11.
       state:[0, [Validators.required]],
       country:[0, [Validators.required]],
-      phone: [null, [Validators.required, Validators.pattern('^[0]\\d{10}$')]],
-      address: [null, [Validators.required]],
-      password: [null, [Validators.required]],
-      confirm_password: [null, [Validators.required]],
+      phone: ['', [Validators.required, Validators.pattern('^[0]\\d{10}$')]],
+      address: ['', [Validators.required]],
+      password: ['', [Validators.required]],
+      confirm_password: ['', [Validators.required]],
     });
   }
 
   getState(){
-    this.authService.getstate().subscribe((res) => {
+    this.authService.getstate().subscribe((res : any) => {
       console.log(res);
+      this.States = res.returnedObject.returnedObject;
     })
   }
 
   getCountries() {
-    this.authService.getcountries().subscribe((res) => {
+    this.authService.getcountries().subscribe((res : any) => {
       console.log(res);
+      this.Countries = res.returnedObject.returnedObject;
     })
   }
 

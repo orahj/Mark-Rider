@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from 'src/app/Services/auth.service';
+import { AlertService } from 'src/app/Services/alert/alert.service';
+import { LoadingService } from '../../Services/loading/loading.service';
 
 @Component({
   selector: 'app-reset-password',
@@ -6,10 +9,28 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./reset-password.page.scss'],
 })
 export class ResetPasswordPage implements OnInit {
-
-  constructor() { }
+  user = JSON.parse(localStorage.getItem('userObj'));
+  email : string;
+  constructor(
+    private authService : AuthService,
+    private loading : LoadingService,
+    private alertService : AlertService
+  ) { }
 
   ngOnInit() {
+  }
+
+  sendResetLink() {
+   let mail =  {
+      email: this.email
+    }
+
+    this.loading.showLoader();
+    this.authService.resetlink(mail).subscribe((res : any) => {
+      this.loading.closeLoader();
+      this.alertService.showSuccessAlert(res.message);
+      console.log(res);
+    })
   }
 
 }

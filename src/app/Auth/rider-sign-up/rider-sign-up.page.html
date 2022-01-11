@@ -19,122 +19,104 @@
       </p>
    </div>
     <ion-card-content>
-      <form [formGroup]="individualFormData"  (ngSubmit)="individualFormData.valid && submitIndividualForm()">
+      <form [formGroup]="individualFormData"  (ngSubmit)="submitIndividualForm()">
 
-      <ion-item>
-        <!-- <ion-icon name="medical-outline" slot="start"></ion-icon> -->
-        <ion-label position="floating">First Name</ion-label>
-        <ion-input formControlName="firstName"></ion-input>
-      </ion-item>
+        <ion-item>
+          <ion-label position="floating">First Name</ion-label>
+          <ion-input formControlName="firstName"></ion-input>
+        </ion-item>
+        <div class="validate_input" *ngIf="i.firstName.touched || i.firstName.invalid && submitted">
+          <div *ngIf="i.firstName.errors?.required">First name is required</div>
+        </div>
 
-      <div class="validate_input" *ngIf="individualFormData.get('firstName').hasError('required') && individualFormData.get('firstName').touched">
-        First name is required
+        <ion-item>
+          <ion-label position="floating">Last Name</ion-label>
+          <ion-input formControlName="lastName"></ion-input>
+        </ion-item>
+        <div class="validate_input" *ngIf="i.lastName.touched || i.lastName.invalid && submitted">
+          <div *ngIf="i.lastName.errors?.required">Last name is required</div>
+        </div>
+
+        <ion-item>
+          <ion-label position="floating">Email</ion-label>
+          <ion-input formControlName="email"></ion-input>
+        </ion-item>
+  
+        <div *ngIf="i.email.touched || i.email.invalid && submitted">
+          <div class="validate_input" *ngIf="i.email.errors?.required">
+            Email is required
+          </div>
+          <div class="validate_input" *ngIf="i.email.errors?.pattern" >
+            Please enter a valid email address
+          </div>
+        </div>
+
+
+        <ion-item>
+          <ion-label position="floating">Phone Number</ion-label>
+          <ion-input formControlName="phone"></ion-input>
+        </ion-item>
+        <div class="validate_input" *ngIf="i.phone.touched || i.phone.invalid && submitted">
+          <div *ngIf="i.phone.errors?.required">Phone Number is required</div>
+        </div>
+
+        <ion-item>
+          <ion-label position="floating">Address</ion-label>
+          <ion-input formControlName="address"></ion-input>
+        </ion-item>
+        <div class="validate_input" *ngIf="i.address.touched || i.address.invalid && submitted">
+          <div *ngIf="i.address.errors?.required">Address is required</div>
+        </div>
+
+        <ion-select interface="popover" placeholder="Select Gender" formControlName="gender"  class="mark-drop-down">
+          <ion-select-option [value]=1 >Male</ion-select-option>
+          <ion-select-option [value]=2>Female</ion-select-option>
+        </ion-select>
+        <div class="validate_input" *ngIf="i.gender.touched || i.gender.invalid && submitted">
+          <div *ngIf="i.gender.errors?.required">Gender is required</div>
+        </div>
+
+      <ion-select interface="popover" placeholder="Select State" formControlName="state"  class="mark-drop-down">
+        <ion-select-option [value]=state.id *ngFor="let state of States" >{{state.name}}</ion-select-option>
+      </ion-select>
+      <div class="validate_input" *ngIf="i.state.touched || i.state.invalid && submitted">
+        <div *ngIf="i.state.errors?.required">State is required</div>
       </div>
-      <div class="validate_input" *ngIf="individualFormData.get('firstName').hasError('maxLength')">
-        Please enter a valid input
+   
+
+      <ion-select interface="popover" placeholder="Select Country" formControlName="country" class="mark-drop-down">
+        <ion-select-option [value]=country.id *ngFor="let country of Countries">{{country.name}}</ion-select-option>
+      </ion-select>
+      <div class="validate_input" *ngIf="i.country.touched || i.country.invalid && submitted">
+        <div *ngIf="i.country.errors?.required">Country is required</div>
       </div>
-
-
-      <ion-item>
-        <!-- <ion-icon name="medical-outline" slot="start"></ion-icon> -->
-        <ion-label position="floating">Last Name</ion-label>
-        <ion-input formControlName="lastName"></ion-input>
-      </ion-item>
-
-      <div class="validate_input" *ngIf="individualFormData.get('lastName').hasError('required') && individualFormData.get('lastName').touched">
-        Last name is required
-      </div>
-      <div class="validate_input" *ngIf="individualFormData.get('lastName').hasError('maxLength')">
-        Please enter a valid input
-      </div>
-
-
-
-      <ion-item>
-        <!-- <ion-icon name="mail-unread-outline" slot="start"></ion-icon> -->
-        <ion-label position="floating">Email</ion-label>
-        <ion-input formControlName="email"></ion-input>
-      </ion-item>
-
-      <div class="validate_input" *ngIf="individualFormData.get('email').hasError('required') && individualFormData.get('email').touched">
-        Email is required
-      </div>
-      <div class="validate_input" *ngIf="individualFormData.get('email').hasError('maxLength')">
-        Please enter a valid input
-      </div>
-      <div class="validate_input" *ngIf="individualFormData.get('email').hasError('pattern')">
-        Please enter a valid email address
-      </div>
-
-
-      <ion-item>
-        <!-- <ion-icon name="call-outline" slot="start"></ion-icon> -->
-        <ion-label position="floating">Phone Number</ion-label>
-        <ion-input formControlName="phone"></ion-input>
-      </ion-item>
-
-      
-      <div class="validate_input" *ngIf="individualFormData.get('phone').hasError('required') && individualFormData.get('phone').touched">
-        Phone number is required
-      </div>
-      <div class="validate_input" *ngIf="individualFormData.get('phone').hasError('pattern')">
-        Please enter a valid input
-      </div>
-
-
-      <ion-item>
-        <!-- <ion-icon name="business-outline" slot="start"></ion-icon> -->
-        <ion-label position="floating">Address</ion-label>
-        <ion-input formControlName="address"></ion-input>
-      </ion-item>
-
           
-      <div class="validate_input" *ngIf="individualFormData.get('address').hasError('required') && individualFormData.get('address').touched">
-        Address is required
-      </div>
-      <div class="validate_input" *ngIf="individualFormData.get('address').hasError('maxLength')">
-        Please enter a valid input
-      </div>
+     
 
       <ion-item>
         <!-- <ion-icon name="business-outline" slot="start"></ion-icon> -->
         <ion-label position="floating">Rider Card Number</ion-label>
-        <ion-input formControlName="idnumber"></ion-input>
+        <ion-input formControlName="riderCardNo"></ion-input>
       </ion-item>
+  
+      <div class="validate_input" *ngIf="i.riderCardNo.touched || i.riderCardNo.invalid && submitted">
+        <div *ngIf="i.riderCardNo.errors?.required">Rider Card No is required</div>
+      </div>
 
-          
-      <div class="validate_input" *ngIf="individualFormData.get('idnumber').hasError('required') && individualFormData.get('idnumber').touched">
-        Rider Card number is required
-      </div>
-      <div class="validate_input" *ngIf="individualFormData.get('idnumber').hasError('maxLength')">
-        Please enter a valid input
-      </div>
       <ion-item>
-        <!-- <ion-icon name="key-outline" slot="start"></ion-icon> -->
         <ion-label position="floating">Password</ion-label>
         <ion-input type="password" formControlName="password"></ion-input>
       </ion-item>
-
-      <div class="validate_input" *ngIf="individualFormData.get('password').hasError('required') && individualFormData.get('password').touched">
-        Password is required
+      <div class="validate_input" *ngIf="i.password.touched || i.password.invalid && submitted">
+        <div *ngIf="i.password.errors?.required">Password is required</div>
       </div>
-      <div class="validate_input" *ngIf="individualFormData.get('password').hasError('maxLength')">
-        Please enter a valid input
-      </div>
-
-      
 
       <ion-item>
-        <!-- <ion-icon name="key-outline" slot="start"></ion-icon> -->
         <ion-label position="floating">Confirm Password</ion-label>
         <ion-input type="password" formControlName="confirm_password"></ion-input>
       </ion-item>
-
-      <div class="validate_input" *ngIf="individualFormData.get('confirm_password').hasError('required') && individualFormData.get('confirm_password').touched">
-        Password confirmation is required
-      </div>
-      <div class="validate_input" *ngIf="individualFormData.get('confirm_password').hasError('maxLength')">
-        Please enter a valid input
+      <div class="validate_input" *ngIf="i.confirm_password.touched || i.confirm_password.invalid && submitted">
+        <div *ngIf="i.confirm_password.errors?.required">Password is required</div>
       </div>
 
 
@@ -146,7 +128,7 @@
       <!-- <ion-button type="submit" [disabled]="individualFormData.invalid" expand="block" size="large" class="pawa2u_btn">
         <ion-icon fill name="arrow-forward-outline"></ion-icon>
       </ion-button> -->
-      <ion-button expand="block" size="large" class="pawa2u_btn btn_capitalize thin_font_weight small_sized_btn">
+      <ion-button type="submit" class="pawa2u_btn btn_capitalize thin_font_weight small_sized_btn">
         Sign Up
       </ion-button>   
        </form>

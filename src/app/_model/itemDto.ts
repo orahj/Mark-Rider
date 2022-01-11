@@ -7,7 +7,6 @@ export class Item {
     dropOffPhone: string
     deliveryId: number
     imageUrl: string
-    scheduledDeliveryDate: string
     baseLocation: object
     targetLocation: object
 }

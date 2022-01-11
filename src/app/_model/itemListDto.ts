@@ -10,7 +10,6 @@ export const ItemList : Item[] = [
         dropOffPhone: '',
         deliveryId: 0,
         imageUrl: '',
-        scheduledDeliveryDate: '',
         baseLocation: {},
         targetLocation: {}
     }

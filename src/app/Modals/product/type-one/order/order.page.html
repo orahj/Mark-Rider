@@ -14,8 +14,8 @@
               <div class="modal_text_lc">
                 Pick up Address
               </div>
-              <div class="address-text mb-5">12 Atanda kofo street, Gbagada, <br> Lagos.</div>
-              <div class="address-text mb-5"> 09039493929</div>
+              <div class="address-text mb-5">{{itemList.baseLocation.address}}</div>
+              <div class="address-text mb-5">{{itemList.pickUpPhone}}</div>
             </div>
           </ion-col>
           <ion-col size="2">
@@ -28,8 +28,8 @@
               <div class="modal_text_lc">
                 Delivery Address
               </div>
-              <div class="address-text mb-5">12 Atanda kofo street, Gbagada, <br> Lagos.</div>
-              <div class="address-text mb-5"> 09039493929</div>
+              <div class="address-text mb-5">{{itemList.targetLocation.address}}</div>
+              <div class="address-text mb-5"> {{itemList.dropOffPhone}}</div>
               <a class="address-link" [routerLink]="['/dashboard/add-address']">View Distance On Map</a>
             </div>
           </ion-col>
@@ -83,11 +83,11 @@
             </div>
 
             <div class="paw2_price_2">
-              N 69,000
+              &#8358;{{returnObj.totalAmount}}
             </div>
             <div class="paw2_u_text">
               <ion-icon name="gift" slot="start" mode="md"></ion-icon>
-             10 Pieces of Gift Card
+              {{itemList.pickUpItems}}
             </div>
 
           </ion-col>
