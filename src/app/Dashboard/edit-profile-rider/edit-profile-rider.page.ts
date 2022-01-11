@@ -8,6 +8,7 @@ import { LoadingService } from 'src/app/Services/loading/loading.service';
 import { ChangePasswordDto } from 'src/app/_model/changePasswordDto';
 import { Result } from 'src/app/_model/result';
 import { UserInfoResponseDto } from 'src/app/_model/userInfoResponseDto';
+import { UpdateUser, UpdateRiderBankInfo, UpdateGuarantorInfo } from '../../_model/profileDto';
 
 @Component({
   selector: 'app-edit-profile-rider',
@@ -22,7 +23,15 @@ export class EditProfileRiderPage implements OnInit {
   formData: FormGroup;
   passwordData: FormGroup;
   guarantorData: FormGroup;
+  bankData : FormGroup;
   passwordDto: ChangePasswordDto;
+  model : UpdateUser;
+  bankModel : UpdateRiderBankInfo;
+  guarantorModel : UpdateGuarantorInfo;
+  user = JSON.parse(localStorage.getItem('userObj'));
+  submitted1 = false;
+  submitted2 = false;
+
   constructor(private router: Router,
     private loading: LoadingService,
     private authService: AuthService,
@@ -31,23 +40,9 @@ export class EditProfileRiderPage implements OnInit {
     private fb: FormBuilder) { }
 
     ngOnInit() {
+      this.userForm();
       this.getuserinfo();
-      this.formData = this.form.group({
-        email: ['', [Validators.maxLength(100), Validators.required, Validators.pattern('[a-z0-9!#$%&\'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&\'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?')]],
-        firstName:['',[Validators.required]],
-        lastName:['',[Validators.required]],
-        address:['',[Validators.required]],
-        phone:['',[Validators.required]],
-        bvn:['',[Validators.required]]
-      },
-      );
-      this.guarantorData = this.form.group({
-        GfirstName:['',[Validators.required]],
-        GlastName:['',[Validators.required]],
-        Gaddress:['',[Validators.required]],
-        Gnin:['',[Validators.required]]
-      },
-      );
+
       this.passwordData = this.fb.group({
         password:[null, [Validators.maxLength(100), Validators.required]],
         confirmpassword: [null, [Validators.maxLength(100), Validators.required]]
@@ -58,6 +53,49 @@ export class EditProfileRiderPage implements OnInit {
       debugger;
       this.alertService.showSuccessAlert('Profile updated succesful !');
     }
+
+    userForm(){
+      this.formData = this.form.group({
+        email: ['', [Validators.maxLength(100), Validators.required, Validators.pattern('[a-z0-9!#$%&\'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&\'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?')]],
+        firstName:['',[Validators.required]],
+        lastName:['',[Validators.required]],
+        phoneNumber:['',[Validators.required]]
+      },
+      );
+
+      this.formData.patchValue({
+        email: this.user.email,
+        firstName: this.user.firstName,
+        lastName: this.user.lastName,
+        address: this.user.address,
+        phoneNumber: this.user.phoneNumber
+        // avatar: ['']
+      })
+    }
+
+    gurantorForm() {
+      this.guarantorData = this.form.group({
+        firstName:['',[Validators.required]],
+        lastName:['',[Validators.required]],
+        nin:['',[Validators.required]]
+      },
+      );
+    }
+
+    bankForm() {
+      this.bankData = this.form.group({
+        firstName:['',[Validators.required]],
+        lastName:['',[Validators.required]],
+        nin:['',[Validators.required]]
+      },
+      );
+    }
+
+
+  // get i() { return this.individualFormData.controls; }
+  get g() { return this.guarantorData.controls; }
+  get b() { return this.bankData.controls; }
+
     getuserinfo() {
       // this.loading.showLoader();
       // const token = localStorage.getItem('token');
@@ -76,10 +114,47 @@ export class EditProfileRiderPage implements OnInit {
         firstName: this.userinfo.firstName,
         lastName: this.userinfo.lastName,
         address: this.userinfo.address,
-        phone: this.userinfo.phone
+        phoneNumber: this.userinfo.phone
       })
       this.loading.closeLoader();
     }
+
+    public onSubmit() : void {
+      this.model = Object.assign({}, this.formData.value);
+      this.loading.showLoader();
+      this.authService.updateuserinfo(this.model).subscribe((res) => {
+        this.loading.closeLoader();
+        this.alertService.showSuccessAlert('Profile updated successfully');
+      })
+    }
+
+    public submitBank(){
+      this.submitted1 = true;
+      if(this.bankData.invalid){
+        return;
+      }
+      this.bankModel = Object.assign({}, this.bankData.value);
+      this.loading.showLoader();
+      this.authService.updateriderbankinfo(this.bankModel).subscribe((res) => {
+        this.loading.closeLoader();
+        this.alertService.showSuccessAlert('Profile updated successfully');
+      })
+
+    }
+
+    public submitGuarantor(){
+      this.submitted2 = true;
+      if(this.guarantorData.invalid){
+        return;
+      }
+      this.guarantorModel = Object.assign({}, this.guarantorData.value);
+      this.authService.updateriderguarantorinfo(this.guarantorModel).subscribe((res) => {
+        this.loading.closeLoader();
+        this.alertService.showSuccessAlert('Profile updated successfully');
+      })
+    }
+
+
     public changePassword(): void {
       this.loading.showLoader();
       const token = localStorage.getItem('token');

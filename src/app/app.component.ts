@@ -12,6 +12,7 @@ import { Router } from '@angular/router';
   styleUrls: ['app.component.scss']
 })
 export class AppComponent {
+  user = JSON.parse(localStorage.getItem('userObj'));
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,

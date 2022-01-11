@@ -11,5 +11,14 @@ export interface PayWithWallet {
     amount: number,
     email: string,
     userId: string
-  }
+}
+
+export interface PayWithTransfer {
+    transactionRef: string,
+    transactionId: number,
+    amount: number,
+    email: string,
+    userId: string,
+    deliveryId : string
+}
   

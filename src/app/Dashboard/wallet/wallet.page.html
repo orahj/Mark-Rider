@@ -22,11 +22,11 @@
 
           <div class="has_fund_in_wallet ion-text-center">
             <div class="wallet_fund_title">You have</div>
-            <div class="wallet_fund_available_balance">N50,000</div>
+            <div class="wallet_fund_available_balance">&#8358;{{walletBalance | number}}</div>
             <div class="wallet_fund_available_balance_text2">
               <p>12<span> &nbsp;Shipments</span></p>
-              <p class="extra-p" (click)="showFundModal()">Fund</p>
-              <p (click)="showTrackModal()">Track</p>
+              <p class="extra-p" (click)="fundPrompt()">Fund</p>
+              <p (click)="trackPrompt()">Track</p>
             </div>
           </div>
         </ion-col>
@@ -122,24 +122,24 @@
           </div>
 
           <div class="wallet-summary" *ngIf="order">
-            <div (click)="walletTransaction()" class="wallet_transaction_recrods">
+            <div (click)="walletTransaction()" *ngFor="let delivery of DeliveryList" class="wallet_transaction_recrods">
               <div class="the_wallet_item_list ion-activatable ripple-parent">
                 <ion-row>
-                  <ion-col size="2">
-                    <div class="wallet_transaction_ref_date">14 Apr</div>
+                  <ion-col size="4">
+                    <div class="wallet_transaction_ref_date">{{delivery.dateCreated | date}}</div>
                   </ion-col>
-                  <ion-col size="6">
-                    <div class="wallet_transaction_ref_number">#PA-23782393</div>
+                  <ion-col size="4">
+                    <div class="wallet_transaction_ref_number">{{delivery.deliveryNo}}</div>
                   </ion-col>
                   <ion-col size="4" class="ion-text-right">
-                    <div class="wallet_transaction_amount">N10000</div>
+                    <div class="wallet_transaction_amount">	&#8358;{{delivery.totalAmount}}</div>
                   </ion-col>
                 </ion-row>
                 <ion-ripple-effect></ion-ripple-effect>
               </div>
             </div>
   
-            <div
+            <!-- <div
               (click)="walletTransaction()"
               class="wallet_transaction_recrods ion-activatable ripple-parent"
             >
@@ -177,7 +177,7 @@
                 </ion-row>
                 <ion-ripple-effect></ion-ripple-effect>
               </div>
-            </div>
+            </div> -->
           </div>
 
         </ion-col>

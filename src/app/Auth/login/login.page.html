@@ -6,28 +6,23 @@
   </ion-toolbar>
 </ion-header>
 
-
 <ion-content [fullscreen]="true" class="ion-padding">
+
   <div class="ion_card_style">
     <ion-card-content>
-      <form [formGroup]="formData" (ngSubmit)="formData.valid && submitForm()">
+      <form [formGroup]="formData" (ngSubmit)="onSubmit()">
         <ion-item mode="md">
           <ion-icon name="mail-outline" slot="start" mode="md"></ion-icon>
           <ion-label position="floating" mode="md">Email</ion-label>
           <ion-input formControlName="email" mode="md"></ion-input>
         </ion-item>
         
-        <div class="validate_input" *ngIf="formData.get('email').hasError('required') && formData.get('email').touched">
-          Email is required
+        <div class="validate_input" *ngIf="f.email.touched || f.email.invalid && submitted" >
+          <div *ngIf="f.email.errors?.required"> Email is required</div>
+          <div *ngIf="f.password.errors?.email">Please enter a valid email address</div>
         </div>
 
-        <div class="validate_input" *ngIf="formData.get('email').hasError('pattern')">
-          Please enter a valid email address
-        </div>
 
-        <div class="validate_input" *ngIf="formData.get('email').hasError('maxLength')">
-          Please enter a valid email address
-        </div>
 
         <ion-item  mode="md">
           <ion-icon name="key-outline" slot="start"  mode="md"></ion-icon>
@@ -35,13 +30,10 @@
           <ion-input type="password" formControlName="password" mode="md"></ion-input>
         </ion-item>
         
-        <div class="validate_input" *ngIf="formData.get('password').hasError('required') && formData.get('password').touched">
-          Password is required
+        <div class="validate_input" *ngIf="f.password.touched || f.password.invalid && submitted">
+          <div *ngIf="f.password.errors?.required">Password is required</div>
         </div>
 
-        <div class="validate_input" *ngIf="formData.get('password').hasError('maxLength')">
-          Please enter a valid password
-        </div>
 
         <div (click)="gotoPasswordReset()" class="ion-text-center mt-35 mb-25 pawa2u_default_color small_styled">
           Forgot Password ?

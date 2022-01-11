@@ -15,7 +15,7 @@
                     Pick Up Address
                   </div>
                   <div class="wallet_transaction_ref_date_2">
-                    15, Akinjide street, off olowo road ketu, Lagos.
+                    {{itemList.baseLocation.address}}
                   </div>
                 </ion-col>
                 <ion-col size="12">
@@ -23,7 +23,7 @@
                     Drop-off Address
                   </div>
                   <div class="wallet_transaction_ref_date_2">
-                    10, Femi Kolade street, off abimbola street, Lagos.
+                    {{itemList.targetLocation.address}}
                   </div>
                 </ion-col>
               </ion-row>
@@ -56,13 +56,13 @@
               
               <ion-col size="6">
                 <div class="checkout_item_text_1">
-                  A pair of shoe
+                {{itemList.pickUpItems}}
                 </div>
                 <div class="checkout_item_text_2">
                  16km
                 </div>
                 <div class="checkout_item_price">
-                  N 69,000
+                  &#8358;{{returnedObj.totalAmount}}
                 </div>
 
                 <ion-row>
@@ -136,7 +136,7 @@
 
           <ion-col size="6" class="ion-text-center">
             <div class="checkout_total_price">
-              N 249,000
+              &#8358;{{walletBalance | number}}
             </div>
           </ion-col>
         </ion-row>
@@ -154,7 +154,7 @@
 
           <ion-col size="6" class="ion-text-center">
             <div class="checkout_total_price">
-              N 2,500
+              &#8358;{{returnedObj.totalAmount | number}}
             </div>
           </ion-col>
         </ion-row>
@@ -177,10 +177,10 @@
                 <ion-col size="12">
                   <div class="pawa2_u_checkout_btn_actions">
 
-                    <ion-button (click)="payWithCard()" class="pawa2_u_action_btn_2">
+                    <ion-button (click)="payWithPaystack()" class="pawa2_u_action_btn_2">
                       Pay with Card
                     </ion-button>
-                    <ion-button (click)="stateChange($event)" class="pawa2_u_action_btn_2 gold">
+                    <ion-button (click)="paywithWallet()" class="pawa2_u_action_btn_2 gold">
                       Pay with Wallet
                     </ion-button>
                     <ion-button (click)="payWithTransfer()" class="pawa2_u_action_btn_2 gold">

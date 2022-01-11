@@ -6,6 +6,9 @@ import { UserInfoResponseDto } from 'src/app/_model/userInfoResponseDto';
 import { AuthService } from 'src/app/Services/auth.service';
 import { AlertService } from 'src/app/Services/alert/alert.service';
 import { Result } from 'src/app/_model/result';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { UpdateUser } from 'src/app/_model/profileDto';
+
 
 @Component({
   selector: 'app-view-profile',
@@ -16,14 +19,20 @@ export class ViewProfilePage implements OnInit {
   decordedToken: any;
   jwtHelper = new JwtHelperService();
   email: string;
+  formData: FormGroup;
   userinfo: UserInfoResponseDto;
+  model : UpdateUser;
+  user = JSON.parse(localStorage.getItem('userObj'));
+  public Image : any;
   constructor( private router: Router,
       private loading: LoadingService,
       private authService: AuthService,
-      private alertService: AlertService) { }
+      private alertService: AlertService,
+      private form: FormBuilder,) { }
 
   ngOnInit() {
     this.getuserinfo();
+    this.userForm();
   }
   getuserinfo() {
     // this.loading.showLoader();
@@ -44,6 +53,21 @@ export class ViewProfilePage implements OnInit {
     // }
   }
 
+  onFileChanged(fileInput: any) {
+    var reader = new FileReader();  
+    this.Image = <File>fileInput.target.files[0];
+    var mimeType =  this.Image.type;
+    if (mimeType.match(/image\/*/) == null) {
+      return;
+    }
+    reader.readAsDataURL(this.Image); 
+    reader.onload = (_event) => { 
+    let TheFileContents = reader.result;
+    document.getElementById("TheImageContents").innerHTML = '<img width="50" height="50" style="border-radius: 50px" src="'+TheFileContents+'" />';
+    //this.uploadImage();
+    }
+  }
+
   changePassword() {
     this.router.navigate(['/dashboard/edit-profile']);
   }
@@ -51,4 +75,34 @@ export class ViewProfilePage implements OnInit {
     localStorage.removeItem('token');
     this.router.navigate(['/login']);
    }
+
+   userForm () {
+    this.formData = this.form.group({
+      email: ['', Validators.required],
+      firstName:['',[Validators.required]],
+      lastName:['',[Validators.required]],
+      phoneNumber:['',[Validators.required]],
+      // avatar: ['']
+    },
+    );
+      this.formData.patchValue({
+        email: this.user.email,
+        firstName: this.user.firstName,
+        lastName: this.user.lastName,
+        address: this.user.address,
+        phoneNumber: this.user.phoneNumber,
+        // avatar: ['']
+      })
+      
+   }
+
+   public onSubmit () : void {
+    this.model = Object.assign({}, this.formData.value);
+    this.loading.showLoader();
+    this.authService.updateuserinfo(this.model).subscribe((res) => {
+      this.loading.closeLoader();
+      this.alertService.showSuccessAlert('Profile updated successfully');
+    })
+   }
+
 }

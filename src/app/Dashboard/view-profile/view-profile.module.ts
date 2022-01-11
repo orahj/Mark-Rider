@@ -8,6 +8,7 @@ import { ViewProfilePageRoutingModule } from './view-profile-routing.module';
 
 import { ViewProfilePage } from './view-profile.page';
 import { HeaderComponentModule } from '../../Partials/header/header.component.module';
+import { ReactiveFormsModule} from '@angular/forms';
 
 @NgModule({
   imports: [
@@ -15,7 +16,8 @@ import { HeaderComponentModule } from '../../Partials/header/header.component.mo
     FormsModule,
     IonicModule,
     ViewProfilePageRoutingModule,
-    HeaderComponentModule
+    HeaderComponentModule,
+    ReactiveFormsModule
   ],
   declarations: [ViewProfilePage]
 })

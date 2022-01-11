@@ -17,22 +17,23 @@ export class AuthService {
 userinfo: UserInfoResponseDto;
 userResponse: Result;
 decordedToken: any;
-  baseUrl = environment.apiUrl + 'account/';
+  baseUrl = environment.apiUrl;
   jwtHelper = new JwtHelperService();
   constructor(private http: HttpClient, private router : Router) { }
   login(model: any) {
-  return this.http.post(this.baseUrl + 'get-token', model)
+  return this.http.post(this.baseUrl + 'login', model)
   .pipe(
     map((Response: any) => {
       const user = Response;
       this.userResponse = Response;
-      if (user) {
-        localStorage.setItem('token', user.responseData.token );
-        localStorage.setItem('userObj', user.responseData );
-        if(user.responseData.userTypes === 4) {
+      console.log('Response',Response);
+      if (Response.isSuccessful === true) {
+        localStorage.setItem('token', JSON.stringify(Response.returnedObject.token) );
+        localStorage.setItem('userobj', JSON.stringify(Response.returnedObject));
+        if(Response.returnedObject.userTypes === 4) {
           this.router.navigateByUrl('/dashboard');
         }
-        else if(user.responseData.userTypes === 3) {
+        else if(Response.returnedObject.userTypes === 3) {
           this.router.navigateByUrl('/rider-dashboard');
         }
       }
@@ -82,8 +83,13 @@ decordedToken: any;
     return this.http.put(this.baseUrl + 'Account/rider-online-status', model);
   }
   getdelivery(email : string){
-    return this.http.get(this.baseUrl + `Delivery/get-delivery-by-email${email}`)
+    return this.http.get(this.baseUrl + 'Delivery/get-delivery-by-email/' + email)
   }
+
+  getdeliverybyshipment(shipmentNo : string){
+    return this.http.get(this.baseUrl + 'Delivery/get-delivery-by-shipment/' + shipmentNo)
+  }
+
   createdelivery(model : any) {
     return this.http.post(this.baseUrl + 'Delivery/create-delivery', model);
   }
@@ -105,11 +111,11 @@ decordedToken: any;
   }
 
   getwalletbalance(email : string){
-    return this.http.get(this.baseUrl + `Wallet/GetWalletBalance${email}`)
+    return this.http.get(this.baseUrl + `Wallet/GetWalletBalance?email=${email}`)
   }
 
   getwalletransaction(email : string){
-    return this.http.get(this.baseUrl + `Wallet/GetUserWalletTransactions${email}`)
+    return this.http.get(this.baseUrl + `Wallet/GetUserWalletTransactions?email=${email}`)
   }
   
   paywithtransfer(model : any){

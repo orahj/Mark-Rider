@@ -41,12 +41,13 @@
             </div>
             <div class="account-info">
               <h5>Amount:</h5>
-              <p>N 20,000</p>
+              <p> &#8358;{{returnedObj.totalAmount | number}}</p>
           </div>
           <div class="image-upload">
-            <ion-icon name="cloud-upload-outline"></ion-icon>
+            <ion-icon *ngIf="Image == undefined" name="cloud-upload-outline"></ion-icon>
+            <div id="TheImageContents"></div>
             <p class="upload-text">upload the image of your<br> transaction receipt</p>
-            <input class="file-upload" type="file" id="upimgfile" name="uploadfile" ng-model="orderDetails.uploadfile">
+            <input class="file-upload" type="file" id="upimgfile" name="uploadfile" (change)="onFileChanged($event)">
             <button>choose file</button>
           </div>
 
@@ -85,7 +86,7 @@
               <div class="preview-img"> <img id="myImage" width="150" height="150"  size="30" /> </div>
             </ion-item>
           </ion-col> -->
-          <ion-button (click)="payWithTransfer()" class="pawa2_u_action_btn_2">
+          <ion-button (click)="payForDelivery()" class="pawa2_u_action_btn_2">
           Upload Payment
           </ion-button>
         </ion-row>

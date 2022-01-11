@@ -7,6 +7,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/Services/auth.service';
 import { AlertService } from 'src/app/Services/alert/alert.service';
 import { AuthStorageService } from 'src/app/Services/authStorage.service';
+import { Login } from 'src/app/_model/authDto';
 
 @Component({
   selector: 'app-login',
@@ -15,7 +16,8 @@ import { AuthStorageService } from 'src/app/Services/authStorage.service';
 })
 export class LoginPage implements OnInit {
   formData: FormGroup;
-  model: any = {};
+  model: Login;
+  submitted = false;
   constructor(
     private router: Router,
     public modalController: ModalController,
@@ -28,9 +30,13 @@ export class LoginPage implements OnInit {
     ) { }
 
   ngOnInit() {
+    this.initializeForm();
+  }
+
+  initializeForm() {
     this.formData = this.form.group({
-      email: [null, [Validators.maxLength(100), Validators.required, Validators.pattern('[a-z0-9!#$%&\'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&\'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?')]],
-      password: [null, [Validators.maxLength(100), Validators.required]],
+      email: [null, [Validators.required, Validators.email, Validators.pattern('[a-z0-9!#$%&\'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&\'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?')]],
+      password: [null, [Validators.required]],
     },
     );
   }
@@ -52,6 +58,29 @@ export class LoginPage implements OnInit {
     return await modal.present();
   }
   showloader(){}
+
+
+  get f() { return this.formData.controls; }
+
+  public onSubmit() : void {
+    this.submitted = true;
+    if(this.formData.invalid){
+      return;
+    }
+    this.loading.showLoader();
+    this.model = Object.assign({}, this.formData.value);
+    this.authService.login(this.model).subscribe((res) => {
+      this.loading.closeLoader();
+    },error => {
+      console.log(error);
+      if(error.status === 404){
+        this.loading.closeLoader();
+        this.alert.showErrorAlert('Account with the email provided, does not exist');
+      }
+   
+    })
+
+  }
   public submitForm(): void {
     //this.loading.showLoader();
     console.table(this.formData.value);

@@ -2,7 +2,7 @@
 
 <ion-content class="ion-padding gray_background">
   <div class="content_padded">
-    <form [formGroup]="formData" (ngSubmit)="formData.valid && showSuccess()">
+    <form [formGroup]="formData" (ngSubmit)="onSubmit">
       <ion-grid>
         <ion-row>
         <ion-col size="12">
@@ -13,24 +13,24 @@
               </div>
               <div class="accordion-content">
                 <ion-col size="12">
-                  <ion-input class="the_form_input" placeholder="Email" name="email" formControlName="email" value="isaacorah@gmail.com" readonly></ion-input>
+                  <ion-input class="the_form_input" placeholder="Email"  formControlName="email" readonly></ion-input>
                 </ion-col>
                 <ion-col size="12">
-                  <ion-input class="the_form_input" placeholder="First Name" name="firstName" value="Isaac" formControlName="firstName"></ion-input>
+                  <ion-input class="the_form_input" placeholder="First Name" formControlName="firstName"></ion-input>
                 </ion-col>
                 
                 <ion-col size="12">
-                  <ion-input class="the_form_input" placeholder="Last Name" name="lastName" value="Orah" formControlName="lastName"></ion-input>
+                  <ion-input class="the_form_input" placeholder="Last Name" formControlName="lastName"></ion-input>
                 </ion-col>
         
                 
                 <ion-col size="12">
-                  <ion-input class="the_form_input" placeholder="Phone Number" name="phone" value="09059949494" formControlName="phone"></ion-input>
+                  <ion-input class="the_form_input" placeholder="Phone Number" formControlName="phoneNumber"></ion-input>
                 </ion-col>
                 <!-- <ion-col size="12">
                   <ion-input type="number" class="the_form_input" placeholder="bvn" name="bvn" value="22222222222" formControlName="bvn"></ion-input>
                 </ion-col> -->
-                <ion-button [disabled]="formData.invalid" class="pawa2_u_action_btn_2" type="submit">
+                <ion-button type="submit" class="pawa2_u_action_btn_2" type="submit">
                   Update Information
                 </ion-button>
               </div>
@@ -40,10 +40,8 @@
         </ion-row>
       </ion-grid>
     </form>
-    <form [formGroup]="guarantorData" (ngSubmit)="formData.valid && showSuccess()">
-
+    <form [formGroup]="guarantorData" (ngSubmit)="submitGuarantor">
       <ion-grid>
-
         <ion-row>
 
           <ion-col size="12">
@@ -54,21 +52,30 @@
               </div>
                 <div class="accordion-content">
                   <ion-col size="12">
-                    <ion-input class="the_form_input" placeholder="First Name" name="GfirstName" value="Isaac" formControlName="GfirstName"></ion-input>
+                    <ion-input class="the_form_input" placeholder="First Name" formControlName="firstName"></ion-input>
                   </ion-col>
+                  <div class="validate_input" *ngIf="g.firstName.touched || g.firstName.invalid && submitted2">
+                    <div *ngIf="g.firstName.errors?.required">First name is required</div>
+                  </div>
                   
                   <ion-col size="12">
-                    <ion-input class="the_form_input" placeholder="Last Name" name="GlastName" value="Orah" formControlName="GlastName"></ion-input>
+                    <ion-input class="the_form_input" placeholder="Last Name" formControlName="lastName"></ion-input>
                   </ion-col>
-                  <ion-col size="12">
+                  <div class="validate_input" *ngIf="g.lastName.touched || g.lastName.invalid && submitted2">
+                    <div *ngIf="g.lastName.errors?.required">Last name is required</div>
+                  </div>
+                  <!-- <ion-col size="12">
                     <ion-input class="the_form_input" placeholder="Address" name="Gaddress" value="Orah" formControlName="Gaddress"></ion-input>
-                  </ion-col>
+                  </ion-col> -->
                   
                   <ion-col size="12">
-                    <ion-input class="the_form_input" placeholder="NIN" name="Gnin" value="22222222222" formControlName="Gnin"></ion-input>
+                    <ion-input class="the_form_input" placeholder="NIN"  formControlName="nin"></ion-input>
                   </ion-col>
+                  <div class="validate_input" *ngIf="g.nin.touched || g.nin.invalid && submitted2">
+                    <div *ngIf="g.nin.errors?.required">NIN is required</div>
+                  </div>
                 
-                  <ion-button [disabled]="guarantorData.invalid" class="pawa2_u_action_btn_2" type="submit">
+                  <ion-button type="submit" class="pawa2_u_action_btn_2" type="submit">
                    Submit Information
                   </ion-button>
                 </div>
@@ -79,7 +86,7 @@
       </ion-grid>
     </form>
 
-    <form [formGroup]="guarantorData" (ngSubmit)="formData.valid && showSuccess()">
+    <form [formGroup]="bankData" (ngSubmit)="submitBank">
 
       <ion-grid>
 
@@ -93,21 +100,34 @@
               </div>
                 <div class="accordion-content">
                   <ion-col size="12">
-                    <ion-input class="the_form_input" placeholder="Account Number" name="GfirstName" value="Isaac" formControlName="GfirstName"></ion-input>
+                    <ion-input class="the_form_input" placeholder="Account Number"  formControlName="accountNumber"></ion-input>
                   </ion-col>
+                  <div class="validate_input" *ngIf="b.accountNumber.touched || b.accountNumber.invalid && submitted1">
+                    <div *ngIf="b.accountNumber.errors?.required">Account Number is required</div>
+                  </div>
                   
                   <ion-col size="12">
-                    <ion-input class="the_form_input" placeholder="Bank Name" name="GlastName" value="Orah" formControlName="GlastName"></ion-input>
+                    <ion-input class="the_form_input" placeholder="Bank Name" formControlName="bankName"></ion-input>
                   </ion-col>
+                  <div class="validate_input" *ngIf="b.bankName.touched || b.bankName.invalid && submitted1">
+                    <div *ngIf="b.bankName.errors?.required">Bank Name is required</div>
+                  </div>
+        
                   <ion-col size="12">
-                    <ion-input class="the_form_input" placeholder="Beneficiary Name" name="Gaddress" value="Orah" formControlName="Gaddress"></ion-input>
+                    <ion-input class="the_form_input" placeholder="BVN"  formControlName="bvn"></ion-input>
                   </ion-col>
-                  
+                  <div class="validate_input" *ngIf="b.bvn.touched || b.bvn.invalid && submitted1">
+                    <div *ngIf="b.bvn.errors?.required">BVN is required</div>
+                  </div>
+
                   <ion-col size="12">
-                    <ion-input class="the_form_input" placeholder="BVN" name="Gnin" value="22222222222" formControlName="Gnin"></ion-input>
+                    <ion-input class="the_form_input" placeholder="ID"formControlName="validID"></ion-input>
                   </ion-col>
+                  <div class="validate_input" *ngIf="b.validID.touched || b.validID.invalid && submitted1">
+                    <div *ngIf="b.validID.errors?.required">Valid Id is required</div>
+                  </div>
                 
-                  <ion-button [disabled]="guarantorData.invalid" class="pawa2_u_action_btn_2" type="submit">
+                  <ion-button type="submit" class="pawa2_u_action_btn_2" type="submit">
                    Submit Information
                   </ion-button>
                 </div>
