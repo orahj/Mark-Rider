@@ -36,7 +36,7 @@ export class HomePage implements OnInit {
   Image : any;
   targetAddress : string;
   carrier : number = 0;
-  user = JSON.parse(localStorage.getItem('userObj'));
+  user = JSON.parse(localStorage.getItem('userobj'));
   itemList = ItemList;
   customAlertOptions: any = {
     header: 'Pizza Toppings',

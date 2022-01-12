@@ -25,7 +25,7 @@ export class CheckoutPage implements OnInit {
   deliveryObj = JSON.parse(localStorage.getItem('deliveryObj'));
   itemList = this.deliveryObj[0];
   returnedObj = JSON.parse(localStorage.getItem('deliveryReturnedObj'));
-  user = JSON.parse(localStorage.getItem('userObj'));
+  user = JSON.parse(localStorage.getItem('userobj'));
   public walletBalance : number;
   public Total : number;
   theSate: boolean;

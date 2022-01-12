@@ -28,7 +28,7 @@ export class EditProfileRiderPage implements OnInit {
   model : UpdateUser;
   bankModel : UpdateRiderBankInfo;
   guarantorModel : UpdateGuarantorInfo;
-  user = JSON.parse(localStorage.getItem('userObj'));
+  user = JSON.parse(localStorage.getItem('userobj'));
   submitted1 = false;
   submitted2 = false;
 

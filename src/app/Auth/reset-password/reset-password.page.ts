@@ -9,7 +9,7 @@ import { LoadingService } from '../../Services/loading/loading.service';
   styleUrls: ['./reset-password.page.scss'],
 })
 export class ResetPasswordPage implements OnInit {
-  user = JSON.parse(localStorage.getItem('userObj'));
+  user = JSON.parse(localStorage.getItem('userobj'));
   email : string;
   constructor(
     private authService : AuthService,

@@ -20,7 +20,7 @@ export class WalletPage implements OnInit {
 
   public wallet : boolean = true;
   public order : boolean = false;
-  user = JSON.parse(localStorage.getItem('userObj'));
+  user = JSON.parse(localStorage.getItem('userobj'));
   public walletBalance : number;
   public walletTransactionDetails : any;
   public refCode : string = "DP-" + Math.floor((Math.random() * 1000000000) + 1);

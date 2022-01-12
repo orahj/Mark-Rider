@@ -22,7 +22,7 @@ export class ViewProfilePage implements OnInit {
   formData: FormGroup;
   userinfo: UserInfoResponseDto;
   model : UpdateUser;
-  user = JSON.parse(localStorage.getItem('userObj'));
+  user = JSON.parse(localStorage.getItem('userobj'));
   public Image : any;
   constructor( private router: Router,
       private loading: LoadingService,

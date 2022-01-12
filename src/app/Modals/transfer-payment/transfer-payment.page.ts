@@ -12,7 +12,7 @@ import { AuthService } from 'src/app/Services/auth.service';
 export class TransferPaymentPage implements OnInit {
 
   returnedObj = JSON.parse(localStorage.getItem('deliveryReturnedObj'));
-  user = JSON.parse(localStorage.getItem('userObj'));
+  user = JSON.parse(localStorage.getItem('userobj'));
   public Image : any;
 
   constructor(

@@ -12,7 +12,7 @@ declare var PaystackPop: any;
 })
 export class FundwalletComponent implements OnInit {
   public refCode : string = "DP-" + Math.floor((Math.random() * 1000000000) + 1);
-  user = JSON.parse(localStorage.getItem('userObj'));
+  user = JSON.parse(localStorage.getItem('userobj'));
   public Amount : any;
   model : FundWallet;
 

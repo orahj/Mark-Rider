@@ -18,7 +18,7 @@ rate = 4;
 goOnline =false;
 theSate: boolean;
 model : RiderOnlineStatus;
-user = JSON.parse(localStorage.getItem('userObj'));
+user = JSON.parse(localStorage.getItem('userobj'));
 _bState = false;
   constructor(
     private route: Router,
