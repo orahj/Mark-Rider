@@ -4,7 +4,7 @@ import { AlertController, ModalController } from '@ionic/angular';
 import { OrderPage } from 'src/app/Modals/product/type-one/order/order.page';
 import { AddDropOffAddressPage } from '../add-drop-off-address/add-drop-off-address.page';
 import { AddDropOffAddressesPage } from '../add-drop-off-addresses/add-drop-off-addresses.page';
-import { MapsAPILoader, MouseEvent } from '@agm/core';
+import { MapsAPILoader} from '@agm/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ItemList } from 'src/app/_model/itemListDto';
 import { LoadingService } from '../../Services/loading/loading.service';
@@ -128,12 +128,10 @@ export class HomePage implements OnInit {
             this.itemList[i].baseLocation = this.baseLocation;
           }
           this.baseAddress = place.formatted_address;
-          console.log('base location', this.baseLocation);
-          console.log('Sender Place',place);
             //set latitude, longitude and zoom
             this.latitude = place.geometry.location.lat();
             this.longitude = place.geometry.location.lng();
-            this.zoom = 12;
+            this.zoom = 8;
           });
         });
       });
@@ -165,12 +163,9 @@ export class HomePage implements OnInit {
             this.itemList[i].targetLocation = this.targetLocation;
           }
           this.targetAddress = place.formatted_address; 
-          console.log('base location', this.targetLocation);
-          console.log('Receiver Place',place);
-            //set latitude, longitude and zoom
             this.latitude = place.geometry.location.lat();
             this.longitude = place.geometry.location.lng();
-            this.zoom = 12;
+            this.zoom = 8;
           });
         });
       });
@@ -187,12 +182,12 @@ export class HomePage implements OnInit {
     }
   }
 
-  markerDragEnd($event: MouseEvent) {
-    console.log($event);
-    this.latitude = $event.coords.lat;
-    this.longitude = $event.coords.lng;
-    this.getAddress(this.latitude, this.longitude);
-  }
+  // markerDragEnd($event: MouseEvent) {
+  //   console.log($event);
+  //   this.latitude = $event.coords.lat;
+  //   this.longitude = $event.coords.lng;
+  //   this.getAddress(this.latitude, this.longitude);
+  // }
 
   getAddress(latitude, longitude) {
     this.geoCoder.geocode({ 'location': { lat: latitude, lng: longitude } }, (results, status) => {
@@ -200,7 +195,7 @@ export class HomePage implements OnInit {
       console.log(status);
       if (status === 'OK') {
         if (results[0]) {
-          this.zoom = 12;
+          this.zoom = 8;
           this.address = results[0].formatted_address;
         } else {
           window.alert('No results found');
