@@ -305,16 +305,20 @@ public onSubmit() : void {
     email: this.user.email,
     deliveryItems : this.itemList
   }
+ 
   this.loading.showLoader();
   this.authService.createdelivery(data).subscribe((res : any) => {
     if(res.isSuccessful === true ){
+      let returnObj = {
+        deliveryNo: res.returnedObject.deliveryNo,
+        totalAmount : res.returnedObject.totalAmount,
+        transactionId : res.returnedObject.transactionId
+      }
+      localStorage.setItem('deliveryReturnedObj', JSON.stringify(returnObj));
       this.loading.closeLoader();
       this.orderProduct();
     }
-    console.log('Response',res);
   })
-  console.log('Okay i got here');
-  console.log('Item List',this.itemList);
 }
 
 }

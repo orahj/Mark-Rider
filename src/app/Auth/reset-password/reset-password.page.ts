@@ -27,6 +27,9 @@ export class ResetPasswordPage implements OnInit {
 
     this.loading.showLoader();
     this.authService.resetlink(mail).subscribe((res : any) => {
+      if(res.isSuccessful === true){
+        localStorage.setItem('reseturl', JSON.stringify(res.reeturnedObject.url));
+      }
       this.loading.closeLoader();
       this.alertService.showSuccessAlert(res.message);
       console.log(res);

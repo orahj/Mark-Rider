@@ -73,6 +73,7 @@ export class ViewProfilePage implements OnInit {
   }
   logOut() {
     localStorage.removeItem('token');
+    localStorage.clear();
     this.router.navigate(['/login']);
    }
 
