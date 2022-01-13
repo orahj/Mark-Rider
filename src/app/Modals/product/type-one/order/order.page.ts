@@ -9,7 +9,7 @@ import { AddToCartPage } from '../add-to-cart/add-to-cart.page';
 })
 export class OrderPage implements OnInit {
   public deliveryObj = JSON.parse(localStorage.getItem('deliveryObj'));
-  public returnObj = JSON.parse(localStorage.getItem('deliveryReturnedObj'));
+  public returnedObj = JSON.parse(localStorage.getItem('deliveryReturnedObj'));
   itemList = this.deliveryObj[0];
   user = JSON.parse(localStorage.getItem('userobj'));
 
@@ -19,6 +19,7 @@ export class OrderPage implements OnInit {
     ) { }
 
   ngOnInit() {
+    console.log('Returned Object', this.returnedObj);
   }
 
   async addToCart(){

@@ -12,6 +12,7 @@ import { AuthService } from 'src/app/Services/auth.service';
 export class TransferPaymentPage implements OnInit {
 
   returnedObj = JSON.parse(localStorage.getItem('deliveryReturnedObj'));
+  public refCode : string = "TR-" + Math.floor((Math.random() * 1000000000) + 1);
   user = JSON.parse(localStorage.getItem('userobj'));
   public Image : any;
 
@@ -51,7 +52,7 @@ export class TransferPaymentPage implements OnInit {
 
   payForDelivery(){
     let transferObj = {
-      transactionRef: '',
+      transactionRef: this.refCode,
       transactionId: this.returnedObj.transactionId,
       amount: this.returnedObj.totalAmount,
       email: this.user.email,
