@@ -28,6 +28,7 @@ export class WalletPage implements OnInit {
   model : FundWallet;
   public DeliveryNo : string;
   public DeliveryList : any;
+  public WalletList : any;
 
 
   constructor(
@@ -205,8 +206,11 @@ export class WalletPage implements OnInit {
   }
 
   getWalleTransaction(){
-    this.authService.getwalletransaction(this.user.email).subscribe((res) => {
-      console.log(res);
+    this.authService.getwalletransaction(this.user.email).subscribe((res : any) => {
+      console.log(res)
+      if(res.isSuccessful == true) {
+          this.WalletList = res.returnedObject;
+      }
     })
   }
 
