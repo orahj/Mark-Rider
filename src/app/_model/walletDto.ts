@@ -21,4 +21,12 @@ export interface PayWithTransfer {
     userId: string,
     deliveryId : string
 }
+
+export interface VerifyPayment {
+    transactionRef: string,
+    transactionId: number,
+    amount: number,
+    email: string,
+    userId: string
+}
   

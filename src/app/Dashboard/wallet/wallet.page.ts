@@ -141,15 +141,7 @@ export class WalletPage implements OnInit {
         ]
       },
       callback: function(response){
-        let customModel = {
-          email: this.user.email,
-          amount: this.Amount,
-          userId: this.user.id,
-          transactionRef: this.refCode
-      }
-      this.authService.fundwallet(customModel).subscribe((res) => {
-        console.log(res);
-      })
+        this.fundWallet(response);
     },
     onClose: function(){
       this.router.navigate(['dashboard/wallet']).then(()=>{});

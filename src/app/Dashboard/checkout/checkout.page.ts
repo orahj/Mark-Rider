@@ -6,7 +6,7 @@ import { WalletPaymentPage } from 'src/app/Modals/wallet-payment/wallet-payment.
 import { AlertController } from '@ionic/angular';
 import { LoadingService } from '../../Services/loading/loading.service';
 import { AuthService } from 'src/app/Services/auth.service';
-import { PayWithWallet } from '../../_model/walletDto';
+import { PayWithWallet, VerifyPayment } from '../../_model/walletDto';
 import { AlertService } from 'src/app/Services/alert/alert.service';
 import { PaymentSuccessPage } from '../../Modals/payment-success/payment-success.page';
 declare var PaystackPop: any;
@@ -21,7 +21,7 @@ export class CheckoutPage implements OnInit {
   private max_order_limit: number = 35;
   private min_order_limit: number = 2;
   public walletRef : string = "WAL-" + Math.floor((Math.random() * 1000000000) + 1);
-  // public reCode : string = "DP-" + Math.floor((Math.random() * 1000000000) + 1);
+  public paystackReCode : string = "DP-" + Math.floor((Math.random() * 1000000000) + 1);
   deliveryObj = JSON.parse(localStorage.getItem('deliveryObj'));
   itemList = this.deliveryObj[0];
   returnedObj = JSON.parse(localStorage.getItem('deliveryReturnedObj'));
@@ -30,6 +30,9 @@ export class CheckoutPage implements OnInit {
   public Total : number;
   theSate: boolean;
   walletModel : PayWithWallet;
+  verifyModel : VerifyPayment;
+  public paystackStatus : boolean = false;
+  verifyObj : any;
 _bState = false;
   constructor(
     private route: Router,
@@ -41,6 +44,8 @@ _bState = false;
 
   ngOnInit() {
     this.getWalletBalance();
+    //this.verifyPayment();
+    //console.log('Statusssssss', this.paystackStatus)
   }
 
   increaseOrder(){
@@ -104,11 +109,10 @@ async paySuccess(){
 
 public  payWithPaystack(){
  this.Total = this.returnedObj.totalAmount 
-  console.log('Amount2',this.Total);
   var handler = PaystackPop.setup({
     key: 'pk_test_2ae6eeddbe5dded1d9ae213cd0a217686aa7286d',
     email: this.user.email,
-    ref : this.walletRef,
+    ref : this.paystackReCode,
     amount: this.Total + "00", 
     metadata: {
       custom_fields: [
@@ -124,10 +128,14 @@ public  payWithPaystack(){
         }
       ]
     },
-    callback: function(response){
+    callback (response){
+      this.verifyPayment();
+      // let request = new XMLHttpRequest();
+      // request.open('GET', )
+
   },
   onClose: function(){
-    this.router.navigate(['dashboard/wallet']).then(()=>{});
+    this.route.navigate(['/dashboard']).then(()=>{});
   }
 });
 handler.openIframe();
@@ -140,9 +148,14 @@ getWalletBalance(){
   })
 }
 
+paymentSuccess(){
+  this.modalController.dismiss();
+  this.route.navigate(['/dashboard']);
+}
+
 paywithWallet() {
   let walletObj = {
-    transactionRef: '',
+    transactionRef: this.walletRef,
     transactionId: this.returnedObj.transactionId,
     amount: this.Total,
     email: this.user.email,
@@ -159,5 +172,30 @@ paywithWallet() {
     console.log(res);
   })
 }
+
+public verifyPayment() {
+  // console.log('I got here');
+  // console.log('Paystack Status',this.paystackStatus);
+  // let status = JSON.parse(localStorage.getItem('paystackstatus'));
+  // console.log('Staus',status);
+  // if(status == true){
+    let verifyObj = {
+      transactionRef: this.paystackReCode,
+      transactionId: this.returnedObj.transactionId,
+      amount: this.Total,
+      email: this.user.email,
+      userId: this.user.id
+    }
+    this.loading.showLoader();
+    this.authService.verifytransaction(verifyObj).subscribe((res) => {
+      this.loading.closeLoader();
+      //localStorage.removeItem('paystackstatus');
+      this.paySuccess();
+      console.log(res);
+    },error => {
+      //localStorage.removeItem('paystackstatus');
+    })
+  }
+// }
 
 }

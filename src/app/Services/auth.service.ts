@@ -109,16 +109,20 @@ decordedToken: any;
     return this.http.post(this.baseUrl + 'Wallet/make-payment-with-wallet', model);
   }
 
+  verifytransaction(model : any) {
+    return this.http.post(this.baseUrl + 'Payment​/verifyTransaction', model);
+  }
+
   getbanks(){
     return this.http.get(this.baseUrl + `Payment/getbanks`);
   }
 
   getwalletbalance(email : string){
-    return this.http.get(this.baseUrl + `Wallet/GetWalletBalance?email=${email}`)
+    return this.http.get(this.baseUrl + `Wallet/GetWalletBalance?email=${email}`);
   }
 
   getwalletransaction(email : string){
-    return this.http.get(this.baseUrl + `Wallet/GetUserWalletTransactions?email=${email}`)
+    return this.http.get(this.baseUrl + `Wallet/GetUserWalletTransactions?email=${email}`);
   }
   
   paywithtransfer(model : any){
