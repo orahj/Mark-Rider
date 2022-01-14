@@ -27,7 +27,7 @@ export class CheckoutPage implements OnInit {
   returnedObj = JSON.parse(localStorage.getItem('deliveryReturnedObj'));
   user = JSON.parse(localStorage.getItem('userobj'));
   public walletBalance : number;
-  public Total : number;
+  public Total : number = this.returnedObj.totalAmount;
   theSate: boolean;
   walletModel : PayWithWallet;
   verifyModel : VerifyPayment;
@@ -170,6 +170,8 @@ paywithWallet() {
     this.loading.closeLoader();
     this.paySuccess();
     console.log(res);
+  }, error => {
+    this.alert.showErrorAlert(error.error.message);
   })
 }
 
