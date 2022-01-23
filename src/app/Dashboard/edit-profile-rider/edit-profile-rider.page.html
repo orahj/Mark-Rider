@@ -2,7 +2,7 @@
 
 <ion-content class="ion-padding gray_background">
   <div class="content_padded">
-    <form [formGroup]="formData" (ngSubmit)="onSubmit">
+    <form [formGroup]="formData" (ngSubmit)="onSubmit()">
       <ion-grid>
         <ion-row>
         <ion-col size="12">
@@ -12,9 +12,7 @@
                   <ion-icon name="chevron-down-outline"></ion-icon>
               </div>
               <div class="accordion-content">
-                <ion-col size="12">
-                  <ion-input class="the_form_input" placeholder="Email"  formControlName="email" readonly></ion-input>
-                </ion-col>
+          
                 <ion-col size="12">
                   <ion-input class="the_form_input" placeholder="First Name" formControlName="firstName"></ion-input>
                 </ion-col>
@@ -23,6 +21,9 @@
                   <ion-input class="the_form_input" placeholder="Last Name" formControlName="lastName"></ion-input>
                 </ion-col>
         
+                <ion-col size="12">
+                  <ion-input class="the_form_input" placeholder="Email"  formControlName="email" readonly></ion-input>
+                </ion-col>
                 
                 <ion-col size="12">
                   <ion-input class="the_form_input" placeholder="Phone Number" formControlName="phoneNumber"></ion-input>
@@ -40,10 +41,9 @@
         </ion-row>
       </ion-grid>
     </form>
-    <form [formGroup]="guarantorData" (ngSubmit)="submitGuarantor">
+    <form [formGroup]="guarantorData" (ngSubmit)="submitGuarantor()">
       <ion-grid>
         <ion-row>
-
           <ion-col size="12">
             <div class="accordion">
               <div class="accordion-header">
@@ -75,8 +75,8 @@
                     <div *ngIf="g.nin.errors?.required">NIN is required</div>
                   </div>
                 
-                  <ion-button type="submit" class="pawa2_u_action_btn_2" type="submit">
-                   Submit Information
+                  <ion-button type="submit" class="pawa2_u_action_btn_2">
+                      Update Guarantor
                   </ion-button>
                 </div>
              </div> 
@@ -86,12 +86,10 @@
       </ion-grid>
     </form>
 
-    <form [formGroup]="bankData" (ngSubmit)="submitBank">
+    <form [formGroup]="bankData" (ngSubmit)="submitBank()">
 
       <ion-grid>
-
         <ion-row>
-
           <ion-col size="12">
             <div class="accordion">
               <div class="accordion-header">
@@ -105,12 +103,16 @@
                   <div class="validate_input" *ngIf="b.accountNumber.touched || b.accountNumber.invalid && submitted1">
                     <div *ngIf="b.accountNumber.errors?.required">Account Number is required</div>
                   </div>
-                  
-                  <ion-col size="12">
+                  <!-- <ion-col size="12">
                     <ion-input class="the_form_input" placeholder="Bank Name" formControlName="bankName"></ion-input>
-                  </ion-col>
-                  <div class="validate_input" *ngIf="b.bankName.touched || b.bankName.invalid && submitted1">
-                    <div *ngIf="b.bankName.errors?.required">Bank Name is required</div>
+                  </ion-col> -->
+                  <ion-col size="12">
+                  <ion-select interface="popover" placeholder="Select Bank" formControlName="bankCode"  class="mark-drop-down">
+                    <ion-select-option [value]=bank.code *ngFor="let bank of BankList" >{{bank.name}}</ion-select-option>
+                  </ion-select>
+                </ion-col>  
+                  <div class="validate_input" *ngIf="b.bankCode.touched || b.bankCode.invalid && submitted1">
+                    <div *ngIf="b.bankCode.errors?.required">Bank is required</div>
                   </div>
         
                   <ion-col size="12">

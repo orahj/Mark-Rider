@@ -82,12 +82,12 @@ export class EditProfilePage implements OnInit {
       if (this.passwordData.valid) {
         this.passwordDto.email = this.email;
         this.passwordDto = Object.assign({}, this.formData.value);
-        this.authService.changepassword(this.passwordDto).subscribe(next => {
+        this.authService.changepassword(this.passwordDto).subscribe(res => {
           this.loading.closeLoader();
-          this.alertService.showSuccessAlert('Password Changed Successfully');
+          this.alertService.showSuccessAlert(res.message);
         }, error => {
           this.loading.closeLoader();
-          this.alertService.showErrorAlert('Error Occured!');
+          this.alertService.showErrorAlert(error.error.message);
         });
       }
     }

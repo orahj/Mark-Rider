@@ -19,7 +19,7 @@ export class HomePage {
   constructor(private router: Router) {}
   
   gotoSignUp(){
-    this.router.navigate(['/sign-up'])
+    this.router.navigate(['/sign-up-option'])
   }
  
   gotoLogin(){

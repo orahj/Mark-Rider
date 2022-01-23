@@ -8,6 +8,8 @@ import { RegistrationDto } from 'src/app/_model/registrationDto';
 import { AuthService } from 'src/app/Services/auth.service';
 import { AlertService } from 'src/app/Services/alert/alert.service';
 import { FundWallet } from 'src/app/_model/walletDto';
+import { SyncAsync } from '@angular/compiler/src/util';
+
 
 declare var PaystackPop: any;
 
@@ -29,20 +31,24 @@ export class WalletPage implements OnInit {
   public DeliveryNo : string;
   public DeliveryList : any;
   public WalletList : any;
-
+  public DeliveryStatus : any
+  public ItemSelected : any;
 
   constructor(
     private route: Router,
     public modalController: ModalController,
     private authService : AuthService,
     private alertController : AlertController,
-    private loading : LoadingService
+    private loading : LoadingService,
+    private alertService : AlertService,
+    
     ) { }
 
   ngOnInit() {
     this.getWalletBalance();
     this.getWalleTransaction();
     this.getDelivery();
+    this.paystackRes();
     // this.fundWallet();
   }
 
@@ -103,13 +109,15 @@ export class WalletPage implements OnInit {
           text: 'Fund',
           handler: (value) => {
             this.DeliveryNo = value.Track;
-            //  
-           this.authService.getdeliverybyshipment(this.DeliveryNo).subscribe((res) => {
+            this.loading.showLoader();
+           this.authService.getdeliverybyshipment(this.DeliveryNo, this.user.email).subscribe((res : any) => {
             this.loading.closeLoader;
-            console.log(res);
+            localStorage.setItem('trackdeliverydetails', JSON.stringify(res));
+            this.route.navigate(['dashboard/track-orders']).then(()=>{});
           },error => {
             if(error){
               this.loading.closeLoader;
+              this.alertService.showErrorAlert(error.error.message);
             }
           })
           }
@@ -120,8 +128,90 @@ export class WalletPage implements OnInit {
     await alert.present();
   }
 
+  async disputePrompt(selected) {
+    console.log(selected);
+    this.ItemSelected = selected;
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      header: 'Dispute',
+      message: 'Are you sure you want to put this delivery in dispute?',
+      inputs : [
+        {
+          name: 'reason',
+          type: 'text',
+          placeholder: 'Dispute reasons'
+        },
+      ],
+      buttons: [
+        {
+          text: 'Cancel',
+          cssClass: 'info',
+          role: 'cancel',
+          handler: () => {
+            console.log('Cancel');
+          }
+        }, {
+          text: 'Dispute',
+          cssClass: 'danger',
+          handler: () => {
+            console.log('Cancle delivey Okay');
+          }
+        }
+      ]
+    });
+  
+    await alert.present();
+  }
+
+  async cancelDelivery(selected) {
+    // Object with options used to create the alert
+    var options = {
+      title: 'Cancellation Deliverhy',
+      header: 'Select cancellation reason',
+      // message: 'Which name do you like?',
+      cssClass: 'my-custom-class',
+      inputs : [
+        {
+          name: 'reason',
+          type: 'text',
+          placeholder: 'Cancellation reasons'
+        },
+      ],
+      buttons: [
+        {
+          text: 'Close',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: () => {
+            console.log('Confirm Cancel');
+          }
+        }, {
+          text: 'Cancel Delivery',
+          handler: (value) => {
+            console.log('Confirm Ok');
+            let data = {
+              userId : this.user.id,
+              deliveriesId : selected.id,
+              reason : value.reason
+            }
+            this.loading.showLoader();
+            this.authService.canceldeliverybyuser(data).subscribe((res : any) => {
+              this.loading.closeLoader();
+              this.alertService.showSuccessAlert(res.message);
+              location.reload();
+            },error => {
+                this.alertService.showErrorAlert(error.error.message);
+            })
+          }
+        }
+      ]
+    };
+    // Create the alert with the options
+  }
+  
   public  payWithPaystack(){
     console.log('Amount2',this.Amount);
+    return new Promise( (resolve,reject) => {
     var handler = PaystackPop.setup({
       key: 'pk_test_2ae6eeddbe5dded1d9ae213cd0a217686aa7286d',
       email: this.user.email,
@@ -142,19 +232,40 @@ export class WalletPage implements OnInit {
         ]
       },
       callback: function(response){
-        this.fundWallet(response);
+        console.log('Paystack response', response.reference);
+        resolve(response);
+        let customModel = {
+          email: this.user.email,
+          amount: this.Amount,
+          userId: this.user.id,
+          transactionRef: response.reference
+      }
+        const binded = this.authService.fundwallet.bind(customModel);
+        console.log('Binded',binded);
+        // this.fundWallet(response);
     },
-    onClose: function(){
+    onClose: function(res){
+      reject(res)
       this.router.navigate(['dashboard/wallet']).then(()=>{});
     }
   });
   handler.openIframe();
+});
+  }
+
+  paystackRes(){
+   let paystack = this.payWithPaystack()
+      console.log('Paystack',paystack);
+    // .then(data2 => {
+    //   console.log('I got here',data2);
+    // })
   }
 
   fundWallet(){
+
     let customModel = {
         email: this.user.email,
-        amount: 1000,
+        amount: this.Amount,
         userId: this.user.id,
         transactionRef: 1557016657
     }
@@ -162,8 +273,6 @@ export class WalletPage implements OnInit {
       console.log(res);
     })
   }
-
-
   // fundWallet(){
   //   this.route.navigate(['/dashboard/fund-wallet']);
   // }
@@ -206,11 +315,16 @@ export class WalletPage implements OnInit {
   }
 
   getWalleTransaction(){
+    this.loading.showLoader();
     this.authService.getwalletransaction(this.user.email).subscribe((res : any) => {
       console.log(res)
+    
       if(res.isSuccessful == true) {
           this.WalletList = res.returnedObject;
       }
+      this.loading.closeLoader();
+    }, error => {
+      this.alertService.showErrorAlert(error.error.message);
     })
   }
 
@@ -218,9 +332,22 @@ export class WalletPage implements OnInit {
     this.authService.getdelivery(this.user.email).subscribe((res) => {
       console.log(res);
       this.DeliveryList = res;
-      // dateCreated
-      // deliveryNo
-      // totalAmount
+      this.DeliveryStatus = this.DeliveryList.deliveryItems[0].deliveryStatus;
     })
   }
+
+  deliveryDetail(selected){
+    this.loading.showLoader();
+    this.authService.getdeliveryitem(selected.id).subscribe((res: any) => {
+      this.loading.closeLoader();
+      localStorage.setItem('deliverydetails', JSON.stringify(res));
+      this.route.navigate(['./dashboard/orders-details']);
+      console.log(res);
+    }, error => {
+      this.alertService.showErrorAlert(error.error.message);
+    })
+  }
+ 
+
+
 }

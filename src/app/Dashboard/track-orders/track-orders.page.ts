@@ -8,6 +8,8 @@ import { Router } from '@angular/router';
 })
 export class TrackOrdersPage implements OnInit {
 
+  deliveryObj = JSON.parse(localStorage.getItem('trackdeliverydetails'));
+
   constructor(private route: Router) { }
 
   ngOnInit() {

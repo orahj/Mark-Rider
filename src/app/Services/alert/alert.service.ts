@@ -11,6 +11,7 @@ export class AlertService {
   async showSuccessAlert(message) {
     const toast = await this.toastController.create({
       message: message,
+      duration: 2000,
       position: 'bottom',
       color: 'dark',
       cssClass: 'toast_ctr',
@@ -21,6 +22,7 @@ export class AlertService {
   async showErrorAlert(message) {
     const toast = await this.toastController.create({
       message: message,
+      duration: 2000,
       color: 'danger',
       position: 'bottom',
       cssClass: 'toast_ctr'

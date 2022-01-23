@@ -89,12 +89,61 @@ decordedToken: any;
     return this.http.get(this.baseUrl + 'Delivery/get-delivery-by-email/' + email)
   }
 
-  getdeliverybyshipment(shipmentNo : string){
-    return this.http.get(this.baseUrl + 'Delivery/get-delivery-by-shipment/' + shipmentNo)
+  getdeliverybyshipment(shipmentNo : string, email : string){
+    return this.http.get(this.baseUrl + 'Delivery/get-delivery-by-shipment/' + shipmentNo  + '/' + email)
   }
 
   createdelivery(model : any) {
     return this.http.post(this.baseUrl + 'Delivery/create-delivery', model);
+  }
+
+  getriderdelivery(email : string){
+    return this.http.get(this.baseUrl + `Delivery/get-rider-deliveries?email=${email}`)
+  }
+
+  getridersalesrecord(email : string){
+    return this.http.get(this.baseUrl + `Delivery/get-rider-sales-record?email=${email}`)
+  }
+
+  getcancellationreason(){
+    return this.http.get(this.baseUrl + 'Delivery/get-cancellation-reason')
+  }
+
+  canceldelivery(model : any){
+    return this.http.post(this.baseUrl + 'Delivery/cancel-delivery', model);
+  }
+
+  startdelivery(model : any){
+    return this.http.post(this.baseUrl + 'Delivery/start-delivery', model);
+  }
+
+
+  canceldeliverybyuser(model : any){
+    return this.http.post(this.baseUrl + 'Delivery/cancel-delivery-by-user', model);
+  }
+
+  completedelivery(model : any){
+    return this.http.post(this.baseUrl + 'Delivery/completed-delivery', model)
+  }
+
+  endelivery(model : any){
+     return this.http.post(this.baseUrl + 'Delivery/end-delivery', model)
+  }
+
+  getdeliveryitem(id : number){
+    return this.http.get(this.baseUrl + 'Delivery/delivery-items-by-delivery-id/' + id)
+  }
+
+  disputedelivery(model : any) {
+    return this.http.post(this.baseUrl + 'Delivery/disputed-delivery', model )
+  }
+
+  getbanks(){
+    return this.http.get(this.baseUrl + 'Payment/getbanks');
+  }
+
+  bvnlookup(model : any) {
+    return this.http.post(this.baseUrl + 'Payment/bvn-look-up', model);
   }
 
   fileupload(file: any){
@@ -111,10 +160,6 @@ decordedToken: any;
 
   verifytransaction(model : any) {
     return this.http.post(this.baseUrl + 'Payment​/verifyTransaction', model);
-  }
-
-  getbanks(){
-    return this.http.get(this.baseUrl + `Payment/getbanks`);
   }
 
   getwalletbalance(email : string){
@@ -139,6 +184,8 @@ decordedToken: any;
   getuserinfo(email:string): Observable<Result> {
     return this.http.get<Result>(this.baseUrl + 'get-user-info/'+ email);
   }
+
+
 
  
 

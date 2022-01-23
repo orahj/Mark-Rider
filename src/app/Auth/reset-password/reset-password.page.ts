@@ -24,7 +24,6 @@ export class ResetPasswordPage implements OnInit {
    let mail =  {
       email: this.email
     }
-
     this.loading.showLoader();
     this.authService.resetlink(mail).subscribe((res : any) => {
       if(res.isSuccessful === true){
@@ -33,6 +32,10 @@ export class ResetPasswordPage implements OnInit {
       this.loading.closeLoader();
       this.alertService.showSuccessAlert(res.message);
       console.log(res);
+    },
+    error => {
+      this.loading.closeLoader();
+      this.alertService.showErrorAlert(error.error.message);
     })
   }
 

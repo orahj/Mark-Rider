@@ -72,4 +72,11 @@ export class AppComponent {
     this.menu.close();
   }
 
+  logOut() {
+    // localStorage.removeItem('token');
+    localStorage.clear();
+    this.route.navigate(['/login']);
+    this.menu.close();
+   }
+
 }

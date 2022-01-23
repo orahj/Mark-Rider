@@ -73,11 +73,7 @@ export class LoginPage implements OnInit {
       this.loading.closeLoader();
     },error => {
       console.log(error);
-      if(error.status === 404){
-        this.loading.closeLoader();
-        this.alert.showErrorAlert('Account with the email provided, does not exist');
-      }
-   
+      this.alert.showErrorAlert(error.error.message);
     })
 
   }

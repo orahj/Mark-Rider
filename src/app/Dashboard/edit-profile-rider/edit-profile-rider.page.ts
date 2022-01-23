@@ -31,6 +31,7 @@ export class EditProfileRiderPage implements OnInit {
   user = JSON.parse(localStorage.getItem('userobj'));
   submitted1 = false;
   submitted2 = false;
+  BankList : any;
 
   constructor(private router: Router,
     private loading: LoadingService,
@@ -42,17 +43,16 @@ export class EditProfileRiderPage implements OnInit {
     ngOnInit() {
       this.userForm();
       this.getuserinfo();
-
+      this.gurantorForm();
+      this.bankForm();
+      this.getBanks();
       this.passwordData = this.fb.group({
         password:[null, [Validators.maxLength(100), Validators.required]],
         confirmpassword: [null, [Validators.maxLength(100), Validators.required]]
       });
     }
 
-    showSuccess(){
-      debugger;
-      this.alertService.showSuccessAlert('Profile updated succesful !');
-    }
+
 
     userForm(){
       this.formData = this.form.group({
@@ -84,9 +84,10 @@ export class EditProfileRiderPage implements OnInit {
 
     bankForm() {
       this.bankData = this.form.group({
-        firstName:['',[Validators.required]],
-        lastName:['',[Validators.required]],
-        nin:['',[Validators.required]]
+        accountNumber : ['', Validators.required],
+        bankCode : ['', Validators.required],
+        bvn:['',[Validators.required]],
+        validID : ['', Validators.required]
       },
       );
     }
@@ -107,6 +108,7 @@ export class EditProfileRiderPage implements OnInit {
       // )
       // }
     }
+
     edituser(res: Result): void {
       this.userinfo = res.responseData;
       this.formData.patchValue({
@@ -119,12 +121,34 @@ export class EditProfileRiderPage implements OnInit {
       this.loading.closeLoader();
     }
 
-    public onSubmit() : void {
+  public onSubmit() : void {
       this.model = Object.assign({}, this.formData.value);
       this.loading.showLoader();
-      this.authService.updateuserinfo(this.model).subscribe((res) => {
+      this.authService.updateuserinfo(this.model).subscribe((res : any) => {
         this.loading.closeLoader();
-        this.alertService.showSuccessAlert('Profile updated successfully');
+        if(res.isSuccessful == true){
+          this.alertService.showSuccessAlert(res.message);
+        }
+        else {
+          this.alertService.showErrorAlert(res.message);
+        }
+      }, error => {
+        this.loading.closeLoader();
+        this.alertService.showErrorAlert(error.error.message);
+      })
+    }
+
+    public bvnValidation() {
+      let model = {
+        bvn : '',
+        account_number : '',
+        bank_code : '',
+        first_name : '',
+        last_name : '',
+        middle_name : ''
+      }
+      this.authService.bvnlookup(model).subscribe((res : any) => {
+          console.log(res);
       })
     }
 
@@ -134,11 +158,33 @@ export class EditProfileRiderPage implements OnInit {
         return;
       }
       this.bankModel = Object.assign({}, this.bankData.value);
+      this.bankModel.appUserId = this.user.id;
       this.loading.showLoader();
-      this.authService.updateriderbankinfo(this.bankModel).subscribe((res) => {
+      let model = {
+        bvn : this.bankModel.bvn,
+        account_number : this.bankModel.accountNumber,
+        bank_code : this.bankModel.bankCode,
+        first_name : this.user.firstName,
+        last_name : this.user.lastName,
+        middle_name : ''
+      }
+      this.authService.bvnlookup(model).subscribe((res : any) => {
         this.loading.closeLoader();
-        this.alertService.showSuccessAlert('Profile updated successfully');
+          console.log(res);
+          if(res.isSuccessful == true){
+          this.authService.updateriderbankinfo(this.bankModel).subscribe((res : any) => {
+            this.loading.closeLoader();
+            this.alertService.showSuccessAlert(res.message);
+          }, error => {
+            this.loading.closeLoader();
+            this.alertService.showErrorAlert(error.error.message);
+          })
+          }
+          else {
+            this.alertService.showErrorAlert('Account details is incorrect, Kindly confirm and try again')
+          }
       })
+
 
     }
 
@@ -147,10 +193,21 @@ export class EditProfileRiderPage implements OnInit {
       if(this.guarantorData.invalid){
         return;
       }
+      this.loading.showLoader();
       this.guarantorModel = Object.assign({}, this.guarantorData.value);
-      this.authService.updateriderguarantorinfo(this.guarantorModel).subscribe((res) => {
+      this.guarantorModel.riderId = this.user.riderId;
+      this.authService.updateriderguarantorinfo(this.guarantorModel).subscribe((res : any) => {
         this.loading.closeLoader();
-        this.alertService.showSuccessAlert('Profile updated successfully');
+        if(res.isSuccessful == true){
+          this.alertService.showSuccessAlert('Profile updated successfully');
+        }
+        else {
+          this.alertService.showErrorAlert(res.message);
+        }
+       
+      }, error => {
+        this.loading.closeLoader();
+        this.alertService.showErrorAlert(error.error.message);
       })
     }
 
@@ -174,6 +231,15 @@ export class EditProfileRiderPage implements OnInit {
           });
         }
       }
+    }
+
+    getBanks() {
+      this.authService.getbanks().subscribe((res : any) => {
+        console.log(res);
+        this.BankList = res.returnedObject.data;
+      },error => {
+        this.alertService.showErrorAlert(error.error.message);
+      })
     }
 
 }

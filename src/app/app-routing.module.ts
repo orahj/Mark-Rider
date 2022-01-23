@@ -47,7 +47,7 @@ const routes: Routes = [
             { path: 'dashboard/fund-wallet', loadChildren: () => import('./Dashboard/fund-wallet/fund-wallet.module').then( m => m.FundWalletPageModule) },
             { path: 'dashboard/orders', loadChildren: () => import('./Dashboard/orders/orders.module').then( m => m.OrdersPageModule) },
             // tslint:disable-next-line: max-line-length
-            { path: 'dashboard/orders-details/:id', loadChildren: () => import('./Dashboard/orders-details/orders-details.module').then( m => m.OrdersDetailsPageModule) },
+            { path: 'dashboard/orders-details', loadChildren: () => import('./Dashboard/orders-details/orders-details.module').then( m => m.OrdersDetailsPageModule) },
             // tslint:disable-next-line: max-line-length
             { path: 'dashboard/track-orders', loadChildren: () => import('./Dashboard/track-orders/track-orders.module').then( m => m.TrackOrdersPageModule) },
             // tslint:disable-next-line: max-line-length

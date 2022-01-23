@@ -2,7 +2,7 @@
 
 <ion-content class="ion-no-padding gray_background">
 
-  <div class="orders_history_title">
+  <!-- <div class="orders_history_title">
     <ion-grid>
       <ion-row>
         <ion-col size="6">
@@ -17,12 +17,26 @@
         </ion-col>
       </ion-row>
     </ion-grid>
-  </div>
+  </div> -->
   <div class="content_padded">
     <ion-grid>
-      <ion-row>
+      <ion-row  *ngFor="let item of deliveryObj">
         <ion-col size="12">
           <div (click)="gotoOrderDetails()" class="wallet_transaction_recrods">
+            <div class="the_wallet_item_list">
+              <ion-row>
+                <ion-col size="12">
+                  <div class="wallet_transaction_ref_date">
+                    Pick-up Address 
+                  </div>
+                  <div class="wallet_transaction_ref_date_2">
+                    {{item.deliveryLocation.baseAddress}}
+                  </div>
+                </ion-col>
+
+              </ion-row>
+            </div>
+
             <div class="the_wallet_item_list">
               <ion-row>
                 <ion-col size="12">
@@ -30,7 +44,7 @@
                     Delivered to
                   </div>
                   <div class="wallet_transaction_ref_date_2">
-                    12 Atanda kofo street, Gbagada, Lagos.
+                    {{item.deliveryLocation.targetAddress}}
                   </div>
                 </ion-col>
 
@@ -63,7 +77,7 @@
                     
                     <ion-col size="8">
                       <div class="checkout_item_text_1">
-                        300 Gift Cards
+                        {{item.pickUpItems}}
                       </div>
                       <div class="checkout_item_text_2">
                         to be fulfilled by Mark Riders
@@ -76,12 +90,35 @@
                    
                   </ion-row>
                 </ion-grid>
-      
               </ion-item>
             </ion-list>
           </div> 
         </ion-col>
-       
+      </ion-row>
+    
+      <ion-list lines="none" class="order_details_item_list">
+        <ion-item class="order_details_item_box">
+      <ion-grid>
+        <ion-row>
+
+          <ion-col size="12" *ngIf="deliveryObj[0].deliveryStatus == 'Delivered'" >
+            <div class="ion-text-center">
+            <div class="order_details_rate_text_2">
+                  Dispute Reasons
+            </div>
+            </div>
+            <div class="order_details_rate_object">
+              <ion-item class="no-border ion-no-border review_message">
+                <ion-textarea [(ngModel)]="disputereason" placeholder="Dispute reasons"></ion-textarea>
+              </ion-item><br />
+            </div>
+          </ion-col>
+        </ion-row>
+    </ion-grid>
+    </ion-item>
+    </ion-list>
+
+      <ion-row>
         <ion-col size="12">
           <div class="order_details_rate ion-text-center">
             <div class="order_details_rate_text">
@@ -92,18 +129,24 @@
             </div>
 
             <div class="product_item_2_starrate_inner">
-              <bar-rating class="the_product_rate" [rate]="'5'" [max]="'5'"></bar-rating>
+              <bar-rating class="the_product_rate" [(ngModel)]="rating" [rate]="'5'" [max]="'5'"></bar-rating>
             </div>
 
             <div class="order_details_rate_object">
               <ion-item class="no-border ion-no-border review_message">
-                <ion-textarea></ion-textarea>
+                <ion-textarea [(ngModel)]="comment"></ion-textarea>
               </ion-item>
             </div>
 
-            <div class="pawa2_u_checkout_btn_actions">
-              <ion-button (click)="submitReview()" class="pawa2_u_action_btn_2">
+            <div class="pawa2_u_checkout_btn_actions" *ngIf="deliveryObj[0].deliveryStatus !== 'Delivered'">
+              <ion-button (click)="completeDelivery()" class="pawa2_u_action_btn_2">
                 Submit review
+              </ion-button>
+            </div>
+
+            <div class="pawa2_u_checkout_btn_actions" *ngIf="deliveryObj[0].deliveryStatus == 'Delivered'">
+              <ion-button (click)="disputeDelivery()" class="pawa2_u_action_btn_2">
+                Submit dispute
               </ion-button>
             </div>
 
@@ -111,5 +154,6 @@
         </ion-col>
       </ion-row>
     </ion-grid>
+    
   </div>
 </ion-content>

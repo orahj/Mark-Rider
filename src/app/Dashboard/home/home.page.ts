@@ -58,6 +58,13 @@ export class HomePage implements OnInit {
   single = false;
   bulkdelivery = false;
   submitted = false;
+  loacation : {
+    lat : 0,
+    lng : 0
+  }
+
+
+
   constructor(
     private route: Router,
     private modalController : ModalController,
@@ -119,6 +126,13 @@ export class HomePage implements OnInit {
           if (place.geometry === undefined || place.geometry === null) {
             return;
           }
+          let location = {
+            lat :  place.geometry.location.lat(),
+            lng : place.geometry.location.lng()
+          }
+  
+          localStorage.setItem('senderlocation', JSON.stringify(location));
+
           this.baseLocation = {
             address:  place.formatted_address,
             longitude: place.geometry.location.lng(),
@@ -153,6 +167,13 @@ export class HomePage implements OnInit {
           if (place.geometry === undefined || place.geometry === null) {
             return;
           }
+
+          let location = {
+            lat :  place.geometry.location.lat(),
+            lng : place.geometry.location.lng()
+          }
+          localStorage.setItem('receiverlocation', JSON.stringify(location));
+
           this.targetLocation = {
             address:  place.formatted_address,
             longitude: place.geometry.location.lng(),
@@ -166,11 +187,12 @@ export class HomePage implements OnInit {
             this.latitude = place.geometry.location.lat();
             this.longitude = place.geometry.location.lng();
             this.zoom = 8;
+
+            console.log('Lat and lng list',this.loacation);
           });
         });
       });
   }
-
 
   private setCurrentLocation() {
     if ('geolocation' in navigator) {
@@ -258,7 +280,6 @@ export class HomePage implements OnInit {
       message: 'This service is not available at the moment',
       buttons: ['OK']
     });
-  
     await alert.present();
   }
  
@@ -272,7 +293,7 @@ export class HomePage implements OnInit {
   notavailble(){
     alert("Not available at the moment!")
   }
-  async addresslist(){
+async addresslist(){
     debugger;
     const modal = await this.modalController.create({
       component: AddDropOffAddressPage,

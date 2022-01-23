@@ -64,6 +64,10 @@ export class SignupPage implements OnInit {
       console.log('Model', this.model);
       this.authService.register(this.model).subscribe((res: any) =>{
         this.loading.closeLoader();
+        this.alertService.showSuccessAlert(res.message)
+      },error => {
+        this.loading.closeLoader();
+        this.alertService.showErrorAlert(error.error.message);
       });
 
   }
@@ -80,8 +84,10 @@ export class SignupPage implements OnInit {
     this.model.userName = this.model.email;
     this.loading.showLoader();
     this.authService.register(this.model).subscribe((res: any) =>{
-      this.ress = res;
       this.loading.closeLoader();
+      this.alertService.showSuccessAlert(res.message);
+    }, error => {
+      this.alertService.showErrorAlert(error.error.message);
     });
   }
 
@@ -97,8 +103,11 @@ export class SignupPage implements OnInit {
     this.model.userName = this.model.email;
     this.loading.showLoader();
     this.authService.register(this.model).subscribe((res: any) =>{
-      this.ress = res;
       this.loading.closeLoader();
+      this.alertService.showSuccessAlert(res.message);
+    }, error => {
+      this.loading.closeLoader();
+      this.alertService.showErrorAlert(error.error.message);
     });
   }
 

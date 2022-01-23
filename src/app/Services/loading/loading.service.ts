@@ -19,8 +19,10 @@ export class LoadingService {
     // console.log('Loading dismissed!');
   }
 
-  closeLoader(){
-    this.loadingController.dismiss();
+  async closeLoader(){
+    await this.loadingController.dismiss({
+      'dismissed': true
+    });
   }
 
 }

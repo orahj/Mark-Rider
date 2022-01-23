@@ -25,3 +25,12 @@ export interface RiderOnlineStatus {
     userId: string,
     status: boolean
 }
+
+export interface BVNLookUp {
+    bvn: string,
+    account_number: string,
+    bank_code: string,
+    first_name: string,
+    last_name: string,
+    middle_name: string
+}

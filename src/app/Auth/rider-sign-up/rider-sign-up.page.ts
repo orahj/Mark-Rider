@@ -93,7 +93,11 @@ export class RiderSignUpPage implements OnInit {
       console.log('Model', this.model);
       this.authService.register(this.model).subscribe((res: any) =>{
         this.loading.closeLoader();
-      });
+        this.alertService.showSuccessAlert(res.message)
+      },error => {
+        this.alertService.showErrorAlert(error.error.message);
+      }
+      );
   }
 
   public submitIndividualForm1(): void {
