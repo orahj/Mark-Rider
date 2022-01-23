@@ -28,9 +28,10 @@
               <p class="extra-p" (click)="fundPrompt()">Fund</p>
               <p (click)="trackPrompt()">Track</p>
             </div>
+           
           </div>
         </ion-col>
-
+    
         <!-- <ion-col size="12">
           <div class="handle_fund_wallet_padd">
             <ion-button
@@ -44,7 +45,7 @@
 
         <ion-col size="12">
           <ion-toolbar>
-            <ion-segment (ionChange)="segmentChanged($event)">
+            <ion-segment>
               <ion-segment-button (click)="switchOrder()">
                 <!-- <ion-icon name="camera"></ion-icon> -->
                 Orders
@@ -72,11 +73,13 @@
                     <div class="wallet_transaction_amount_type_text">Credit</div>
                   </ion-col>
                 </ion-row>
+
                 <ion-ripple-effect></ion-ripple-effect>
               </div>
             </div>
 
           </div>
+         
 
           <div class="wallet-summary" *ngIf="order">
             <div  *ngFor="let delivery of DeliveryList" class="wallet_transaction_recrods">

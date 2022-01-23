@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { JwtHelperService } from '@auth0/angular-jwt';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpRequest } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { RegistrationDto } from '../_model/registrationDto';
 import { Result } from '../_model/result';
@@ -147,7 +147,12 @@ decordedToken: any;
   }
 
   fileupload(file: any){
-    return this.http.post(this.baseUrl + 'FileManager/Single', file);
+    const formData: FormData = new FormData();
+    formData.append('file', file);
+
+    // const req = new HttpRequest('POST', `${this.baseUrl}FileManager/Single`, formData);
+    // return this.http.request(req);
+    return this.http.post(`${this.baseUrl}FileManager/Single`, formData);
   }
 
   fundwallet(model : any){
@@ -159,7 +164,7 @@ decordedToken: any;
   }
 
   verifytransaction(model : any) {
-    return this.http.post(this.baseUrl + 'Payment​/verifyTransaction', model);
+    return this.http.post(this.baseUrl + 'Payment/verifyTransaction', model);
   }
 
   getwalletbalance(email : string){

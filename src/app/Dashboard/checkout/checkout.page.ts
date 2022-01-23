@@ -27,13 +27,14 @@ export class CheckoutPage implements OnInit {
   returnedObj = JSON.parse(localStorage.getItem('deliveryReturnedObj'));
   user = JSON.parse(localStorage.getItem('userobj'));
   public walletBalance : number;
-  public Total : number = this.returnedObj.totalAmount;
+  public Total : any = this.returnedObj.totalAmount;
   theSate: boolean;
   walletModel : PayWithWallet;
   verifyModel : VerifyPayment;
   public paystackStatus : boolean = false;
   verifyObj : any;
 _bState = false;
+payRef : any;
   constructor(
     private route: Router,
     private modalController: ModalController,
@@ -41,7 +42,7 @@ _bState = false;
     private authService : AuthService,
     private loading : LoadingService,
     private alert : AlertService) { }
-
+ 
   ngOnInit() {
     this.getWalletBalance();
     //this.verifyPayment();
@@ -128,11 +129,9 @@ public  payWithPaystack(){
         }
       ]
     },
-    callback (response){
+    callback: (response) => {
+      this.payRef = response.reference;
       this.verifyPayment();
-      // let request = new XMLHttpRequest();
-      // request.open('GET', )
-
   },
   onClose: function(){
     this.route.navigate(['/dashboard']).then(()=>{});
@@ -155,7 +154,7 @@ paymentSuccess(){
 
 paywithWallet() {
   let walletObj = {
-    transactionRef: this.walletRef,
+    transactionRef: this.payRef,
     transactionId: this.returnedObj.transactionId,
     amount: this.Total,
     email: this.user.email,
@@ -166,8 +165,9 @@ paywithWallet() {
   // this.walletModel.transactionId = this.returnedObj.transactionId;
   // this.walletModel.userId = this.user.id;
   this.loading.showLoader();
-  this.authService.walletpayment(walletObj).subscribe((res) => {
+  this.authService.walletpayment(walletObj).subscribe((res : any) => {
     this.loading.closeLoader();
+    this.alert.showSuccessAlert(res.message);
     this.paySuccess();
     console.log(res);
   }, error => {
@@ -176,28 +176,23 @@ paywithWallet() {
 }
 
 public verifyPayment() {
-  // console.log('I got here');
-  // console.log('Paystack Status',this.paystackStatus);
-  // let status = JSON.parse(localStorage.getItem('paystackstatus'));
-  // console.log('Staus',status);
-  // if(status == true){
     let verifyObj = {
       transactionRef: this.paystackReCode,
       transactionId: this.returnedObj.transactionId,
-      amount: this.Total,
+      amount: this.Total + '00',
       email: this.user.email,
       userId: this.user.id
     }
     this.loading.showLoader();
-    this.authService.verifytransaction(verifyObj).subscribe((res) => {
+    this.authService.verifytransaction(verifyObj).subscribe((res : any) => {
       this.loading.closeLoader();
-      //localStorage.removeItem('paystackstatus');
+      this.alert.showSuccessAlert(res.message)
       this.paySuccess();
       console.log(res);
     },error => {
-      //localStorage.removeItem('paystackstatus');
+      this.loading.closeLoader();
+      this.alert.showErrorAlert(error.error.message);
     })
   }
-// }
 
 }

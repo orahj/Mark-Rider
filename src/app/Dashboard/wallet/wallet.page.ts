@@ -8,7 +8,7 @@ import { RegistrationDto } from 'src/app/_model/registrationDto';
 import { AuthService } from 'src/app/Services/auth.service';
 import { AlertService } from 'src/app/Services/alert/alert.service';
 import { FundWallet } from 'src/app/_model/walletDto';
-import { SyncAsync } from '@angular/compiler/src/util';
+
 
 
 declare var PaystackPop: any;
@@ -33,6 +33,8 @@ export class WalletPage implements OnInit {
   public WalletList : any;
   public DeliveryStatus : any
   public ItemSelected : any;
+  public payStatus : any;
+  public name = 'tomi';
 
   constructor(
     private route: Router,
@@ -48,7 +50,6 @@ export class WalletPage implements OnInit {
     this.getWalletBalance();
     this.getWalleTransaction();
     this.getDelivery();
-    this.paystackRes();
     // this.fundWallet();
   }
 
@@ -77,7 +78,7 @@ export class WalletPage implements OnInit {
             console.log(value.Amount);
             this.Amount = value.Amount;
             this.payWithPaystack();
-            console.log('Confirm Ok');
+            console.log('Confirm Ok', value.Amount);
           }
         }
       ]
@@ -210,7 +211,6 @@ export class WalletPage implements OnInit {
   }
   
   public  payWithPaystack(){
-    console.log('Amount2',this.Amount);
     return new Promise( (resolve,reject) => {
     var handler = PaystackPop.setup({
       key: 'pk_test_2ae6eeddbe5dded1d9ae213cd0a217686aa7286d',
@@ -231,38 +231,39 @@ export class WalletPage implements OnInit {
           }
         ]
       },
-      callback: function(response){
-        console.log('Paystack response', response.reference);
-        resolve(response);
+      
+      callback:(response) => {
         let customModel = {
           email: this.user.email,
-          amount: this.Amount,
+          amount: parseInt(this.Amount, 10) + '00',
           userId: this.user.id,
           transactionRef: response.reference
       }
-        const binded = this.authService.fundwallet.bind(customModel);
-        console.log('Binded',binded);
-        // this.fundWallet(response);
+      this.loading.showLoader();
+      this.authService.fundwallet(customModel).subscribe((res : any) => {
+        this.loading.closeLoader();
+        this.alertService.showSuccessAlert(res.message);
+      }, error => {
+        this.loading.closeLoader();
+        this.alertService.showErrorAlert(error.error.messsage);
+      })
     },
+    
     onClose: function(res){
       reject(res)
       this.router.navigate(['dashboard/wallet']).then(()=>{});
-    }
+    },
+    
+  
   });
+ 
   handler.openIframe();
+  console.log('Paystack Pop',PaystackPop);
+  this.payStatus = PaystackPop;
 });
   }
 
-  paystackRes(){
-   let paystack = this.payWithPaystack()
-      console.log('Paystack',paystack);
-    // .then(data2 => {
-    //   console.log('I got here',data2);
-    // })
-  }
-
   fundWallet(){
-
     let customModel = {
         email: this.user.email,
         amount: this.Amount,
@@ -273,9 +274,7 @@ export class WalletPage implements OnInit {
       console.log(res);
     })
   }
-  // fundWallet(){
-  //   this.route.navigate(['/dashboard/fund-wallet']);
-  // }
+
   walletTransaction(){
     this.route.navigate(['/dashboard/wallet-transaction']);
   }
@@ -332,7 +331,6 @@ export class WalletPage implements OnInit {
     this.authService.getdelivery(this.user.email).subscribe((res) => {
       console.log(res);
       this.DeliveryList = res;
-      this.DeliveryStatus = this.DeliveryList.deliveryItems[0].deliveryStatus;
     })
   }
 

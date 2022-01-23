@@ -9,11 +9,33 @@
             <!-- <div class="map">
               <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3963.9368487402803!2d3.3929456146558845!3d6.529660495277045!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x103b8d194b40e58d%3A0x325f824343149d63!2sAjileye%20St%2C%20Akoka%2C%20Lagos!5e0!3m2!1sen!2sng!4v1614848072080!5m2!1sen!2sng" width="390" height="130" style="border:0; width: 100%" allowfullscreen="" loading="lazy"></iframe>
             </div> -->
-            <agm-map [latitude]="latitude" [longitude]="longitude" [zoom]="zoom">
+
+            <!-- <agm-map [latitude]="latitude" [longitude]="longitude" [zoom]="zoom">
               <agm-marker [latitude]="latitude" [longitude]="longitude" [markerDraggable]="true"
                 ></agm-marker>
+            </agm-map> -->
+
+            <agm-map [latitude]="latitude" [longitude]="longitude">
+              <agm-marker  *ngFor="let data of locations; let i = index"
+              [latitude]="data.lat" [longitude]="data.lng">
+              </agm-marker>
             </agm-map>
+           
+           
+              <!-- <agm-marker 
+              *ngFor="let m of markers | async; let i = index"
+              [iconUrl]="{
+                url: 'src/assets/images/macriders/m2.png'
+              }"
+              [latitude]="m.lat" [longitude]="m.lng" [markerDraggable]="true"
+                >
+              </agm-marker> -->
+           
           </ion-col>
+          <div id="map"></div>
+          <!-- <ion-col size="12">
+            <div id="map"></div>
+          </ion-col> -->
           <ion-col size="12">
             <ion-select formControlName="deliveryTpe" placeholder="Select Shipment Type" [(ngModel)]="item.deliveryTpe" class="mark-drop-down">
               <ion-select-option [value]=1>Single Shipment</ion-select-option>

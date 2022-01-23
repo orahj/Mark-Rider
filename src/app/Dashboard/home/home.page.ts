@@ -9,6 +9,10 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ItemList } from 'src/app/_model/itemListDto';
 import { LoadingService } from '../../Services/loading/loading.service';
 import { AuthService } from 'src/app/Services/auth.service';
+import { BehaviorSubject } from "rxjs";
+import LocationPicker from "location-picker";
+import { AlertService } from 'src/app/Services/alert/alert.service';
+
 
 
 
@@ -17,12 +21,13 @@ import { AuthService } from 'src/app/Services/auth.service';
   templateUrl: './home.page.html',
   styleUrls: ['./home.page.scss'],
 })
+
 export class HomePage implements OnInit {
   @ViewChild('senderSearch')
   public senderSearchElementRef: ElementRef;
   @ViewChild('receiverSearch')
   public receiverSearchElementRef: ElementRef;
-
+  lp: LocationPicker;
   latitude: number;
   longitude: number;
   zoom: number;
@@ -38,6 +43,7 @@ export class HomePage implements OnInit {
   carrier : number = 0;
   user = JSON.parse(localStorage.getItem('userobj'));
   itemList = ItemList;
+  imageurl : any;
   customAlertOptions: any = {
     header: 'Pizza Toppings',
     subHeader: 'Select your toppings',
@@ -62,8 +68,7 @@ export class HomePage implements OnInit {
     lat : 0,
     lng : 0
   }
-
-
+  locations : Array<object>;
 
   constructor(
     private route: Router,
@@ -73,11 +78,11 @@ export class HomePage implements OnInit {
     private ngZone: NgZone,
     private form: FormBuilder,
     private loading : LoadingService,
-    private authService : AuthService
+    private authService : AuthService,
+    private alertService : AlertService
     ) {
     
    }
-
 
 
   ngOnInit() {
@@ -106,9 +111,35 @@ export class HomePage implements OnInit {
     reader.onload = (_event) => { 
     let TheFileContents = reader.result;
     document.getElementById("TheImageContents").innerHTML = '<img width="50" height="50"  src="'+TheFileContents+'" />';
-    //this.uploadImage();
+    this.loading.showLoader();
+    this.authService.fileupload( this.Image).subscribe((res : any) => {
+
+      if(res.isSuccessful === true){
+        for(let i = 0; i < this.itemList.length; i++) {
+          this.itemList[i].imageUrl = res.returnedObject.url;
+        }
+      }
+      this.loading.closeLoader();
+      this.alertService.showSuccessAlert(res.message)
+    }, error => {
+      this.loading.closeLoader();
+      this.alertService.showErrorAlert(error.error.message);
+    })
     }
   }
+
+  uploadImage(){
+    this.loading.showLoader();
+    this.authService.fileupload(this.Image).subscribe((res : any) => {
+      this.loading.closeLoader();
+      this.alertService.showSuccessAlert(res.message)
+    }, error => {
+      this.loading.closeLoader();
+      this.alertService.showErrorAlert(error.error.message);
+    })
+  }
+
+  public markers = new BehaviorSubject<any[]>(null);
 
   public senderAutocomplete() {
     //load Places Autocomplete
@@ -192,6 +223,12 @@ export class HomePage implements OnInit {
           });
         });
       });
+      let SenderLocation = JSON.parse(localStorage.getItem('senderlocation'));
+      let ReceiverLocation = JSON.parse(localStorage.getItem('receiverlocation'));
+      this.locations  = [
+        {lat: SenderLocation.lat, lng: SenderLocation.lng, icon : './assets/images/macriders/m2.png'},
+        {lat: ReceiverLocation.lat, lng: ReceiverLocation.lng, icon : './assets/images/macriders/m2.png'}
+      ]
   }
 
   private setCurrentLocation() {
@@ -202,32 +239,71 @@ export class HomePage implements OnInit {
         this.zoom = 15;
       });
     }
-  }
+}
 
-  // markerDragEnd($event: MouseEvent) {
-  //   console.log($event);
-  //   this.latitude = $event.coords.lat;
-  //   this.longitude = $event.coords.lng;
-  //   this.getAddress(this.latitude, this.longitude);
-  // }
+  getAddress() {
+    let SenderLocation = JSON.parse(localStorage.getItem('senderlocation'));
+    let ReceiverLocation = JSON.parse(localStorage.getItem('receiverlocation'));
+    var iconBase = 'src/assets/images/macriders';
 
-  getAddress(latitude, longitude) {
-    this.geoCoder.geocode({ 'location': { lat: latitude, lng: longitude } }, (results, status) => {
-      console.log(results);
-      console.log(status);
-      if (status === 'OK') {
-        if (results[0]) {
-          this.zoom = 8;
-          this.address = results[0].formatted_address;
-        } else {
-          window.alert('No results found');
-        }
-      } else {
-        window.alert('Geocoder failed due to: ' + status);
+    var icons = {
+      dropoff: {
+        icon: iconBase + 'm2.png'
+      },
+      pickup: {
+        icon: iconBase + 'm2.png'
       }
+    }
 
-    });
+    let locations  = [
+      {lat: SenderLocation.lat, lng: SenderLocation.lng, icon: iconBase + 'm2.png'},
+      {lat: ReceiverLocation.lat, lng: ReceiverLocation.lng, icon: iconBase + 'm2.png'}
+    ]
+
+    const map = new google.maps.Map(
+      document.getElementById("map") as HTMLElement,
+      {
+        zoom: 15,
+        center: { lat: this.latitude, lng: this.longitude },
+      }
+    );
+
+    let infoWindow = new google.maps.InfoWindow({});
+    let marker, i;
+
+    for (i = 0; i < locations.length; i++) {  
+      marker = new google.maps.Marker({
+        position: new google.maps.LatLng(locations[i].lat, locations[i].lng),
+        map,
+        icon: locations[i].icon
+      });
+
+      google.maps.event.addListener(marker, 'click', (function(marker, i) {
+        return function() {
+          infoWindow.setContent(locations[i][0]);
+          infoWindow.open(map, marker);
+        }
+      })(marker, i));
+
+
+
+    // this.geoCoder.geocode({ 'location': { lat: latitude, lng: longitude } }, (results, status) => {
+    //   console.log(results);
+    //   console.log(status);
+    //   if (status === 'OK') {
+    //     if (results[0]) {
+    //       this.zoom = 8;
+    //       this.address = results[0].formatted_address;
+    //     } else {
+    //       window.alert('No results found');
+    //     }
+    //   } else {
+    //     window.alert('Geocoder failed due to: ' + status);
+    //   }
+
+    // });
   }
+}
 
   initializeForm() {
     this.formData = this.form.group({
@@ -333,7 +409,8 @@ public onSubmit() : void {
       let returnObj = {
         deliveryNo: res.returnedObject.deliveryNo,
         totalAmount : res.returnedObject.totalAmount,
-        transactionId : res.returnedObject.transactionId
+        transactionId : res.returnedObject.transactionId,
+        id : res.returnedObject.id
       }
       localStorage.setItem('deliveryReturnedObj', JSON.stringify(returnObj));
       this.loading.closeLoader();

@@ -8,14 +8,14 @@ import { Router } from '@angular/router';
   styleUrls: ['./payment-success.page.scss'],
 })
 export class PaymentSuccessPage implements OnInit {
-
+  returnedObj = JSON.parse(localStorage.getItem('deliveryReturnedObj'));
   constructor(private modalController: ModalController, private route: Router) { }
 
   ngOnInit() {
   }
 
   goHome(){
-    this.route.navigate(['/dashboard']);
+    this.route.navigate(['/dashboard/wallet']);
     this.modalController.dismiss();
   }
 }
