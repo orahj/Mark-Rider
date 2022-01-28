@@ -11,13 +11,44 @@
   </ion-toolbar>
   <div class="small_ribbon"></div>
 </ion-header>
-
+<div *ngIf="NotificationList === []">
+  <div style="display: flex; justify-content: end; margin: 10px" >
+    <ion-button color="warning" (click)="markAll()">Mark all</ion-button>
+    <ion-button color="danger" (click)="deleteAll()">Delete all</ion-button>
+  </div>
+</div>
 
 <ion-content>
+  <div class="no-list" *ngIf="NotificationList == ''">
+    <p >No notifications available</p>
+  </div>
+
   <div class="notification_style_1">
     <ion-grid>
-     
-      <div class="col_border ion-activatable ripple-parent">
+      <div class="col_border ion-activatable ripple-parent"  *ngFor="let notification of NotificationList" (click)="actionPrompt(notification)">
+        <ion-row>
+        <ion-col size="3">
+          <div class="control_notification_style notificaion_icon_bg_gray">
+            <ion-icon slot="icon-only" name="locate-outline"></ion-icon>
+          </div>
+        </ion-col>
+        <ion-col size="9">
+          <div class="notification_style_1_outer">
+            <div class="notification_style_1_title">
+                {{notification.data.Title}}
+              <span class="notification_style1_time_ago">
+               -  {{notification.dateCreated | date:'medium'}}.
+              </span>
+            </div>
+            
+          </div>
+        </ion-col> 
+      </ion-row>
+      <ion-ripple-effect></ion-ripple-effect>
+      </div>
+
+
+      <!-- <div class="col_border ion-activatable ripple-parent">
         <ion-row>
         <ion-col size="3">
           <div class="control_notification_style notificaion_icon_bg_gray">
@@ -38,28 +69,7 @@
       </ion-row>
       <ion-ripple-effect></ion-ripple-effect>
       </div>
-        <div class="col_border ion-activatable ripple-parent">
-          <ion-row>
-          <ion-col size="3">
-            <div class="control_notification_style notificaion_icon_bg_gray">
-              <ion-icon slot="icon-only" name="locate-outline"></ion-icon>
-            </div>
-          </ion-col>
-          <ion-col size="9">
-            <div class="notification_style_1_outer">
-              <div class="notification_style_1_title">
-                Felix, macriders Limited started delivery of your product. Click here to track order. 
-                <span class="notification_style1_time_ago">
-                 -  3 Hours ago.
-                </span>
-              </div>
-              
-            </div>
-          </ion-col> 
-        </ion-row>
-        <ion-ripple-effect></ion-ripple-effect>
-        </div>
-        
+  
         <div class="col_border ion-activatable ripple-parent">
           <ion-row>
           <ion-col size="3">
@@ -101,7 +111,7 @@
           </ion-col>
         </ion-row>
         <ion-ripple-effect></ion-ripple-effect>
-        </div>
+        </div> -->
 
 
     </ion-grid>

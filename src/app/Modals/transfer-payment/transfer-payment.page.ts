@@ -3,6 +3,7 @@ import { ModalController } from '@ionic/angular';
 import { PaymentSuccessPage } from '../payment-success/payment-success.page';
 import { LoadingService } from '../../Services/loading/loading.service';
 import { AuthService } from 'src/app/Services/auth.service';
+import { AlertService } from 'src/app/Services/alert/alert.service';
 
 @Component({
   selector: 'app-transfer-payment',
@@ -19,7 +20,8 @@ export class TransferPaymentPage implements OnInit {
   constructor(
     private modalController: ModalController,
     private loading : LoadingService,
-    private authService : AuthService
+    private authService : AuthService,
+    private alert : AlertService
     ) { }
 
   ngOnInit() {
@@ -57,14 +59,17 @@ export class TransferPaymentPage implements OnInit {
       amount: this.returnedObj.totalAmount,
       email: this.user.email,
       userId: this.user.id,
-      deliveryId : this.returnedObj.deliveryNo
+      deliveryId : this.returnedObj.id
     }
 
     this.loading.showLoader();
-    this.authService.paywithtransfer(transferObj).subscribe((res) => {
+    this.authService.paywithtransfer(transferObj).subscribe((res : any) => {
       this.loading.closeLoader();
+      this.alert.showSuccessAlert(res.message)
       this.paySuccess();
-      console.log(res);
+    }, error => {
+      this.loading.closeLoader();
+      this.alert.showErrorAlert(error.error.message);
     })
   }
 }

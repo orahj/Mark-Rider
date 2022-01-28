@@ -243,9 +243,11 @@ export class WalletPage implements OnInit {
       this.authService.fundwallet(customModel).subscribe((res : any) => {
         this.loading.closeLoader();
         this.alertService.showSuccessAlert(res.message);
+        location.reload();
       }, error => {
         this.loading.closeLoader();
         this.alertService.showErrorAlert(error.error.messsage);
+       
       })
     },
     
@@ -322,7 +324,10 @@ export class WalletPage implements OnInit {
           this.WalletList = res.returnedObject;
       }
       this.loading.closeLoader();
+      this.modalController.dismiss();
     }, error => {
+      this.loading.closeLoader();
+      this.modalController.dismiss();
       this.alertService.showErrorAlert(error.error.message);
     })
   }

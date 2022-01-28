@@ -117,6 +117,10 @@ decordedToken: any;
     return this.http.post(this.baseUrl + 'Delivery/start-delivery', model);
   }
 
+  getdeliverybyid(id : number){
+    return this.http.get(this.baseUrl + 'Delivery/' + id);
+  }
+
 
   canceldeliverybyuser(model : any){
     return this.http.post(this.baseUrl + 'Delivery/cancel-delivery-by-user', model);
@@ -174,6 +178,29 @@ decordedToken: any;
   getwalletransaction(email : string){
     return this.http.get(this.baseUrl + `Wallet/GetUserWalletTransactions?email=${email}`);
   }
+
+  getnotification(email : string) {
+    return this.http.get(this.baseUrl + `Notification/all?email=${email}`);
+  }
+
+  getnotificationbyid(id : number) {
+    return this.http.get(this.baseUrl + 'Notification/' + id);
+  }
+  readnotificationbyid(id : number) {
+    return this.http.patch(this.baseUrl + `Notification/${id}`, id);
+  }
+
+  readallnotification(email : string) {
+    return this.http.patch(this.baseUrl + 'Notification/all', email);
+  }
+
+  deletenotificationbyid(id : number) {
+    return this.http.delete(this.baseUrl + 'Notification/' + id);
+  }
+
+  deleteallnotification(email : string) {
+    return this.http.delete(this.baseUrl + `Notification/all?email=${email}`);
+  }
   
   paywithtransfer(model : any){
     return this.http.post(this.baseUrl + 'Payment/payment-with-transfer', model);
@@ -189,6 +216,7 @@ decordedToken: any;
   getuserinfo(email:string): Observable<Result> {
     return this.http.get<Result>(this.baseUrl + 'get-user-info/'+ email);
   }
+
 
 
 

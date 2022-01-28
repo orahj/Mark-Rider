@@ -12,6 +12,18 @@ ion-header {
 
 }
 
+.notification_style_1_title2 {
+
+    font-size: 12px;
+    font-weight: 550;
+    padding-right: 30px;
+
+}
+
+ion-back-button {
+    --color : grey;
+}
+
 
 .notification_style1_time_ago {
 
@@ -46,7 +58,7 @@ ion-header {
 
 .notificaion_icon_bg_gray {
     
-    background: #C8C8C8;
+    background: #c9c8c6;
 }
 
 .notificaion_icon_bg_green{
@@ -69,11 +81,9 @@ ion-grid {
 
 }
 
-ion-back-button {
-    color: grey;
-    
+.action-btns {
+ flex: end;
 }
-
 
 .no-list {
     text-align: center;
@@ -81,4 +91,14 @@ ion-back-button {
     margin: auto;
     padding-top: 50%;
 
+}
+
+.track-delivery {
+    color: #ffa500;
+    float: right;
+    font-weight: 600;
+}
+
+agm-map {
+    height: 100%;
 }

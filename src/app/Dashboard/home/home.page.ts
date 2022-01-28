@@ -13,9 +13,6 @@ import { BehaviorSubject } from "rxjs";
 import LocationPicker from "location-picker";
 import { AlertService } from 'src/app/Services/alert/alert.service';
 
-
-
-
 @Component({
   selector: 'app-home',
   templateUrl: './home.page.html',

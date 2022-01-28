@@ -8,6 +8,7 @@ import { TrackOrdersDetailsPageRoutingModule } from './track-orders-details-rout
 
 import { TrackOrdersDetailsPage } from './track-orders-details.page';
 import { HeaderTwoComponentModule } from '../../Partials/header-two/header-two.component.module';
+import { AgmCoreModule } from '@agm/core';
 
 @NgModule({
   imports: [
@@ -15,7 +16,11 @@ import { HeaderTwoComponentModule } from '../../Partials/header-two/header-two.c
     FormsModule,
     IonicModule,
     TrackOrdersDetailsPageRoutingModule,
-    HeaderTwoComponentModule
+    HeaderTwoComponentModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyAq84iD_-IGQEzZj5VET55rWthHgh75DSQ',
+      libraries: ['places']
+    }),
   ],
   declarations: [TrackOrdersDetailsPage]
 })

@@ -1,0 +1,59 @@
+<ion-header [translucent]="true">
+  <ion-toolbar class="ion-text-center ion-no-border">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/dashboard"></ion-back-button>
+    </ion-buttons>
+    <ion-title>
+      <div class="pawa2_transparent_header">
+        Notifications
+      </div>
+    </ion-title>
+  </ion-toolbar>
+  <div class="small_ribbon"></div>
+</ion-header>
+
+
+<ion-content>
+  <div class="notification_style_1">
+    <ion-grid>
+      <div class="col_border ion-activatable ripple-parent" >
+        <ion-row>
+        <ion-col size="3">
+          <div class="control_notification_style notificaion_icon_bg_gray">
+            <ion-icon slot="icon-only" name="locate-outline"></ion-icon>
+          </div>
+        </ion-col>
+        <ion-col size="9">
+          <div class="notification_style_1_outer">
+            <div class="notification_style_1_title2">
+              {{details.data.Title}}
+              <span class="track-delivery" *ngIf="user.userTypes == 3"  (click)="getDelivery()"> <ion-icon class="control_small_ic" name="location-outline"></ion-icon> Track </span>
+            </div>
+            <div class="notification_style_1_title">
+             {{details.data.Body}}
+              <span (click)="getDelivery()" class="notification_style1_time_ago">
+               -  {{details.dateCreated | date:'medium'}}.
+              </span>
+            </div>
+          </div>
+        </ion-col> 
+      </ion-row>
+      <ion-ripple-effect></ion-ripple-effect>
+      </div>
+      </ion-grid>
+   
+    </div>
+    
+    <ion-toolbar>
+      <ion-buttons slot="primary">
+        <!-- <ion-button *ngIf="details.type == 3"  color="dark">View delivery</ion-button> -->
+        <ion-button slot="end" (click)="patchNotification()" color="warning">Mark as read</ion-button>
+      <ion-button slot="end" (click)="deleteNotification()" color="danger">Delete</ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+    
+    <!-- <div class="action-btns">
+      <ion-button slot="end" color="secondary">Mark as read</ion-button>
+      <ion-button slot="end" color="danger">Delete</ion-button>
+    </div> -->
+   </ion-content> 

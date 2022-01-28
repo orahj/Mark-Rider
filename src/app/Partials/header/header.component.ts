@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/Services/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -7,6 +8,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
+  user = JSON.parse(localStorage.getItem('userobj'));
+  NotificationList : any;
   customAlertOptions: any = {
     header: 'Pizza Toppings',
     subHeader: 'Select your toppings',
@@ -25,9 +28,14 @@ export class HeaderComponent implements OnInit {
     subHeader: 'Select your favorite color'
   };
   searchTerm: string;
-  constructor(private route: Router) { }
+  constructor(
+    private route: Router,
+    private authService : AuthService
+    ) { }
  
-  ngOnInit() {}
+  ngOnInit() {
+    this.getNotification();
+  }
 
   focusesInput(){
     console.log(this.searchTerm)
@@ -44,4 +52,12 @@ export class HeaderComponent implements OnInit {
   cart(){
     this.route.navigate(['/dashboard/checkout']);
   }
+
+  getNotification(){
+    this.authService.getnotification(this.user.email).subscribe((res : any) => {
+      this.NotificationList = res.returnedObject;
+      console.log(this.NotificationList);
+    })
+  }
+
 }

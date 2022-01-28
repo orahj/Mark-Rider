@@ -25,6 +25,8 @@ const routes: Routes = [
             // tslint:disable-next-line: max-line-length
             { path: 'dashboard/products/:id', loadChildren: () => import('./Dashboard/products/products.module').then( m => m.ProductsPageModule) },
             // tslint:disable-next-line: max-line-length
+            { path: 'dashboard/notification-details', loadChildren: () => import('./Dashboard/notification-details/notification-details.module').then( m => m.NotificationDetailsPageModule) },
+
             { path: 'dashboard/notification', loadChildren: () => import('./Dashboard/notification/notification.module').then( m => m.NotificationPageModule) },
             // tslint:disable-next-line: max-line-length
             { path: 'dashboard/view-profile', loadChildren: () => import('./Dashboard/view-profile/view-profile.module').then( m => m.ViewProfilePageModule) },
@@ -51,7 +53,7 @@ const routes: Routes = [
             // tslint:disable-next-line: max-line-length
             { path: 'dashboard/track-orders', loadChildren: () => import('./Dashboard/track-orders/track-orders.module').then( m => m.TrackOrdersPageModule) },
             // tslint:disable-next-line: max-line-length
-            { path: 'dashboard/track-orders-details/:id', loadChildren: () => import('./Dashboard/track-orders-details/track-orders-details.module').then( m => m.TrackOrdersDetailsPageModule) },
+            { path: 'dashboard/track-orders-details', loadChildren: () => import('./Dashboard/track-orders-details/track-orders-details.module').then( m => m.TrackOrdersDetailsPageModule) },
             // tslint:disable-next-line: max-line-length
             { path: 'dashboard/order-fullfillment/:id', loadChildren: () => import('./Dashboard/order-fullfillment/order-fullfillment.module').then( m => m.OrderFullfillmentPageModule) },
             { path: 'dashboard/order-fullfillment-thankyou', loadChildren: () => import('./Dashboard/order-fullfillment-thankyou/order-fullfillment-thankyou.module').then( m => m.OrderFullfillmentThankyouPageModule) },
@@ -111,6 +113,10 @@ const routes: Routes = [
   {
     path: 'dashboard/edit-profile-rider',
     loadChildren: () => import('./Dashboard/edit-profile-rider/edit-profile-rider.module').then( m => m.EditProfileRiderPageModule)
+  },
+  {
+    path: 'notification-details',
+    loadChildren: () => import('./dashboard/notification-details/notification-details.module').then( m => m.NotificationDetailsPageModule)
   },
   // { path: 'order', loadChildren: () => import('./Modals/product/type-one/order/order.module').then( m => m.OrderPageModule) },
   // tslint:disable-next-line: max-line-length
