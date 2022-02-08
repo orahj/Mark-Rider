@@ -5,7 +5,7 @@
     </ion-buttons>
     <ion-title>
       <div class="pawa2_transparent_header">
-        Add address
+        Add item
       </div>
     </ion-title>
   </ion-toolbar>
@@ -16,12 +16,6 @@
   <div class="content_padded">
     <ion-grid>
       <ion-row class="the_address_row_handle">
-        <ion-col size="12">
-          <input class="auto-input" placeholder="Enter Receiver Address" (click)="receiverAutocomplete()" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" #receiverSearch>
-        </ion-col>
-        <ion-col size="12">
-            <ion-input class="the_form_input" [(ngModel)]="newItem.dropOffPhone" placeholder="Receiver Phonenumber"  ></ion-input>
-        </ion-col>
         <ion-col size="12">
           <div class="header_style_3 mt-15">
             Enter Item Details
@@ -42,46 +36,22 @@
                   <ion-label position="floating" mode="md">Item to be delivered</ion-label>
                   <ion-input placeholder="A pair of shoe" [(ngModel)]="newItem.pickUpItems" mode="md"></ion-input>
                 </ion-item>
-
-            
               </ion-list>
             </ion-col>
-          <ion-col size="1">
+          <!-- <ion-col size="1">
             <button class="trash-icon">
               <ion-icon name="trash-outline"></ion-icon>
             </button>
-          </ion-col>
+          </ion-col> -->
            </ion-row>
           </div>
         </div>
 
-        <!-- <ion-col size="12" class="handle_address_border">
-          <ion-row class="the_address_row_handle">
-            <ion-col size="2" class="ion-text-center">
-              <ion-icon class="location-outline-icon active" name="location-outline"></ion-icon>
-            </ion-col>
-            <ion-col size="10">
-              <div class="location_text">
-                21 Ajileye, street, Ilaje road, Shomolu, lagos
-              </div>
-            </ion-col>
-          </ion-row>
-          <ion-row class="the_address_row_handle">
-            <ion-col size="2" class="ion-text-center">
-              <ion-icon class="location-outline-icon" name="location-outline"></ion-icon>
-            </ion-col>
-            <ion-col size="10">
-              <div class="location_text">
-                21 Ajileye, street, Ilaje road, Shomolu, lagos
-              </div>
-            </ion-col>
-          </ion-row>
-        </ion-col> -->
       </ion-row>
     </ion-grid>
   </div>
 
-    <ion-button *ngIf="newItem.dropOffPhone !== undefined && newItem.pickUpItems !== undefined && newItem.imageUrl !== undefined" (click)="addAddress()" class="pawa2_u_action_btn_2">
-      Add Receiver
+    <ion-button *ngIf="newItem.pickUpItems !== undefined && newItem.imageUrl !== undefined" (click)="addItem()" class="pawa2_u_action_btn_2">
+      Add Item
     </ion-button>
 </ion-content>

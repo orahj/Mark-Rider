@@ -27,7 +27,6 @@ export class NotificationPage implements OnInit {
 
   ngOnInit() {
     this.getNotification();
-    console.log('Notification',this.NotificationList);
   }
   gotoDelivery(){
     this.route.navigate(['/delivery-details']);

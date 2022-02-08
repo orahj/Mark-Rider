@@ -72,6 +72,11 @@ export class AppComponent {
     this.menu.close();
   }
 
+  notificationList() {
+    this.route.navigate(['dashboard/notification']);
+    this.menu.close();
+  }
+
   logOut() {
     // localStorage.removeItem('token');
     localStorage.clear();

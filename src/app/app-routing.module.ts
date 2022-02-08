@@ -116,7 +116,15 @@ const routes: Routes = [
   },
   {
     path: 'notification-details',
-    loadChildren: () => import('./dashboard/notification-details/notification-details.module').then( m => m.NotificationDetailsPageModule)
+    loadChildren: () => import('./Dashboard/notification-details/notification-details.module').then( m => m.NotificationDetailsPageModule)
+  },
+  {
+    path: 'dashboard/add-item',
+    loadChildren: () => import('./Dashboard/add-item/add-item.module').then( m => m.AddItemPageModule)
+  },
+  {
+    path: 'password-reset',
+    loadChildren: () => import('./Auth/password-reset/password-reset.module').then( m => m.PasswordResetPageModule)
   },
   // { path: 'order', loadChildren: () => import('./Modals/product/type-one/order/order.module').then( m => m.OrderPageModule) },
   // tslint:disable-next-line: max-line-length

@@ -183,15 +183,22 @@ ion-col.pl-0 {
   border-radius: 3px;
   margin-bottom: 5px;
 }
+
+.wallet_transaction_recrods{
+  overflow-y: scroll;
+  height: 200px !important;
+}
+
 .the_wallet_item_list {
   padding: 10px 15px;
-  // border: 1px solid #eae7e7;
+  border: 1px solid #eae7e7;
   position: relative;
-  overflow: hidden;
   background: #fff;
   border-radius: 3px;
   margin-bottom: 5px;
   margin-top: 20px;
+ 
+  // height: 250px;
 }
 
 .wallet_transaction_ref_date {

@@ -31,25 +31,24 @@
       </ion-grid>
     </form> -->
 
-    <form [formGroup]="passwordData" (ngSubmit)="formData.valid && showSuccess()">
+
       <ion-grid>
         <ion-row>
 
           <div class="mt-35">
             <ion-row>
               <ion-col size="12">
-                <ion-input type="password" placeholder="Current password" name="password" formControlName="password" class="the_form_input"></ion-input>
+                <ion-input type="password" placeholder="Current password" name="password"  class="the_form_input"></ion-input>
               </ion-col>
               <ion-col size="12">
-                <ion-input type="password" placeholder="New password" name="confirmpassword" formControlName="confirmpassword" class="the_form_input"></ion-input>
+                <ion-input type="password" placeholder="New password" [(ngModel)]="newPassword" name="confirmpassword"  class="the_form_input"></ion-input>
               </ion-col>  
-              <ion-button [disabled]="passwordData.invalid" class="pawa2_u_action_btn_2" type="submit">
+              <ion-button (click)="resetPassword()" class="pawa2_u_action_btn_2" >
                 Change Password
               </ion-button>
             </ion-row>
           </div>
         </ion-row>
       </ion-grid>
-    </form>
   </div>
 </ion-content>

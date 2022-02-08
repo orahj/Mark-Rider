@@ -7,13 +7,18 @@ import { IonicModule } from '@ionic/angular';
 import { AddAddressPageRoutingModule } from './add-address-routing.module';
 
 import { AddAddressPage } from './add-address.page';
+import { AgmCoreModule } from '@agm/core';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    AddAddressPageRoutingModule
+    AddAddressPageRoutingModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyAq84iD_-IGQEzZj5VET55rWthHgh75DSQ',
+      libraries: ['places']
+    }),
   ],
   declarations: [AddAddressPage]
 })

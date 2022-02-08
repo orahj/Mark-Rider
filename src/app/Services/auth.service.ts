@@ -191,7 +191,7 @@ decordedToken: any;
   }
 
   readallnotification(email : string) {
-    return this.http.patch(this.baseUrl + 'Notification/all', email);
+    return this.http.patch(this.baseUrl + `Notification/all?email=${email}`, email);
   }
 
   deletenotificationbyid(id : number) {

@@ -21,16 +21,6 @@
               </agm-marker>
             </agm-map>
            
-           
-              <!-- <agm-marker 
-              *ngFor="let m of markers | async; let i = index"
-              [iconUrl]="{
-                url: 'src/assets/images/macriders/m2.png'
-              }"
-              [latitude]="m.lat" [longitude]="m.lng" [markerDraggable]="true"
-                >
-              </agm-marker> -->
-           
           </ion-col>
           <div id="map"></div>
           <!-- <ion-col size="12">
@@ -39,7 +29,7 @@
           <ion-col size="12">
             <ion-select formControlName="deliveryTpe" placeholder="Select Shipment Type" [(ngModel)]="item.deliveryTpe" class="mark-drop-down">
               <ion-select-option [value]=1>Single Shipment</ion-select-option>
-              <ion-select-option [value]=2>Multiple Shipment</ion-select-option>
+              <ion-select-option (click)="bulkDelivery()" [value]=2>Multiple Shipment</ion-select-option>
               <ion-select-option (click)="notavailble()"  value="cargo">Cargo</ion-select-option>
               <ion-select-option (click)="notavailble()" class="not-available" value="interstate">Inter-state</ion-select-option>
             </ion-select>
@@ -143,11 +133,11 @@
                   
                     </ion-list>
                   </ion-col>
-                <ion-col size="1">
+                <!-- <ion-col size="1">
                   <button class="trash-icon">
                     <ion-icon name="trash-outline"></ion-icon>
                   </button>
-                </ion-col>
+                </ion-col> -->
                  </ion-row>
 
 

@@ -50,6 +50,7 @@ export class WalletPage implements OnInit {
     this.getWalletBalance();
     this.getWalleTransaction();
     this.getDelivery();
+    // this.modalController.dismiss();
     // this.fundWallet();
   }
 
@@ -70,15 +71,12 @@ export class WalletPage implements OnInit {
           role: 'cancel',
           cssClass: 'secondary',
           handler: () => {
-            console.log('Confirm Cancel');
           }
         }, {
           text: 'Fund',
           handler: (value) => {
-            console.log(value.Amount);
             this.Amount = value.Amount;
             this.payWithPaystack();
-            console.log('Confirm Ok', value.Amount);
           }
         }
       ]
@@ -107,7 +105,7 @@ export class WalletPage implements OnInit {
            // console.log('Confirm Cancel');
           }
         }, {
-          text: 'Fund',
+          text: 'Track',
           handler: (value) => {
             this.DeliveryNo = value.Track;
             this.loading.showLoader();
@@ -130,7 +128,6 @@ export class WalletPage implements OnInit {
   }
 
   async disputePrompt(selected) {
-    console.log(selected);
     this.ItemSelected = selected;
     const alert = await this.alertController.create({
       cssClass: 'my-custom-class',
@@ -149,13 +146,11 @@ export class WalletPage implements OnInit {
           cssClass: 'info',
           role: 'cancel',
           handler: () => {
-            console.log('Cancel');
           }
         }, {
           text: 'Dispute',
           cssClass: 'danger',
           handler: () => {
-            console.log('Cancle delivey Okay');
           }
         }
       ]
@@ -184,12 +179,10 @@ export class WalletPage implements OnInit {
           role: 'cancel',
           cssClass: 'secondary',
           handler: () => {
-            console.log('Confirm Cancel');
           }
         }, {
           text: 'Cancel Delivery',
           handler: (value) => {
-            console.log('Confirm Ok');
             let data = {
               userId : this.user.id,
               deliveriesId : selected.id,
@@ -260,7 +253,6 @@ export class WalletPage implements OnInit {
   });
  
   handler.openIframe();
-  console.log('Paystack Pop',PaystackPop);
   this.payStatus = PaystackPop;
 });
   }
@@ -273,7 +265,6 @@ export class WalletPage implements OnInit {
         transactionRef: 1557016657
     }
     this.authService.fundwallet(customModel).subscribe((res) => {
-      console.log(res);
     })
   }
 
@@ -310,15 +301,15 @@ export class WalletPage implements OnInit {
 
   getWalletBalance(){
       this.authService.getwalletbalance(this.user.email).subscribe((res : any) => {
-        console.log(res)
         this.walletBalance = res.returnedObject.balance;
+      }, error => {
+        this.alertService.showErrorAlert(error.error.message);
       })
   }
 
   getWalleTransaction(){
     this.loading.showLoader();
     this.authService.getwalletransaction(this.user.email).subscribe((res : any) => {
-      console.log(res)
     
       if(res.isSuccessful == true) {
           this.WalletList = res.returnedObject;
@@ -334,7 +325,6 @@ export class WalletPage implements OnInit {
 
   getDelivery() {
     this.authService.getdelivery(this.user.email).subscribe((res) => {
-      console.log(res);
       this.DeliveryList = res;
     })
   }
@@ -345,7 +335,6 @@ export class WalletPage implements OnInit {
       this.loading.closeLoader();
       localStorage.setItem('deliverydetails', JSON.stringify(res));
       this.route.navigate(['./dashboard/orders-details']);
-      console.log(res);
     }, error => {
       this.alertService.showErrorAlert(error.error.message);
     })

@@ -11,7 +11,7 @@
   </ion-toolbar>
   <div class="small_ribbon"></div>
 </ion-header>
-<div *ngIf="NotificationList === []">
+<div *ngIf="!NotificationList === undefined || !NotificationList == ''">
   <div style="display: flex; justify-content: end; margin: 10px" >
     <ion-button color="warning" (click)="markAll()">Mark all</ion-button>
     <ion-button color="danger" (click)="deleteAll()">Delete all</ion-button>

@@ -22,6 +22,11 @@ export class EditProfilePage implements OnInit {
   formData: FormGroup;
   passwordData: FormGroup;
   passwordDto: ChangePasswordDto;
+  user = JSON.parse(localStorage.getItem('userobj'));
+  resetUrl = JSON.parse(localStorage.getItem('reseturl'));
+  tokeurl : string;
+  upadtedUrl : string;
+  newPassword : string;
   constructor(private router: Router,
     private loading: LoadingService,
     private authService: AuthService,
@@ -31,6 +36,9 @@ export class EditProfilePage implements OnInit {
 
   ngOnInit() {
     this.getuserinfo();
+    this.sendResetLink();
+
+
     this.formData = this.form.group({
       email: ['', [Validators.maxLength(100), Validators.required, Validators.pattern('[a-z0-9!#$%&\'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&\'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?')]],
       firstName:['',[Validators.required]],
@@ -92,4 +100,55 @@ export class EditProfilePage implements OnInit {
       }
     }
   }
+
+
+
+  sendResetLink() {
+    let mail =  {
+       email: this.user.email
+     } 
+     if(this.user.email !== undefined) {
+       this.loading.showLoader();
+       this.authService.resetlink(mail).subscribe((res : any) => {
+         if(res.isSuccessful === true){
+           localStorage.setItem('reseturl', JSON.stringify(res.returnedObject.url));
+           this.loading.closeLoader();
+           this.formatUrl();
+         }
+       },
+       error => {
+         this.loading.closeLoader();
+         this.alertService.showErrorAlert(error.error.message);
+       })
+     }
+   }
+
+   formatUrl(){
+    let fommatedStr = this.resetUrl.split('=');
+    let newFormat = fommatedStr[1].split('&');
+    this.tokeurl = newFormat[0];
+}
+
+
+resetPassword() {
+ let resetObj =  {
+      email: this.user.email,
+      newPassword : this.newPassword,
+      token : this.tokeurl
+    } 
+    if(this.newPassword !== undefined) {
+      this.loading.showLoader();
+      this.authService.resetpassword(resetObj).subscribe((res : any) => {
+        if(res.isSuccessful === true){
+          this.loading.closeLoader();
+          this.alertService.showSuccessAlert(res.message);
+        }
+      },
+      error => {
+        this.loading.closeLoader();
+        this.alertService.showErrorAlert(error.error.message);
+      })
+    }
+
+}
 }

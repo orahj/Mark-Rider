@@ -23,18 +23,21 @@ export class CheckoutPage implements OnInit {
   public walletRef : string = "WAL-" + Math.floor((Math.random() * 1000000000) + 1);
   public paystackReCode : string = "DP-" + Math.floor((Math.random() * 1000000000) + 1);
   deliveryObj = JSON.parse(localStorage.getItem('deliveryObj'));
-  itemList = this.deliveryObj[0];
-  returnedObj = JSON.parse(localStorage.getItem('deliveryReturnedObj'));
+  firstItemList = this.deliveryObj[0];
+  returnedObj;
   user = JSON.parse(localStorage.getItem('userobj'));
   public walletBalance : number;
-  public Total : any = this.returnedObj.totalAmount;
+  public Total;
   theSate: boolean;
   walletModel : PayWithWallet;
   verifyModel : VerifyPayment;
   public paystackStatus : boolean = false;
   verifyObj : any;
-_bState = false;
-payRef : any;
+  _bState = false;
+  payRef : any;
+  createshipmentstatus = false;
+  public EditItem : any;
+
   constructor(
     private route: Router,
     private modalController: ModalController,
@@ -45,8 +48,6 @@ payRef : any;
  
   ngOnInit() {
     this.getWalletBalance();
-    //this.verifyPayment();
-    //console.log('Statusssssss', this.paystackStatus)
   }
 
   increaseOrder(){
@@ -108,6 +109,31 @@ async paySuccess(){
   return await modal.present();
 }
 
+async deleteItem(selected){
+    const alert = await this.alertController.create({
+      header: 'Delete Details',
+      cssClass: 'my-custom-class',
+      message: 
+      'Are you sure you want to delete?',
+      buttons: [
+        {
+          text: 'No',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: () => {
+          }
+        }, {
+          text: 'Delete',
+          handler: (value) => {
+            this.deliveryObj.splice(selected, 1);
+            localStorage.setItem('deliveryObj', JSON.stringify(this.deliveryObj));
+          }
+        }
+      ]
+    });
+    await alert.present();
+}
+
 public  payWithPaystack(){
  this.Total = this.returnedObj.totalAmount 
   var handler = PaystackPop.setup({
@@ -142,7 +168,6 @@ handler.openIframe();
 
 getWalletBalance(){
   this.authService.getwalletbalance(this.user.email).subscribe((res : any) => {
-    console.log(res)
     this.walletBalance = res.returnedObject.balance;
   })
 }
@@ -169,7 +194,6 @@ paywithWallet() {
     this.loading.closeLoader();
     this.alert.showSuccessAlert(res.message);
     this.paySuccess();
-    console.log(res);
   }, error => {
     this.alert.showErrorAlert(error.error.message);
   })
@@ -188,10 +212,57 @@ public verifyPayment() {
       this.loading.closeLoader();
       this.alert.showSuccessAlert(res.message)
       this.paySuccess();
-      console.log(res);
     },error => {
       this.loading.closeLoader();
       this.alert.showErrorAlert(error.error.message);
+    })
+  }
+  
+
+  public addAddress(){
+    this.route.navigateByUrl('/dashboard/add-address');
+  }
+
+  public addItem(){
+    this.route.navigateByUrl('/dashboard/add-item');
+  }
+
+  public Edit(data) {
+    this.EditItem = data;
+  }
+
+  public UpdateItem(){
+    this.deliveryObj[this.EditItem]
+    localStorage.setItem('deliveryObj', JSON.stringify(this.deliveryObj));
+  }
+
+  public DeleteItem(selected) {
+    this.deliveryObj.splice(selected, 1);
+    localStorage.setItem('deliveryObj', JSON.stringify(this.deliveryObj));
+  }
+
+  public createDelivery(){
+    let data = {
+      email: this.user.email,
+      deliveryItems :  this.deliveryObj
+    }
+   
+    this.loading.showLoader();
+    this.authService.createdelivery(data).subscribe((res : any) => {
+      if(res.isSuccessful === true ){
+        let returnObj = {
+          deliveryNo: res.returnedObject.deliveryNo,
+          totalAmount : res.returnedObject.totalAmount,
+          transactionId : res.returnedObject.transactionId,
+          id : res.returnedObject.id
+        }
+        localStorage.setItem('deliveryReturnedObj', JSON.stringify(returnObj));
+        this.loading.closeLoader();
+        this.createshipmentstatus = true;
+        this.Total = res.returnedObject.totalAmount;
+        this.returnedObj = JSON.parse(localStorage.getItem('deliveryReturnedObj'))
+      }
+     
     })
   }
 

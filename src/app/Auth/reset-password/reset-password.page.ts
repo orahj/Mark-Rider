@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/Services/auth.service';
 import { AlertService } from 'src/app/Services/alert/alert.service';
 import { LoadingService } from '../../Services/loading/loading.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-reset-password',
@@ -11,10 +12,13 @@ import { LoadingService } from '../../Services/loading/loading.service';
 export class ResetPasswordPage implements OnInit {
   user = JSON.parse(localStorage.getItem('userobj'));
   email : string;
+  resetUrl = JSON.parse(localStorage.getItem('reseturl'));
+  upadtedUrl : string;
   constructor(
     private authService : AuthService,
     private loading : LoadingService,
-    private alertService : AlertService
+    private alertService : AlertService,
+    private router : Router
   ) { }
 
   ngOnInit() {
@@ -23,20 +27,20 @@ export class ResetPasswordPage implements OnInit {
   sendResetLink() {
    let mail =  {
       email: this.email
+    } 
+    if(this.email !== undefined) {
+      this.loading.showLoader();
+      this.authService.resetlink(mail).subscribe((res : any) => {
+        if(res.isSuccessful === true){
+          localStorage.setItem('reseturl', JSON.stringify(res.returnedObject.url));
+          this.loading.closeLoader();
+          this.router.navigate(['/password-reset']);
+        }
+      },
+      error => {
+        this.loading.closeLoader();
+        this.alertService.showErrorAlert(error.error.message);
+      })
     }
-    this.loading.showLoader();
-    this.authService.resetlink(mail).subscribe((res : any) => {
-      if(res.isSuccessful === true){
-        localStorage.setItem('reseturl', JSON.stringify(res.reeturnedObject.url));
-      }
-      this.loading.closeLoader();
-      this.alertService.showSuccessAlert(res.message);
-      console.log(res);
-    },
-    error => {
-      this.loading.closeLoader();
-      this.alertService.showErrorAlert(error.error.message);
-    })
   }
-
 }

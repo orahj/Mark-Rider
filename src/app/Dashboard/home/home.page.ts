@@ -87,6 +87,11 @@ export class HomePage implements OnInit {
     this.setCurrentLocation();
   
   }
+
+  bulkDelivery(){
+    this.bulkdelivery = true;
+  }
+
   fundWallet(){
     this.route.navigate(['/dashboard/fund-wallet']);
   }
@@ -170,6 +175,7 @@ export class HomePage implements OnInit {
             this.itemList[i].baseLocation = this.baseLocation;
           }
           this.baseAddress = place.formatted_address;
+            localStorage.setItem('senderaddress', JSON.stringify(this.baseLocation));
             //set latitude, longitude and zoom
             this.latitude = place.geometry.location.lat();
             this.longitude = place.geometry.location.lng();
@@ -207,7 +213,7 @@ export class HomePage implements OnInit {
             longitude: place.geometry.location.lng(),
             latitude: place.geometry.location.lat()
           }
-
+          localStorage.setItem('receiveraddress', JSON.stringify(this.targetLocation));
           for(let i = 0;  i < this.itemList.length; i++) {
             this.itemList[i].targetLocation = this.targetLocation;
           }
@@ -215,8 +221,6 @@ export class HomePage implements OnInit {
             this.latitude = place.geometry.location.lat();
             this.longitude = place.geometry.location.lng();
             this.zoom = 8;
-
-            console.log('Lat and lng list',this.loacation);
           });
         });
       });
@@ -322,7 +326,6 @@ export class HomePage implements OnInit {
 
   getCarrier(selected){
       this.carrier = selected;
-      console.log('carrier',this.carrier)
       for(let i = 0; i < this.itemList.length; i++) {
         this.itemList[i].carriers = selected;
       }
@@ -389,31 +392,31 @@ get f() { return this.formData.controls; }
 
 public onSubmit() : void {
  // console.table(this.formData.value);
-  console.table(this.formData);
   this.submitted = true;
   if(this.formData.invalid){
     return;
   }
   localStorage.setItem('deliveryObj', JSON.stringify(this.itemList));
-  let data = {
-    email: this.user.email,
-    deliveryItems : this.itemList
-  }
+  this.orderProduct();
+  // let data = {
+  //   email: this.user.email,
+  //   deliveryItems : this.itemList
+  // }
  
-  this.loading.showLoader();
-  this.authService.createdelivery(data).subscribe((res : any) => {
-    if(res.isSuccessful === true ){
-      let returnObj = {
-        deliveryNo: res.returnedObject.deliveryNo,
-        totalAmount : res.returnedObject.totalAmount,
-        transactionId : res.returnedObject.transactionId,
-        id : res.returnedObject.id
-      }
-      localStorage.setItem('deliveryReturnedObj', JSON.stringify(returnObj));
-      this.loading.closeLoader();
-      this.orderProduct();
-    }
-  })
+  // this.loading.showLoader();
+  // this.authService.createdelivery(data).subscribe((res : any) => {
+  //   if(res.isSuccessful === true ){
+  //     let returnObj = {
+  //       deliveryNo: res.returnedObject.deliveryNo,
+  //       totalAmount : res.returnedObject.totalAmount,
+  //       transactionId : res.returnedObject.transactionId,
+  //       id : res.returnedObject.id
+  //     }
+  //     localStorage.setItem('deliveryReturnedObj', JSON.stringify(returnObj));
+  //     this.loading.closeLoader();
+  //     this.orderProduct();
+  //   }
+  // })
 }
 
 }
