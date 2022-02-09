@@ -13,7 +13,7 @@ import { AlertController } from '@ionic/angular';
 })
 export class NotificationPage implements OnInit {
   user = JSON.parse(localStorage.getItem('userobj'));
-  NotificationList : any;
+  NotificationList : any | [];
   ItemSelected : any;
 
   constructor(

@@ -57,14 +57,18 @@ export class FundwalletComponent implements OnInit {
   handler.openIframe();
   }
 
-  fundWallet(){
-    this.model.amount = this.Amount;
-    this.model.email = this.user.email;
-    this.model.userId = this.user.id;
-    this.authService.fundwallet(this.model).subscribe((res) => {
-      console.log(res);
-    })
-  }
+  // amoutVal() {
+  //   console.log(this.Amount);
+  // }
+
+  // fundWallet(){
+  //   this.model.amount = this.Amount;
+  //   this.model.email = this.user.email;
+  //   this.model.userId = this.user.id;
+  //   this.authService.fundwallet(this.model).subscribe((res) => {
+  //     console.log(res);
+  //   })
+  // }
 
 
   fundAccount(){

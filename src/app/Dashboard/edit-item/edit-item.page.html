@@ -1,0 +1,57 @@
+<ion-header [translucent]="true">
+  <ion-toolbar class="ion-text-center ion-no-border">
+    <ion-buttons slot="start" class="back-btn">
+      <ion-back-button defaultHref="/dashboard"></ion-back-button>
+    </ion-buttons>
+    <ion-title>
+      <div class="pawa2_transparent_header">
+        Edit item
+      </div>
+    </ion-title>
+  </ion-toolbar>
+  <div class="small_ribbon"></div>
+</ion-header>
+
+<ion-content class="ion-padding gray_background">
+  <div class="content_padded">
+    <ion-grid>
+      <ion-row class="the_address_row_handle">
+        <ion-col size="12">
+          <div class="header_style_3 mt-15">
+            Enter Item Details
+          </div>
+        </ion-col>
+        <div class="wallet_transaction_recrods">
+          <div class="handle_address_border">
+           <ion-row>
+             <ion-col size="4" class="the_address_row_handle">
+              <input type="file" class="file-upload2" (change)="onFileChanged($event)">
+              <div id="TheImageContents"></div>
+              <img src="{{EditItem.imageUrl}}" *ngIf="Image == undefined" style="width: 70px;">
+             </ion-col>
+            <ion-col size="7">
+              <ion-list>
+                <ion-item mode="md">
+                  <!-- <ion-icon name="gift" slot="start" mode="md"></ion-icon> -->
+                  <ion-label position="floating" mode="md">Item to be delivered</ion-label>
+                  <ion-input placeholder="A pair of shoe" [(ngModel)]="EditItem.pickUpItems" mode="md"></ion-input>
+                </ion-item>
+              </ion-list>
+            </ion-col>
+          <!-- <ion-col size="1">
+            <button class="trash-icon">
+              <ion-icon name="trash-outline"></ion-icon>
+            </button>
+          </ion-col> -->
+           </ion-row>
+          </div>
+        </div>
+
+      </ion-row>
+    </ion-grid>
+  </div>
+
+    <ion-button (click)="UpdateItem()" class="pawa2_u_action_btn_2">
+       Update
+    </ion-button>
+</ion-content>

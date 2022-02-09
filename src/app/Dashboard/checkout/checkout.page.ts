@@ -9,6 +9,7 @@ import { AuthService } from 'src/app/Services/auth.service';
 import { PayWithWallet, VerifyPayment } from '../../_model/walletDto';
 import { AlertService } from 'src/app/Services/alert/alert.service';
 import { PaymentSuccessPage } from '../../Modals/payment-success/payment-success.page';
+import { FundwalletComponent } from 'src/app/Modals/fundwallet/fundwallet.component';
 declare var PaystackPop: any;
 
 @Component({
@@ -74,6 +75,21 @@ export class CheckoutPage implements OnInit {
   }
   payWithTransfer(){
     this.route.navigate(['dashboard/pay-transfer']);
+  }
+
+  editItem(selected){
+    console.log(selected);
+    localStorage.setItem('edititem', JSON.stringify(selected));
+    this.route.navigate(['dashboard/edit-item']);
+  }
+
+  async showFundModal() {
+    const modal = await this.modalController.create({
+      component: FundwalletComponent,
+      cssClass: 'custom_network_modal',
+      backdropDismiss: true
+    });
+    return await modal.present();
   }
 
   async stateChange(event){

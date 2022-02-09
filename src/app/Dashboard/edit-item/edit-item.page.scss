@@ -1,0 +1,103 @@
+ion-header {
+    &.header-md:after {
+      background: none;
+    }
+  }
+
+  ion-content.gray_background{
+    --background: #f9f9f9;
+}
+.back-btn {
+  color: #b37502;
+}
+
+ion-input.the_form_input {
+  border-radius: 3px;
+  border: 1px solid #e3e4e6;
+  --padding-top: 15px;
+  --padding-bottom: 15px;
+  --padding-start: 20px;
+  color: #707070;
+  --background: #fff;
+  font-weight: 300;
+  font-size: 12px;
+}
+
+ion-input.the_form_input {
+
+    font-weight: 300;
+
+}
+
+.header_style_3 {
+  font-weight: 500;
+  color: #000;
+  margin-bottom: 10px;
+  font-size: 13px;
+}
+
+.location_text {
+  color: #000;
+  font-size: 12px;
+  font-weight: 300;
+}
+
+ion-icon.location-outline-icon {
+  font-size: 29px;
+}
+
+ion-icon.location-outline-icon {
+  color: #EBEBEB;
+}
+
+ion-icon.location-outline-icon.active {
+  color: #707070;
+}
+
+.handle_address_border {
+  background: white;
+  padding: 20px;
+  border-radius: 5px;
+}
+
+.the_address_row_handle {
+  // margin-bottom: 15px;
+  margin-bottom: 15px;
+  border-bottom: 1px dotted #eeeded;
+  padding-bottom: 10px;
+}
+
+.the_address_row_handle:last-child {
+  margin-bottom: 0;
+  border-bottom: 0;
+  padding-bottom: 0;
+}
+
+.auto-input {
+  width: 100%; 
+  height: 45px;
+  border: 1px solid #eae7e7;
+  padding: 10px;
+}
+
+.file-upload2 {
+  margin-top: 20px;
+    position: absolute;
+    width: 80px;
+    opacity: 0;
+}
+ion-button.pawa2_u_action_btn_2 {
+  width: 100%;
+  --background: #ffa500;
+  text-transform: capitalize;
+  --padding-top: 19px;
+  --padding-bottom: 19px;
+  margin-top: 50px;
+}
+
+ion-button.gold {
+  --background: #dac67b;
+}
+ion-back-button {
+    --color : #b3b1b1;
+}

@@ -126,6 +126,10 @@ const routes: Routes = [
     path: 'password-reset',
     loadChildren: () => import('./Auth/password-reset/password-reset.module').then( m => m.PasswordResetPageModule)
   },
+  {
+    path: 'dashboard/edit-item',
+    loadChildren: () => import('./Dashboard/edit-item/edit-item.module').then( m => m.EditItemPageModule)
+  },
   // { path: 'order', loadChildren: () => import('./Modals/product/type-one/order/order.module').then( m => m.OrderPageModule) },
   // tslint:disable-next-line: max-line-length
   // { path: 'add-to-cart', loadChildren: () => import('./Modals/product/type-one/add-to-cart/add-to-cart.module').then( m => m.AddToCartPageModule) },
