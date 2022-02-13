@@ -71,25 +71,9 @@ export class EditItemPage implements OnInit {
   }
 
   public UpdateItem(){
-    this.updateItem = this.EditItem;
-    // let index = this.deliveryObj.indexOf(this.EditItem)
-    // this.deliveryObj[this.EditItem];
-    // let newObject = this.EditItem;
-    // console.log('Baby', this.deliveryObj[this.updateItem]);
-    // console.log('Updated Delivery Object',this.deliveryObj);
-    // localStorage.setItem('deliveryObj', JSON.stringify(this.deliveryObj));
-    // this.router.navigateByUrl('/dashboard/checkout');
-
-    let data = this.updateItem; 
-    console.log('Data',data) 
-    for (let i = 0; i < this.deliveryObj.length; i++) {  
-      if (i == data) {  
-        this.deliveryObj[i].Value = this.updateItem.Value;  
-        this.deliveryObj[this.updateItem.Value];
-      }  
-    } 
+    this.deliveryObj.push({...this.EditItem});
     localStorage.setItem('deliveryObj', JSON.stringify(this.deliveryObj));
-       this.router.navigateByUrl('/dashboard/checkout');
+    this.router.navigateByUrl('/dashboard/checkout');
   }
 
   addItem() {

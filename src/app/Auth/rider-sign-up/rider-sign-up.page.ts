@@ -77,8 +77,6 @@ export class RiderSignUpPage implements OnInit {
     // );
   }
 
-
-
   public submitIndividualForm(): void {
     this.submitted = true;
     if(this.individualFormData.invalid){

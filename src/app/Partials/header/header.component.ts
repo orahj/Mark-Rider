@@ -56,7 +56,6 @@ export class HeaderComponent implements OnInit {
   getNotification(){
     this.authService.getnotification(this.user.email).subscribe((res : any) => {
       this.NotificationList = res.returnedObject;
-      console.log(this.NotificationList);
     })
   }
 

@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
+import { AuthService } from 'src/app/Services/auth.service';
 
 @Component({
   selector: 'app-header-two',
@@ -8,11 +9,17 @@ import { Location } from '@angular/common';
   styleUrls: ['./header-two.component.scss'],
 })
 export class HeaderTwoComponent implements OnInit {
-
-  constructor(private route: Router, private _location:Location) { }
+  user = JSON.parse(localStorage.getItem('userobj'));
+  constructor(
+    private route: Router, 
+    private _location:Location,
+    private authService : AuthService) { }
   // @Input() title: any;
   @Input() title: string;
+  NotificationList : any;
   ngOnInit() {
+    this.getNotification();
+    console.log('List', this.NotificationList)
   }
 
   goBack(){
@@ -35,4 +42,10 @@ export class HeaderTwoComponent implements OnInit {
     this.route.navigate(['/dashboard/checkout']);
   }
 
+  getNotification(){
+    this.authService.getnotification(this.user.email).subscribe((res : any) => {
+      this.NotificationList = res.returnedObject;
+      console.log('Notification List',this.NotificationList);
+    })
+  }
 }

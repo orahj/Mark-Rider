@@ -19,7 +19,6 @@ export class OrderPage implements OnInit {
     ) { }
 
   ngOnInit() {
-    console.log('Returned Object', this.returnedObj);
   }
 
   async addToCart(){

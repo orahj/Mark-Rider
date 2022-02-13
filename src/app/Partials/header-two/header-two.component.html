@@ -8,11 +8,12 @@
         {{ title }}
       </div>
     </ion-title>
-    <ion-buttons slot="end">
+    <ion-buttons slot="end" >
         <!-- <ion-button> <ion-icon class="colorise_menu_icon" slot="icon-only" name="search-outline"></ion-icon> </ion-button> -->
-        <ion-button (click)="notification()"> 
+        <ion-button (click)="notification()" *ngIf="NotificationList != undefined"> 
           <ion-icon class="colorise_menu_icon" slot="icon-only" name="notifications-outline"></ion-icon> 
-          <ion-badge class="style_notification_badge" color="danger" slot="end">2</ion-badge>
+          <!-- <ion-badge *ngIf="NotificationList !== undefined" class="style_notification_badge" color="danger" slot="end">{{NotificationList.length}}</ion-badge> -->
+          <ion-badge class="style_notification_badge" color="danger" slot="end">{{NotificationList.length}}</ion-badge>
         </ion-button>
         <!-- <ion-button (click)="cart()"> 
           <ion-icon class="colorise_menu_icon" slot="icon-only" name="cart-outline"></ion-icon> 

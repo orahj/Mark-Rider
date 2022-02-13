@@ -226,10 +226,10 @@ export class HomePage implements OnInit {
       });
       let SenderLocation = JSON.parse(localStorage.getItem('senderlocation'));
       let ReceiverLocation = JSON.parse(localStorage.getItem('receiverlocation'));
-      this.locations  = [
-        {lat: SenderLocation.lat, lng: SenderLocation.lng, icon : './assets/images/macriders/m2.png'},
-        {lat: ReceiverLocation.lat, lng: ReceiverLocation.lng, icon : './assets/images/macriders/m2.png'}
-      ]
+      // this.locations  = [
+      //   {lat: SenderLocation.lat, lng: SenderLocation.lng, icon : './assets/images/macriders/m2.png'},
+      //   {lat: ReceiverLocation.lat, lng: ReceiverLocation.lng, icon : './assets/images/macriders/m2.png'}
+      // ]
   }
 
   private setCurrentLocation() {

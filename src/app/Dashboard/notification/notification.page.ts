@@ -36,7 +36,6 @@ export class NotificationPage implements OnInit {
     this.loading.showLoader();
     this.authService.getnotification(this.user.email).subscribe((res : any) => {
       this.loading.closeLoader();
-      console.log(res);
       this.NotificationList = res.returnedObject;
       this.modal.dismiss();
     }, error => {
@@ -46,7 +45,6 @@ export class NotificationPage implements OnInit {
   }
 
   async actionPrompt(selected) {
-    console.log(selected);
     this.ItemSelected = selected;
     const alert = await this.alertController.create({
       cssClass: 'my-custom-class',
@@ -58,14 +56,12 @@ export class NotificationPage implements OnInit {
           cssClass: 'info',
           handler: (blah) => {
             this.getSingleNotification();
-            console.log('Start Delivery');
           }
         }, {
           text: 'Delete',
           cssClass: 'danger',
           handler: () => {
             this.deletSingleNotification();
-            console.log('Cancle delivey Okay');
           }
         }
       ]

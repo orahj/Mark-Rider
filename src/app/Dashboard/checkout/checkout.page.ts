@@ -78,10 +78,15 @@ export class CheckoutPage implements OnInit {
   }
 
   editItem(selected){
-    console.log(selected);
     localStorage.setItem('edititem', JSON.stringify(selected));
+    let findResult = this.deliveryObj.findIndex(x => x.pickUpItems === selected.pickUpItems);   
+    if (findResult >= 0) {
+      this.deliveryObj.splice(findResult, 1 );
+    }
+    localStorage.setItem('deliveryObj', JSON.stringify(this.deliveryObj));
     this.route.navigate(['dashboard/edit-item']);
   }
+
 
   async showFundModal() {
     const modal = await this.modalController.create({

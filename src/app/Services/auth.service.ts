@@ -26,7 +26,6 @@ decordedToken: any;
     map((Response: any) => {
       const user = Response;
       this.userResponse = Response;
-      console.log('Response',Response);
       if (Response.isSuccessful === true) {
         localStorage.setItem('token', JSON.stringify(Response.returnedObject.token) );
         localStorage.setItem('userobj', JSON.stringify(Response.returnedObject));

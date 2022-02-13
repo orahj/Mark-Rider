@@ -14,8 +14,8 @@
 
             </div>
           </ion-col>
-          <ion-col size="6">
-            <div class="menu_user_meta_name">
+          <ion-col size="6" *ngIf="user">
+            <div class="menu_user_meta_name" >
               {{user.firstName}}
             </div>
             <div *ngIf="user.userTypes == 4" class="menu_user_meta_link" (click)="gotoViewProfile()">
@@ -25,7 +25,7 @@
               View profile
             </div>
           </ion-col>
-        <ion-col size="3" *ngIf="user.userTypes == 3" >
+        <ion-col size="3" *ngIf="user && user.userTypes == 3" >
           <div class="log_out_text ion-text-center logout" (click) = "logOut()">
             <ion-icon name="power-outline"></ion-icon>
           </div>
@@ -45,7 +45,7 @@
         <ion-ripple-effect></ion-ripple-effect>
       </ion-item>
       
-      <ion-item *ngIf="user.userTypes == 4" (click)="gotoWallet()" lines="none" class="no_item_padd ion-activatable ripple-parent">
+      <ion-item *ngIf="user && user.userTypes == 4" (click)="gotoWallet()" lines="none" class="no_item_padd ion-activatable ripple-parent">
         <div class="nav_item_inner_padd" (click)="gotoWallet()">
           <ion-icon name="wallet-outline"></ion-icon>
             Wallet
