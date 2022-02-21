@@ -119,9 +119,9 @@ export class SignupPage implements OnInit {
       // Phone Validation for Nigeria Numbers - Regex Pattern - ^[0]\\d{10}$ - verify it starts with 0 and total length is 11.
       phone: ['', [Validators.required, Validators.pattern('^[0]\\d{10}$')]],
       address: ['', [Validators.required]],
-      gender:[0, [Validators.required]],
-      state:[0, [Validators.required]],
-      country:[0, [Validators.required]],
+      gender:[0, [Validators.required, Validators.pattern(/^[1-9]\d*$/) ]],
+      state:[0, [Validators.required, Validators.pattern(/^[1-9]\d*$/) ]],
+      country:[0, [Validators.required, Validators.pattern(/^[1-9]\d*$/) ]],
       password: ['', [Validators.required]],
       confirm_password: ['', [Validators.required]],
     },
@@ -135,9 +135,9 @@ export class SignupPage implements OnInit {
       lastName: [null, [Validators.required, Validators.maxLength(100)]],
       email: [null, [Validators.required, Validators.pattern('[a-z0-9!#$%&\'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&\'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?')]],
       // Phone Validation for Nigeria Numbers - Regex Pattern - ^[0]\\d{10}$ - verify it starts with 0 and total length is 11.
-      rcNumber:[0, [Validators.required]],
-      state:[0, [Validators.required]],
-      country:[0, [Validators.required]],
+      rcNumber:[0, [Validators.required, Validators.pattern(/^[1-9]\d*$/) ]],
+      state:[0, [Validators.required, Validators.pattern(/^[1-9]\d*$/) ]],
+      country:[0, [Validators.required, Validators.pattern(/^[1-9]\d*$/) ]],
       phone: [null, [Validators.required, Validators.pattern('^[0]\\d{10}$')]],
       address: [null, [Validators.required]],
       password: [null, [Validators.required]],
@@ -153,8 +153,8 @@ export class SignupPage implements OnInit {
       lastName: ['', [Validators.required, Validators.maxLength(100)]],
       email: ['', [Validators.required, Validators.pattern('[a-z0-9!#$%&\'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&\'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?')]],
       // Phone Validation for Nigeria Numbers - Regex Pattern - ^[0]\\d{10}$ - verify it starts with 0 and total length is 11.
-      state:[0, [Validators.required]],
-      country:[0, [Validators.required]],
+      state:[0, [Validators.required, Validators.pattern(/^[1-9]\d*$/) ]],
+      country:[0, [Validators.required, Validators.pattern(/^[1-9]\d*$/) ]],
       phone: ['', [Validators.required, Validators.pattern('^[0]\\d{10}$')]],
       address: ['', [Validators.required]],
       password: ['', [Validators.required]],
@@ -164,15 +164,17 @@ export class SignupPage implements OnInit {
 
   getState(){
     this.authService.getstate().subscribe((res : any) => {
-      console.log(res);
-      this.States = res.returnedObject.returnedObject;
+      if(res.isSuccessful === true){
+        this.States = res.returnedObject.returnedObject;
+      }
     })
   }
 
   getCountries() {
     this.authService.getcountries().subscribe((res : any) => {
-      console.log(res);
-      this.Countries = res.returnedObject.returnedObject;
+      if(res.isSuccessful == true){
+        this.Countries = res.returnedObject.returnedObject;
+      }
     })
   }
 

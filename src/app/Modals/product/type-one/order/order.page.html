@@ -41,13 +41,14 @@
               <ion-col size="4">
                 <div> 
                   <ion-avatar slot="start">
-                  <ion-img class="mark-carriers" src="../../../assets//images/macriders/m2.png"></ion-img>
+                  <ion-img class="mark-carriers" src="../../../assets/images/macriders/m2.png"></ion-img>
                 </ion-avatar>
               </div>
               </ion-col>
               <ion-col size="4">
                 
-                <div class="modal_text_lc">Right Away</div>
+                <div *ngIf="itemList.deliveryTime == 1" class="modal_text_lc">Right Away</div>
+                <div *ngIf="itemList.deliveryTime == 2" class="modal_text_lc">Schedule for later</div>
              
             </ion-col>
             </ion-row>
@@ -56,7 +57,7 @@
             <ion-row>
               <ion-col class="mrk-logo" size="3">
                 
-                  <ion-img  src="../../../assets//images/macriders/mark-riders.jpg"></ion-img>
+                  <ion-img  src="../../../assets/images/macriders/mark-riders.jpg"></ion-img>
                
               </ion-col>
               <ion-col size="9">

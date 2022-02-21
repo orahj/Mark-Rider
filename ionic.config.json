@@ -1,7 +1,8 @@
 {
-  "name": "pawa2u-mobile",
+  "name": "Mark Rider",
   "integrations": {
-    "cordova": {}
+    "cordova": {},
+    "capacitor": {}
   },
   "type": "angular"
 }

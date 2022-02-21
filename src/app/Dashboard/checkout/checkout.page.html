@@ -140,19 +140,27 @@
                     Pay With
                   </div>
                 </ion-col> -->
+
+              
+
                 <ion-col size="12" *ngIf="createshipmentstatus == false">
-                  <ion-button (click)="createDelivery()" class="pawa2_u_action_btn_2 gold">
+                  <ion-button (click)="disclaimerAlert()" class="pawa2_u_action_btn_2 gold">
                       Create Delivery
+                  </ion-button>
+                </ion-col>
+
+                <ion-col size="12" *ngIf="createshipmentstatus == false && returnedObj.totalAmount < walletBalance">
+                  <ion-button (click)="disclaimerAlert()" class="pawa2_u_action_btn_2 gold">
+                      Fund Wallet
                   </ion-button>
                 </ion-col>
 
                 <ion-col size="12" *ngIf="createshipmentstatus == true">
                   <div class="pawa2_u_checkout_btn_actions">
-
-                      <ion-button (click)="payWithPaystack()" class="pawa2_u_action_btn_2">
+                      <ion-button  (click)="payWithPaystack()" class="pawa2_u_action_btn_2">
                         Pay with Card
                       </ion-button>
-                    <ion-button (click)="paywithWallet()" class="pawa2_u_action_btn_2 gold">
+                    <ion-button *ngIf="createshipmentstatus == true && returnedObj.totalAmount >= walletBalance" (click)="paywithWallet()" class="pawa2_u_action_btn_2 gold">
                       Pay with Wallet
                     </ion-button>
                     <ion-button (click)="payWithTransfer()" class="pawa2_u_action_btn_2 gold">

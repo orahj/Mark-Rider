@@ -72,7 +72,7 @@ export class LoginPage implements OnInit {
     this.authService.login(this.model).subscribe((res) => {
       this.loading.closeLoader();
     },error => {
-      console.log(error);
+      this.loading.closeLoader();
       this.alert.showErrorAlert(error.error.message);
     })
 

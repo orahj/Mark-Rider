@@ -369,6 +369,16 @@ export class HomePage implements OnInit {
   notavailble(){
     alert("Not available at the moment!")
   }
+
+async notAvailable(){
+  const alert = await this.alertController.create({
+    cssClass: 'my-custom-class',
+    message: 'This service is not available at the moment',
+    buttons: ['OK']
+  });
+ return await alert.present();
+}
+
 async addresslist(){
     debugger;
     const modal = await this.modalController.create({

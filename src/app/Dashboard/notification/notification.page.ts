@@ -76,6 +76,9 @@ export class NotificationPage implements OnInit {
       this.loading.closeLoader();
       localStorage.setItem('notificationdetails', JSON.stringify(res.returnedObject));
       this.route.navigate(['dashboard/notification-details']);
+    }, error => {
+      this.loading.closeLoader();
+      this.alert.showErrorAlert(error.error.message);
     }) 
   }
 
@@ -87,6 +90,7 @@ export class NotificationPage implements OnInit {
     }, error => {
       this.loading.closeLoader();
       this.alert.showErrorAlert(error.error.message);
+      window.location.reload();
     })
   }
 
@@ -98,6 +102,7 @@ export class NotificationPage implements OnInit {
     }, error => {
       this.loading.closeLoader();
       this.alert.showErrorAlert(error.error.message);
+      location.reload();
     })
   }
 

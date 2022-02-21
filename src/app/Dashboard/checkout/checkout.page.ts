@@ -97,27 +97,29 @@ export class CheckoutPage implements OnInit {
     return await modal.present();
   }
 
-  async stateChange(event){
-    if(event){
+
+async disclaimerAlert(){
       const alert = await this.alertController.create({
-        header: 'Disclamier',
+        header: 'Disclaimer',
         cssClass: 'my-custom-class',
         message: 
         'Ensure that the picture uploaded is the same as the item/s to be picked and it’s a shipment a bike can carry. Any fraudulent act won’t be tolerated',
-        buttons: ['Cancel', 'Proceed']
+        buttons: [
+          {
+            text: 'Cancel',
+            role: 'cancel',
+            cssClass: 'secondary',
+            handler: () => {
+            }
+          }, {
+            text: 'Create Delivery',
+            handler: (value) => {
+              this.createDelivery();
+            }
+          }
+        ]
       });
       await alert.present();
-    }
-    else{
-        const alert = await this.alertController.create({
-          header: 'Alert',
-          cssClass: 'my-custom-class',
-          message: 'Are you sure you want go offline',
-          buttons: ['Disagree', 'Agree']
-        });
-        await alert.present();
-    console.log(event);
-  }
 }
 
 async paySuccess(){

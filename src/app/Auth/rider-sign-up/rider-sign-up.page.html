@@ -74,6 +74,7 @@
         </ion-select>
         <div class="validate_input" *ngIf="i.gender.touched || i.gender.invalid && submitted">
           <div *ngIf="i.gender.errors?.required">Gender is required</div>
+          <div *ngIf="i.gender.errors?.pattern">Gender is required</div>
         </div>
 
       <ion-select interface="popover" placeholder="Select State" formControlName="state"  class="mark-drop-down">
@@ -81,6 +82,7 @@
       </ion-select>
       <div class="validate_input" *ngIf="i.state.touched || i.state.invalid && submitted">
         <div *ngIf="i.state.errors?.required">State is required</div>
+        <div *ngIf="i.state.errors?.pattern">State is required</div>
       </div>
    
 
@@ -89,6 +91,7 @@
       </ion-select>
       <div class="validate_input" *ngIf="i.country.touched || i.country.invalid && submitted">
         <div *ngIf="i.country.errors?.required">Country is required</div>
+        <div *ngIf="i.country.errors?.pattern">Country is required</div>
       </div>
           
      

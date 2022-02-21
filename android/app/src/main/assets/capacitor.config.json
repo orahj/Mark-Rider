@@ -1,0 +1,6 @@
+{
+	"appId": "com.markrider.app",
+	"appName": "Mark Rider",
+	"webDir": "www",
+	"bundledWebRuntime": false
+}

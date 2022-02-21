@@ -16,7 +16,7 @@
   (ionChange)="segmentChanged($event)">
 
   <ion-segment-button class="pawa2u_segment" value="individual">
-    <ion-label class="pawa2u_segment_text">Indivdual</ion-label>
+    <ion-label class="pawa2u_segment_text">Individual</ion-label>
   </ion-segment-button>
   <ion-segment-button class="pawa2u_segment" value="sme">
     <ion-label class="pawa2u_segment_text">SME <span class="percentage">5% off</span></ion-label>
@@ -95,6 +95,7 @@
       </ion-select>
       <div class="validate_input" *ngIf="i.gender.touched || i.gender.invalid && submitted">
         <div *ngIf="i.gender.errors?.required">Gender is required</div>
+        <div *ngIf="i.gender.errors?.pattern">Gender is required </div>
       </div>
 
       <ion-select interface="popover" placeholder="Select State" formControlName="state"  class="mark-drop-down">
@@ -102,7 +103,9 @@
       </ion-select>
       <div class="validate_input" *ngIf="i.state.touched || i.state.invalid && submitted">
         <div *ngIf="i.state.errors?.required">State is required</div>
+        <div *ngIf="i.state.errors?.pattern">State is required</div>
       </div>
+   
    
 
       <ion-select interface="popover" placeholder="Select Country" formControlName="country" class="mark-drop-down">
@@ -110,6 +113,7 @@
       </ion-select>
       <div class="validate_input" *ngIf="i.country.touched || i.country.invalid && submitted">
         <div *ngIf="i.country.errors?.required">Country is required</div>
+        <div *ngIf="i.country.errors?.pattern">Country is required </div>
       </div>
    
 
@@ -224,6 +228,7 @@
       </ion-select>
       <div class="validate_input" *ngIf="s.state.touched || s.state.invalid && submitted2">
         <div *ngIf="s.state.errors?.required">State is required</div>
+        <div *ngIf="s.state.errors?.pattern">State is required </div>
       </div>
    
 
@@ -232,6 +237,7 @@
       </ion-select>
       <div class="validate_input" *ngIf="s.country.touched || s.country.invalid && submitted2">
         <div *ngIf="s.country.errors?.required">Country is required</div>
+        <div *ngIf="s.country.errors?.pattern">State is required </div>
       </div>
 
       <ion-item>
@@ -291,6 +297,7 @@
       </ion-item>
       <div class="validate_input" *ngIf="c.rcNumber.touched || c.rcNumber.invalid && submitted1">
         <div *ngIf="c.rcNumber.errors?.required">RC Number is required</div>
+        <div *ngIf="c.rcNumber.errors?.pattern">RC Bumber is required</div>
       </div>
 
       <ion-item>

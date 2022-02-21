@@ -78,6 +78,21 @@ ion-button.gold {
   margin-bottom: 5px;
 }
 
+.the_wallet_item_list2 {
+  // padding: 20px 20px;
+  border: 1px solid #eae7e7;
+  position: relative;
+  overflow: hidden;
+  background: #fff;
+  border-radius: 5px;
+  margin-bottom: 5px;
+  font-size: 10px;
+}
+
+.timeLabel{
+  font-size: 12px !important;
+}
+
 .has_fund_in_wallet.ion-text-center {
   margin-top: 50px;
 }
@@ -235,4 +250,13 @@ agm-map {
 
   #map {
     height: 300px;
+  }
+
+  ion-item.deliveryTime {
+    --padding: 4px;
+  }
+
+  ion-label {
+    --font-size: 5px;
+    --color: red;
   }

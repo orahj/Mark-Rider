@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiUrl: 'http://markrider.herokuapp.com/api/'
+  apiUrl: 'https://markrider.herokuapp.com/api/'
 };

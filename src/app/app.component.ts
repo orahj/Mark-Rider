@@ -52,6 +52,11 @@ export class AppComponent {
     this.menu.close();
   }
 
+  gotoRiderHome(){
+    this.route.navigate(['/rider-dashboard']);
+    this.menu.close();
+  }
+
   gotoWallet(){
     this.route.navigate(['/dashboard/wallet']);
     this.menu.close();

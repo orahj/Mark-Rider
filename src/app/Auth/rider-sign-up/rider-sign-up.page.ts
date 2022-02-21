@@ -15,8 +15,6 @@ import { Result } from 'src/app/_model/result';
 export class RiderSignUpPage implements OnInit {
 
   individualFormData: FormGroup;
-  companyFormData: FormGroup;
-  segmentModel = 'individual';
   model: RegistrationDto;
   ress: Result;
   public States : any
@@ -37,10 +35,6 @@ export class RiderSignUpPage implements OnInit {
     this.getCountries();
   }
 
-  segmentChanged(segment){
-    // reset input fileds on segment change
-  }
-
 
   get i() { return this.individualFormData.controls; }
 
@@ -52,9 +46,9 @@ export class RiderSignUpPage implements OnInit {
       // Phone Validation for Nigeria Numbers - Regex Pattern - ^[0]\\d{10}$ - verify it starts with 0 and total length is 11.
       phone: [null, [Validators.required, Validators.pattern('^[0]\\d{10}$')]],
       address: [null, [Validators.required, Validators.maxLength(130)]],
-      gender:[0, [Validators.required]],
-      state:[0, [Validators.required]],
-      country:[0, [Validators.required]],
+      gender:[0,[Validators.required, Validators.pattern(/^[1-9]\d*$/) ]],
+      state:[0, [Validators.required, Validators.pattern(/^[1-9]\d*$/) ]],
+      country:[0, [Validators.required, Validators.pattern(/^[1-9]\d*$/) ]],
       riderCardNo : ['', Validators.required],
       password: [null, [Validators.required, Validators.maxLength(130)]],
       confirm_password: [null, [Validators.required, Validators.maxLength(130)]],
@@ -83,12 +77,10 @@ export class RiderSignUpPage implements OnInit {
       return;
     }
     this.loading.showLoader();
-    console.table(this.individualFormData.value);
       this.model = Object.assign({}, this.individualFormData.value);
       this.model.userTypes = 3;
       this.model.userCategory = 4;
       this.model.userName = this.model.email;
-      console.log('Model', this.model);
       this.authService.register(this.model).subscribe((res: any) =>{
         this.loading.closeLoader();
         this.alertService.showSuccessAlert(res.message)
@@ -100,7 +92,6 @@ export class RiderSignUpPage implements OnInit {
 
   public submitIndividualForm1(): void {
     this.loading.showLoader();
-    console.table(this.individualFormData.value);
     if(this.individualFormData.valid) {
       this.model = Object.assign({}, this.individualFormData.value);
 
@@ -124,14 +115,12 @@ export class RiderSignUpPage implements OnInit {
 
   getState(){
     this.authService.getstate().subscribe((res : any) => {
-      console.log(res);
       this.States = res.returnedObject.returnedObject;
     })
   }
 
   getCountries() {
     this.authService.getcountries().subscribe((res : any) => {
-      console.log(res);
       this.Countries = res.returnedObject.returnedObject;
     })
   }

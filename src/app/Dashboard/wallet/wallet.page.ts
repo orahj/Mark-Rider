@@ -34,7 +34,9 @@ export class WalletPage implements OnInit {
   public DeliveryStatus : any
   public ItemSelected : any;
   public payStatus : any;
-  public name = 'tomi';
+  public CancellationReasons : any;
+  ReasonList : any;
+  CancelReason : string;
 
   constructor(
     private route: Router,
@@ -50,6 +52,7 @@ export class WalletPage implements OnInit {
     this.getWalletBalance();
     this.getWalleTransaction();
     this.getDelivery();
+    this.getCancellationReasons();
     // this.modalController.dismiss();
     // this.fundWallet();
   }
@@ -113,6 +116,7 @@ export class WalletPage implements OnInit {
             this.loading.closeLoader;
             localStorage.setItem('trackdeliverydetails', JSON.stringify(res));
             this.route.navigate(['dashboard/track-orders']).then(()=>{});
+            this.modalController.dismiss();
           },error => {
             if(error){
               this.loading.closeLoader;
@@ -159,7 +163,145 @@ export class WalletPage implements OnInit {
     await alert.present();
   }
 
+  async cancellationOptions() {
+    let reasons = this.CancellationReasons[0].deliveryReason;
+    this.CancellationReasons.forEach((reason) => {
+      console.log('Reason List',reason.deliveryReason);
+      this.ReasonList = reason.deliveryReason;
+    })
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      header: 'Select Cancellation reason',
+      inputs: [
+        {
+          name: 'radio1',
+          type: 'radio',
+          label:  this.ReasonList,
+          value: reasons, 
+          handler: () => {
+            console.log(reasons);
+          },
+          checked: true
+        },
+        {
+          name: 'radio2',
+          type: 'radio',
+          label: 'Radio 2',
+          value: 'value2',
+          handler: () => {
+            console.log('Radio 2 selected');
+          }
+        },
+        {
+          name: 'radio3',
+          type: 'radio',
+          label: 'Radio 3',
+          value: 'value3',
+          handler: () => {
+            console.log('Radio 3 selected');
+          }
+        },
+        {
+          name: 'radio4',
+          type: 'radio',
+          label: 'Radio 4',
+          value: 'value4',
+          handler: () => {
+            console.log('Radio 4 selected');
+          }
+        },
+        {
+          name: 'radio5',
+          type: 'radio',
+          label: 'Radio 5',
+          value: 'value5',
+          handler: () => {
+            console.log('Radio 5 selected');
+          }
+        },
+        {
+          name: 'radio6',
+          type: 'radio',
+          label: 'Radio 6 Radio 6 Radio 6 Radio 6 Radio 6 Radio 6 Radio 6 Radio 6 Radio 6 Radio 6 ',
+          value: 'value6',
+          handler: () => {
+            console.log('Radio 6 selected');
+          }
+        }
+      ],
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: () => {
+            console.log('Confirm Cancel');
+          }
+        }, {
+          text: 'Ok',
+          handler: () => {
+            console.log('Confirm Ok');
+          }
+        }
+      ]
+    });
+  
+    await alert.present();
+  }
+
   async cancelDelivery(selected) {
+
+    // Object with options used to create the alert
+    var options = {
+      title: 'Cancellation Reasons',
+      header: 'Select cancellation reason',
+      // message: 'Which name do you like?',
+      cssClass: 'my-custom-class',
+      inputs : [],
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          handler: () => {
+            console.log('Cancel clicked');
+          }
+        },
+        {
+          text: 'Ok',
+          handler: reason => {
+            console.log(reason);
+            // this.CancelReason = data;
+            let data = {
+              userId : this.user.id,
+              deliveriesId : selected.id,
+              reason : reason
+            }
+            this.loading.showLoader();
+            this.authService.canceldeliverybyuser(data).subscribe((res : any) => {
+              this.loading.closeLoader();
+              this.alertService.showSuccessAlert(res.message);
+              location.reload();
+            },error => {
+                this.loading.closeLoader();
+                this.alertService.showErrorAlert(error.error.message);
+            })
+            // this.cancelDelivery();
+          }
+        }
+      ]
+    };
+  
+    // Now we add the radio buttons
+    for(let i=0; i< this.CancellationReasons.length; i++) {
+      options.inputs.push({ name : 'options', value: this.CancellationReasons[i].deliveryReason, label: this.CancellationReasons[i].deliveryReason, type: 'radio' });
+    }
+  
+    // Create the alert with the options
+    let alert = await this.alertController.create(options);
+    await alert.present();
+  }
+
+  async cancelDelivery1(selected) {
     // Object with options used to create the alert
     var options = {
       title: 'Cancellation Deliverhy',
@@ -339,7 +481,15 @@ export class WalletPage implements OnInit {
       this.alertService.showErrorAlert(error.error.message);
     })
   }
- 
+  
+
+getCancellationReasons() {
+  this.authService.getcancellationreason().subscribe((res : any) => {
+    this.CancellationReasons = res;
+  },error => {
+    this.alertService.showErrorAlert(error.error.message);
+  })
+}
 
 
 }
