@@ -49,7 +49,7 @@ export class NotificationPage implements OnInit {
     const alert = await this.alertController.create({
       cssClass: 'my-custom-class',
       header: 'Notification',
-      message: 'What action would you like to be perfomed on this notification?',
+      message: 'What action would you like to perform on this notification?',
       buttons: [
         {
           text: 'View',
@@ -87,10 +87,10 @@ export class NotificationPage implements OnInit {
     this.authService.deletenotificationbyid(this.ItemSelected.id).subscribe((res : any) => {
       this.loading.closeLoader();
       this.alert.showSuccessAlert(res.message);
+      location.reload();
     }, error => {
       this.loading.closeLoader();
       this.alert.showErrorAlert(error.error.message);
-      window.location.reload();
     })
   }
 
@@ -99,10 +99,10 @@ export class NotificationPage implements OnInit {
     this.authService.deleteallnotification(this.user.email).subscribe((res : any) => {
       this.loading.closeLoader();
       this.alert.showSuccessAlert(res.message);
+      location.reload();
     }, error => {
       this.loading.closeLoader();
       this.alert.showErrorAlert(error.error.message);
-      location.reload();
     })
   }
 
@@ -111,6 +111,7 @@ export class NotificationPage implements OnInit {
     this.authService.readallnotification(this.user.email).subscribe((res : any) => {
       this.loading.closeLoader();
       this.alert.showSuccessAlert(res.message);
+      location.reload();
     }, error => {
       this.loading.closeLoader();
       this.alert.showErrorAlert(error.error.message);

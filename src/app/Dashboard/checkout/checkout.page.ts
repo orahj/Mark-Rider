@@ -49,6 +49,8 @@ export class CheckoutPage implements OnInit {
  
   ngOnInit() {
     this.getWalletBalance();
+    console.log('.....',this.firstItemList);
+    console.log(this.deliveryObj.length)
   }
 
   increaseOrder(){
@@ -159,6 +161,7 @@ async deleteItem(selected){
 
 public  payWithPaystack(){
  this.Total = this.returnedObj.totalAmount 
+ console.log('Amount',this.Total);
   var handler = PaystackPop.setup({
     key: 'pk_test_2ae6eeddbe5dded1d9ae213cd0a217686aa7286d',
     email: this.user.email,

@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar class="ion-text-center ion-no-border">
     <ion-buttons slot="start" class="back-btn">
-      <ion-back-button defaultHref="/dashboard"></ion-back-button>
+      <ion-back-button defaultHref="/dashboard/checkout"></ion-back-button>
     </ion-buttons>
     <ion-title>
       <div class="pawa2_transparent_header">
@@ -23,6 +23,28 @@
         </ion-col>
         <div class="wallet_transaction_recrods">
           <div class="handle_address_border">
+            <ion-row>
+              <ion-col>
+                <p class="address-p">Sender Address</p>
+                <ion-item mode="md">
+                  <!-- <ion-label position="floating" mode="md">Drop off address</ion-label> -->
+                  <!-- <ion-input mode="md"></ion-input> -->
+                 
+                  <input type="text" class="form-control auto-input" [(ngModel)]="EditItem.baseLocation.address" (click)="senderAutocomplete()" placeholder="Pick up address" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" #senderSearch>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+
+            <ion-row>
+              <ion-col>
+                <p class="address-p">Receiver Address</p>
+                <ion-item mode="md">
+                  <!-- <ion-label position="floating" mode="md">Drop off address</ion-label> -->
+                  <!-- <ion-input mode="md"></ion-input> -->
+                  <input type="text" class="form-control auto-input" [(ngModel)]="EditItem.targetLocation.address" (click)="receiverAutocomplete()" placeholder="Drop off address" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" #receiverSearch>
+                </ion-item>
+              </ion-col>
+            </ion-row>
            <ion-row>
              <ion-col size="4" class="the_address_row_handle">
               <input type="file" class="file-upload2" (change)="onFileChanged($event)">

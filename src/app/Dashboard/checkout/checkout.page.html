@@ -16,11 +16,18 @@
                     {{item.baseLocation.address}}
                   </div>
                 </ion-col>
-                <ion-col size="2" (click)="deleteItem(item)">
-                    <button class="trash-icon">
-                      <ion-icon name="trash-outline"></ion-icon>
-                    </button>
+                <!-- *ngIf="deliveryObj.length > 1"  -->
+            
+                <ion-col size="1">
+                  <button (click)="editItem(item)" class="edit-icon">
+                    <ion-icon name="create-outline"></ion-icon>
+                  </button>
                 </ion-col>
+                <ion-col size="1" (click)="deleteItem(item)">
+                  <button class="trash-icon">
+                    <ion-icon name="trash-outline"></ion-icon>
+                  </button>
+              </ion-col>
                 <ion-col size="12">
                   <div class="wallet_transaction_ref_date">
                     Drop-off Address
@@ -43,11 +50,11 @@
                   </div>      
                 </ion-col>
 
-              <ion-col size="2">
+              <!-- <ion-col size="2">
                 <button (click)="editItem(item)" class="edit-icon">
                   <ion-icon name="create-outline"></ion-icon>
                 </button>
-              </ion-col>
+              </ion-col> -->
                 
               </ion-row>
             </div>
@@ -57,7 +64,7 @@
     </ion-grid>
     </div>  
 
-<div class="ion-activable ripple-parent" *ngIf="firstItemList.deliveryTpe == 2">
+<div class="ion-activable ripple-parent" *ngIf="firstItemList.deliveryTpe == 2 && createshipmentstatus == false">
   <ion-row>
     <ion-col size="1"></ion-col>
    <ion-col size="4">
@@ -73,7 +80,7 @@
 
 </div>
 
-<div class="ion-activable ripple-parent" *ngIf="firstItemList.deliveryTpe == 1">
+<div class="ion-activable ripple-parent" *ngIf="firstItemList.deliveryTpe == 1 && createshipmentstatus == false">
   <ion-row>
     <ion-col size="1"></ion-col>
    <ion-col size="4">
@@ -149,18 +156,17 @@
                   </ion-button>
                 </ion-col>
 
-                <ion-col size="12" *ngIf="createshipmentstatus == false && returnedObj.totalAmount < walletBalance">
-                  <ion-button (click)="disclaimerAlert()" class="pawa2_u_action_btn_2 gold">
-                      Fund Wallet
-                  </ion-button>
+                <ion-col size="12" *ngIf="createshipmentstatus == true">
+                    <p class="checkout_total_text">Size: 34cm×18cm×32cm </p>
+                    <p class="checkout_total_text">Max Weight: 5kg </p>
                 </ion-col>
 
-                <ion-col size="12" *ngIf="createshipmentstatus == true">
+                <ion-col size="12" *ngIf="createshipmentstatus == true && returnedObj !== undefined">
                   <div class="pawa2_u_checkout_btn_actions">
                       <ion-button  (click)="payWithPaystack()" class="pawa2_u_action_btn_2">
                         Pay with Card
                       </ion-button>
-                    <ion-button *ngIf="createshipmentstatus == true && returnedObj.totalAmount >= walletBalance" (click)="paywithWallet()" class="pawa2_u_action_btn_2 gold">
+                    <ion-button (click)="paywithWallet()" *ngIf="returnedObj.totalAmount <= walletBalance" class="pawa2_u_action_btn_2 gold">
                       Pay with Wallet
                     </ion-button>
                     <ion-button (click)="payWithTransfer()" class="pawa2_u_action_btn_2 gold">
@@ -168,7 +174,7 @@
                     </ion-button>
                   </div>
                 </ion-col>
-
+                <!-- *ngIf="createshipmentstatus == true && returnedObj && returnedObj.totalAmount >= walletBalance"  -->
               </ion-row>
             </div>
 

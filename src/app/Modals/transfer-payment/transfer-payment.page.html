@@ -22,7 +22,7 @@
   <div class="page-summary">
     <ion-icon class="info-icon" name="information-circle-outline"></ion-icon>
     <p>
-      Sign up as a rider to pick shipment request, track shipment and fund your wallet and view shipment and transcation process.
+      Transfer to the account details provided below and attach the screenshot of your transaction to pay for your delivery.
     </p>
  </div>
 
@@ -45,10 +45,10 @@
           </div>
           <div class="image-upload">
             <ion-icon *ngIf="Image == undefined" name="cloud-upload-outline"></ion-icon>
+            <p class="upload-text" *ngIf="Image == undefined">upload the image of your<br> transaction receipt</p>
             <div id="TheImageContents"></div>
-            <p class="upload-text">upload the image of your<br> transaction receipt</p>
-            <input class="file-upload" type="file" id="upimgfile" name="uploadfile" (change)="onFileChanged($event)">
-            <button>choose file</button>
+            <input class="file-upload" type="file" id="upimgfile" *ngIf="Image == undefined" name="uploadfile" (change)="onFileChanged($event)">
+            <button *ngIf="Image == undefined">choose file</button>
           </div>
 
           <!-- <ion-col size="12" class="">

@@ -18,6 +18,7 @@ import { IonicStorageModule } from '@ionic/storage';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SectionHeaderModule } from './Partials/section-header/section-header.module';
 import { AgmCoreModule } from '@agm/core';
+import { AgmDirectionModule } from 'agm-direction';
 export function tokenGetter() {
   return localStorage.getItem('token');
 }
@@ -39,6 +40,7 @@ export function tokenGetter() {
       apiKey: 'AIzaSyAq84iD_-IGQEzZj5VET55rWthHgh75DSQ',
       libraries: ['places']
     }),
+    AgmDirectionModule,
     IonicStorageModule.forRoot(),
     JwtModule.forRoot({
       config: {

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AlertController } from '@ionic/angular';
+import { AlertController, ModalController } from '@ionic/angular';
 import { LoadingService } from '../../Services/loading/loading.service';
 import { AuthService } from 'src/app/Services/auth.service';
 import { RiderOnlineStatus } from 'src/app/_model/profileDto';
@@ -34,13 +34,16 @@ _bState = false;
     private alertController: AlertController,
     private loading : LoadingService,
     private authService : AuthService,
-    private alertService : AlertService
+    private alertService : AlertService,
+    private modalController : ModalController
     ) { }
 
   ngOnInit() {
     this.getDelivery();
     this.getSaleRecord();
     this.getCancellationReasons();
+    this.modalController.dismiss();
+    
   }
 
   viewDetails(){
@@ -276,6 +279,7 @@ getDelivery() {
     this.DeliveryList = res.returnedObject;
     this.loading.closeLoader();
   },error => {
+    this.loading.closeLoader();
     this.alertService.showErrorAlert(error.error.message);
   })
 }
@@ -309,9 +313,6 @@ cancelDelivery(){
     this.loading.closeLoader();
     this.alertService.showSuccessAlert(res.message)
    location.reload();
-    // this.route.routeReuseStrategy.shouldReuseRoute = function () {
-    //   return false;
-    // };
   },error => {
     this.loading.closeLoader();
     this.alertService.showErrorAlert(error.error.message);
@@ -326,7 +327,7 @@ startDelivery() {
   this.loading.showLoader();
   this.authService.startdelivery(model).subscribe((res : any) => {
     this.loading.closeLoader();
-    this.alertService.showSuccessAlert(res.message)
+    this.alertService.showSuccessAlert(res.message);
     location.reload();
   }, error => {
     this.loading.closeLoader();

@@ -11,6 +11,7 @@ import { HeaderComponentModule } from '../../Partials/header/header.component.mo
 import { NgxCleaveDirectiveModule } from 'ngx-cleave-directive';
 import { AgmCoreModule } from '@agm/core';
 import { ReactiveFormsModule} from '@angular/forms';
+import { AgmDirectionModule } from 'agm-direction';
 
 @NgModule({
   imports: [
@@ -25,6 +26,7 @@ import { ReactiveFormsModule} from '@angular/forms';
       apiKey: 'AIzaSyAq84iD_-IGQEzZj5VET55rWthHgh75DSQ',
       libraries: ['places']
     }),
+    AgmDirectionModule
   ],
   declarations: [HomePage]
 })

@@ -147,9 +147,13 @@ ion-segment-button {
 .wallet_transaction_status {
   font-size:12px;
   color: #d4921e;
+  text-decoration: underline;
+  cursor: pointer;
 }
 
 .wallet_transaction_status2 {
   font-size:12px;
   color: #8a0404;
+  text-decoration: underline;
+  cursor: pointer;
 }

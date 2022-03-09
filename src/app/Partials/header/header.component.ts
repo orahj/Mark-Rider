@@ -8,7 +8,7 @@ import { AuthService } from 'src/app/Services/auth.service';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
-  user = JSON.parse(localStorage.getItem('userobj'));
+  user : any;
   NotificationList : any;
   customAlertOptions: any = {
     header: 'Pizza Toppings',
@@ -34,7 +34,9 @@ export class HeaderComponent implements OnInit {
     ) { }
  
   ngOnInit() {
+    this.user = JSON.parse(localStorage.getItem('userobj'));
     this.getNotification();
+
   }
 
   focusesInput(){

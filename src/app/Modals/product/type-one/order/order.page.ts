@@ -12,6 +12,8 @@ export class OrderPage implements OnInit {
   public returnedObj = JSON.parse(localStorage.getItem('deliveryReturnedObj'));
   itemList = this.deliveryObj[0];
   user = JSON.parse(localStorage.getItem('userobj'));
+  itemTime : string;
+
 
   constructor(
     private modalController: ModalController,
@@ -19,6 +21,13 @@ export class OrderPage implements OnInit {
     ) { }
 
   ngOnInit() {
+    if(this.itemList.deliveryTime == 1){
+        this.itemTime = 'Right Away'
+    }
+    else if(this.itemList.deliveryTime == 2) {
+      this.itemTime = 'Schedule for later';
+    }
+    console.log('Item Time',this.itemTime);
   }
 
   async addToCart(){

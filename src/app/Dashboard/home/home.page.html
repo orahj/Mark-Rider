@@ -17,8 +17,12 @@
 
             <agm-map [latitude]="latitude" [longitude]="longitude">
               <agm-marker  *ngFor="let data of locations; let i = index"
-              [latitude]="data.lat" [longitude]="data.lng">
+              [latitude]="data.lat" [longitude]="data.lng" [iconUrl]="{url:'./assets/images/macriders/marker.png'}">
               </agm-marker>
+              <agm-direction [origin]="origin" [destination]="destination"
+              [renderOptions]="renderOptions" 
+              [markerOptions]="markerOptions"
+              ></agm-direction>
             </agm-map>
            
           </ion-col>
@@ -30,12 +34,13 @@
             <ion-select formControlName="deliveryTpe" placeholder="Select Shipment Type" [(ngModel)]="item.deliveryTpe" class="mark-drop-down">
               <ion-select-option [value]=1>Single Shipment</ion-select-option>
               <ion-select-option [value]=2>Multiple Shipment</ion-select-option>
-              <ion-select-option (click)="notAvailable()"  value="">Cargo</ion-select-option>
-              <ion-select-option (click)="notAvailable()" class="not-available" value="">Inter-state</ion-select-option>
+              <ion-select-option (click)="notAvailable()" [disabled]="true" value="">Cargo</ion-select-option>
+              <ion-select-option (click)="notAvailable()" [disabled]="true" class="not-available" value="">Inter-state</ion-select-option>
             </ion-select>
           </ion-col> 
           <div class="validate_input" *ngIf="f.deliveryTpe.touched || f.deliveryTpe.invalid && submitted">
             <div *ngIf="f.deliveryTpe.errors?.required">Delivery Type  is required</div>
+            <div *ngIf="f.deliveryTpe.errors?.pattern">Delivery Type  is required</div>
           </div> 
           <ion-col size="12">
             <div class="wallet_transaction_recrods">
@@ -127,7 +132,7 @@
                       <ion-item mode="md">
                         <!-- <ion-icon name="gift" slot="start" mode="md"></ion-icon> -->
                         <ion-label position="floating" mode="md">Item to be delivered</ion-label>
-                        <ion-input placeholder="A pair of shoe" formControlName="pickUpItems" [(ngModel)]="item.pickUpItems" mode="md"></ion-input>
+                        <ion-input placeholder="A pair of shoe" type="text" formControlName="pickUpItems" [(ngModel)]="item.pickUpItems" mode="md"></ion-input>
                       </ion-item>
 
                   
@@ -234,32 +239,22 @@
 
                       </ion-radio-group> -->
                       <div> 
-
-                        <ion-avatar slot="start">
-                        <ion-img class="mark-carriers"  (click)="getCarrier(1)"  src="../../../assets/images/macriders/m2.png"></ion-img>
+                        <img src="assets/images/macriders/m2.png" class="mark-carriers"  (click)="getCarrier(1)"  >
                         <input type="hidden" formControlName="carriers">
-                      </ion-avatar>
                     </div>
                     </ion-col>
-                    <ion-col>
-                      <div>
-                        <ion-avatar slot="start">
-                          <ion-img class="mark-carriers"  (click)="getCarrier(2)"  src="../../../assets/images/macriders/m3.png"></ion-img>
-                          <input type="hidden" formControlName="carriers">
-                        </ion-avatar>
-                      </div>
+                    <ion-col >
+                          <img src="assets/images/macriders/m3.png" class="mark-carriers2"  (click)="getCarrier(2)"  >
+                          <input type="hidden" disabled formControlName="carriers">
                     </ion-col>
                     <ion-col>
-                      <div>
-                        <ion-avatar slot="start">
-                          <ion-img class="mark-carriers" (click)="getCarrier(3)"  src="../../../assets/images/macriders/m1.png"></ion-img>
-                          <input type="hidden" formControlName="carriers">
-                        </ion-avatar>
-                      </div>
+                          <img src="assets/images/macriders/m1.png" class="mark-carriers2" (click)="getCarrier(3)"  >
+                          <input type="hidden" disabled formControlName="carriers">
                     </ion-col>
                   </ion-row>
                   <div class="validate_input" *ngIf="f.carriers.touched || f.carriers.invalid && submitted">
                     <div *ngIf="f.carriers.errors?.required">Carriers is required</div>
+                    <div *ngIf="f.carriers.errors?.pattern">Carriers is required</div>
                   </div> 
                   <!-- <div class="validate_input" *ngIf="f.carriers.touched || f.carriers.invalid && submitted">
                     <div *ngIf="f.carriers.errors?.required">Carrier is required</div>

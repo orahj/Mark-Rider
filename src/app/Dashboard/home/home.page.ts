@@ -41,12 +41,19 @@ export class HomePage implements OnInit {
   user = JSON.parse(localStorage.getItem('userobj'));
   itemList = ItemList;
   imageurl : any;
+  origin: {};
+  destination: {};
+  distance: Number;
+  
+
   customAlertOptions: any = {
     header: 'Pizza Toppings',
     subHeader: 'Select your toppings',
     message: '$1.00 per topping',
     translucent: true
   };
+
+
   isscheduled = false;
   customPopoverOptions: any = {
     header: 'Hair Color',
@@ -85,7 +92,6 @@ export class HomePage implements OnInit {
   ngOnInit() {
     this.initializeForm();
     this.setCurrentLocation();
-  
   }
 
   bulkDelivery(){
@@ -220,17 +226,34 @@ export class HomePage implements OnInit {
           this.targetAddress = place.formatted_address; 
             this.latitude = place.geometry.location.lat();
             this.longitude = place.geometry.location.lng();
-            this.zoom = 8;
+            this.zoom = 5;
           });
         });
       });
       let SenderLocation = JSON.parse(localStorage.getItem('senderlocation'));
       let ReceiverLocation = JSON.parse(localStorage.getItem('receiverlocation'));
-      // this.locations  = [
-      //   {lat: SenderLocation.lat, lng: SenderLocation.lng, icon : './assets/images/macriders/m2.png'},
-      //   {lat: ReceiverLocation.lat, lng: ReceiverLocation.lng, icon : './assets/images/macriders/m2.png'}
-      // ]
+      this.locations  = [
+        {lat: SenderLocation.lat, lng: SenderLocation.lng, icon : './assets/images/macriders/marker.png'},
+        {lat: ReceiverLocation.lat, lng: ReceiverLocation.lng, icon : './assets/images/macriders/marker.png'}
+      ]
+      this.origin = SenderLocation;
+      this.destination = ReceiverLocation;
   }
+
+  public renderOptions = {
+    suppressMarkers: true,
+}
+
+public markerOptions = {
+    origin: {
+        icon: './assets/images/macriders/marker.png',
+        draggable: true,
+    },
+    destination: {
+        icon: './assets/images/macriders/marker.png',
+    },
+}
+
 
   private setCurrentLocation() {
     if ('geolocation' in navigator) {
@@ -285,8 +308,7 @@ export class HomePage implements OnInit {
           infoWindow.open(map, marker);
         }
       })(marker, i));
-
-
+      
 
     // this.geoCoder.geocode({ 'location': { lat: latitude, lng: longitude } }, (results, status) => {
     //   console.log(results);
@@ -306,10 +328,24 @@ export class HomePage implements OnInit {
   }
 }
 
+calculateDistance(point1, point2) {
+  const p1 = new google.maps.LatLng(
+  point1.lat,
+  point1.lng
+  );
+  const p2 = new google.maps.LatLng(
+  point2.lat,
+  point2.lng
+  );
+  return (
+  google.maps.geometry.spherical.computeDistanceBetween(p1, p2)/1000
+  ).toFixed(2);
+}
+
   initializeForm() {
     this.formData = this.form.group({
       pickUpItems: ['', [Validators.required]],
-      deliveryTpe: ['', [Validators.required]],
+      deliveryTpe: [0, [Validators.required, Validators.pattern(/^[1-9]\d*$/)]],
       deliveryTime: ['', [Validators.required]],  
       pickUpPhone: ['', [Validators.required]],
       carriers:[1, [Validators.min(this.carrier),Validators.pattern(/^[1-9]\d*$/) ]],
@@ -321,6 +357,7 @@ export class HomePage implements OnInit {
       targetLocation : [this.targetAddress, Validators.required]
       
     },
+    
     );
   }
 
@@ -371,12 +408,13 @@ export class HomePage implements OnInit {
   }
 
 async notAvailable(){
-  const alert = await this.alertController.create({
+  console.log('I got here');
+  const modal = await this.alertController.create({
     cssClass: 'my-custom-class',
     message: 'This service is not available at the moment',
     buttons: ['OK']
   });
- return await alert.present();
+ return await modal.present();
 }
 
 async addresslist(){
@@ -395,6 +433,10 @@ async addAddress(){
     backdropDismiss: true
   });
   return await modal.present();
+}
+
+serviceNotAvailable(){
+  alert('Service not available');
 }
 
 

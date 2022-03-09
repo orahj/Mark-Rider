@@ -39,26 +39,17 @@
                   <div class="modal_text_lc">Carrier</div>
               </ion-col>
               <ion-col size="4">
-                <div> 
-                  <ion-avatar slot="start">
-                  <ion-img class="mark-carriers" src="../../../assets/images/macriders/m2.png"></ion-img>
-                </ion-avatar>
-              </div>
+                  <img class="mark-carriers" src="assets/images/macriders/m2.png">
               </ion-col>
               <ion-col size="4">
-                
-                <div *ngIf="itemList.deliveryTime == 1" class="modal_text_lc">Right Away</div>
-                <div *ngIf="itemList.deliveryTime == 2" class="modal_text_lc">Schedule for later</div>
-             
+                <div class="modal_text_lc">{{itemTime}}</div>
             </ion-col>
             </ion-row>
           </ion-col>
           <ion-col size="12" class="order-full-fillment_meta">
             <ion-row>
               <ion-col class="mrk-logo" size="3">
-                
-                  <ion-img  src="../../../assets/images/macriders/mark-riders.jpg"></ion-img>
-               
+                  <img src="assets/images/macriders/mark-riders.jpg">
               </ion-col>
               <ion-col size="9">
                 <div class="order_fullfilment_meta_text">

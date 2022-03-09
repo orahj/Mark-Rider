@@ -9,6 +9,7 @@ import { Observable } from 'rxjs';
 import { UserInfoResponseDto } from '../_model/userInfoResponseDto';
 import { ChangePasswordDto } from '../_model/changePasswordDto';
 import { Router } from '@angular/router';
+import { EventService } from './event.service';
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +20,12 @@ userResponse: Result;
 decordedToken: any;
   baseUrl = environment.apiUrl;
   jwtHelper = new JwtHelperService();
-  constructor(private http: HttpClient, private router : Router) { }
+  constructor(
+    private http: HttpClient,
+    private router : Router,
+    public events: EventService
+    ) { }
+
   login(model: any) {
   return this.http.post(this.baseUrl + 'Account/login', model)
   .pipe(
@@ -27,14 +33,21 @@ decordedToken: any;
       const user = Response;
       this.userResponse = Response;
       if (Response.isSuccessful === true) {
+        localStorage.setItem('refreshappmenu', 'appmenu');
+        localStorage.removeItem('refreshappmenu');
         localStorage.setItem('token', JSON.stringify(Response.returnedObject.token) );
         localStorage.setItem('userobj', JSON.stringify(Response.returnedObject));
+        let userdata = localStorage.setItem('userobj', JSON.stringify(Response.returnedObject));
         if(Response.returnedObject.userTypes === 4) {
           this.router.navigateByUrl('/dashboard');
         }
         else if(Response.returnedObject.userTypes === 3) {
           this.router.navigateByUrl('/rider-dashboard');
         }
+        this.events.publishSomeData({
+          userdata
+          // userId: this.userIdToLogin
+        })
       }
     })
   );

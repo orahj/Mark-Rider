@@ -5,7 +5,7 @@ ion-input,
 ion-label,
 ion-input {
   font-family: "Montserrat", sans-serif !important;
-  font-weight: 400;
+  font-weight: 500;
 }
 
 ion-content.welcome_style .swiper-pagination.swiper-pagination-bullets {

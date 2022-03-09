@@ -1,4 +1,4 @@
-package com.markrider.app;
+package com.markriders.app;
 
 import com.getcapacitor.BridgeActivity;
 

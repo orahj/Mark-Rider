@@ -5,6 +5,7 @@ import { LoadingService } from '../../Services/loading/loading.service';
 import { AuthService } from 'src/app/Services/auth.service';
 import { AlertService } from 'src/app/Services/alert/alert.service';
 
+
 @Component({
   selector: 'app-transfer-payment',
   templateUrl: './transfer-payment.page.html',
@@ -21,7 +22,8 @@ export class TransferPaymentPage implements OnInit {
     private modalController: ModalController,
     private loading : LoadingService,
     private authService : AuthService,
-    private alert : AlertService
+    private alert : AlertService,
+    private alertService : AlertService
     ) { }
 
   ngOnInit() {
@@ -46,11 +48,22 @@ export class TransferPaymentPage implements OnInit {
     reader.readAsDataURL(this.Image); 
     reader.onload = (_event) => { 
     let TheFileContents = reader.result;
-    document.getElementById("TheImageContents").innerHTML = '<img width="100" height="100" src="'+TheFileContents+'" />';
-    //this.uploadImage();
+    document.getElementById("TheImageContents").innerHTML = '<img width="50" height="50"  src="'+TheFileContents+'" />';
+    // document.getElementById("TheImageContents").innerHTML = '<img width="100" height="100" src="'+TheFileContents+'" />';
+    this.uploadImage();
     }
   }
 
+  uploadImage(){
+    this.loading.showLoader();
+    this.authService.fileupload(this.Image).subscribe((res : any) => {
+      this.loading.closeLoader();
+      this.alertService.showSuccessAlert(res.message)
+    }, error => {
+      this.loading.closeLoader();
+      this.alertService.showErrorAlert(error.error.message);
+    })
+  }
 
   payForDelivery(){
     let transferObj = {

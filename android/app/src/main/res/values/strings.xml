@@ -2,6 +2,6 @@
 <resources>
     <string name="app_name">Mark Rider</string>
     <string name="title_activity_main">Mark Rider</string>
-    <string name="package_name">com.markrider.app</string>
-    <string name="custom_url_scheme">com.markrider.app</string>
+    <string name="package_name">com.markriders.app</string>
+    <string name="custom_url_scheme">com.markriders.app</string>
 </resources>
