@@ -49,8 +49,6 @@ export class CheckoutPage implements OnInit {
  
   ngOnInit() {
     this.getWalletBalance();
-    console.log('.....',this.firstItemList);
-    console.log(this.deliveryObj.length)
   }
 
   increaseOrder(){
@@ -65,7 +63,6 @@ export class CheckoutPage implements OnInit {
     if(this.qty && this.qty > this.min_order_limit){
        this.qty--;
     } else {
-      // Show dialog for max order limit.
     }
   }
 
