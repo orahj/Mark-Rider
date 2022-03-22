@@ -10,7 +10,6 @@ import { AlertService } from 'src/app/Services/alert/alert.service';
 import { FundWallet } from 'src/app/_model/walletDto';
 
 
-
 declare var PaystackPop: any;
 
 @Component({
@@ -37,6 +36,7 @@ export class WalletPage implements OnInit {
   public CancellationReasons : any;
   ReasonList : any;
   CancelReason : string;
+  fieldValue : any;
 
   constructor(
     private route: Router,
@@ -53,9 +53,12 @@ export class WalletPage implements OnInit {
     this.getWalleTransaction();
     this.getDelivery();
     this.getCancellationReasons();
-    // this.modalController.dismiss();
     // this.fundWallet();
   }
+
+  ionViewDidEnter() {
+    this.modalController.dismiss();
+  } 
 
   async fundPrompt() {
     const alert = await this.alertController.create({
@@ -79,7 +82,9 @@ export class WalletPage implements OnInit {
           text: 'Fund',
           handler: (value) => {
             this.Amount = value.Amount;
-            this.payWithPaystack();
+            if(this.Amount !== undefined && this.Amount !== ''){
+              this.payWithPaystack();
+            }
           }
         }
       ]
@@ -110,19 +115,21 @@ export class WalletPage implements OnInit {
         }, {
           text: 'Track',
           handler: (value) => {
-            this.DeliveryNo = value.Track;
-            this.loading.showLoader();
-           this.authService.getdeliverybyshipment(this.DeliveryNo, this.user.email).subscribe((res : any) => {
-            this.loading.closeLoader;
-            localStorage.setItem('trackdeliverydetails', JSON.stringify(res));
-            this.route.navigate(['dashboard/track-orders']).then(()=>{});
-            this.modalController.dismiss();
-          },error => {
-            if(error){
+            if(this.DeliveryNo !== undefined && this.DeliveryNo !== ''){
+              this.DeliveryNo = value.Track;
+              this.loading.showLoader();
+             this.authService.getdeliverybyshipment(this.DeliveryNo, this.user.email).subscribe((res : any) => {
               this.loading.closeLoader;
-              this.alertService.showErrorAlert(error.error.message);
+              localStorage.setItem('trackdeliverydetails', JSON.stringify(res));
+              this.route.navigate(['dashboard/track-orders']).then(()=>{});
+              this.modalController.dismiss();
+            },error => {
+              if(error){
+                this.loading.closeLoader;
+                this.alertService.showErrorAlert(error.error.message);
+              }
+            })
             }
-          })
           }
         }
       ]
@@ -344,58 +351,102 @@ export class WalletPage implements OnInit {
     };
     // Create the alert with the options
   }
+
+  async cancelDeliveryByUser(selected) {
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      header: 'Cancel',
+      message: 'Are you sure you want to cancel this delivery?',
+      buttons: [
+        {
+          text: 'Close',
+          cssClass: 'info',
+          role: 'cancel',
+          handler: () => {
+          }
+        }, {
+          text: 'Cancel delivery',
+          cssClass: 'danger',
+          handler: () => {
+            let data = {
+              userId : this.user.id,
+              deliveriesId : selected.id,
+              reason : ''
+            }
+            this.loading.showLoader();
+            this.authService.canceldeliverybyuser(data).subscribe((res : any) => {
+              this.loading.closeLoader();
+              this.alertService.showSuccessAlert(res.message);
+              location.reload();
+            },error => {
+                this.loading.closeLoader();
+                this.alertService.showErrorAlert(error.error.message);
+            })
+          }
+        }
+      ]
+    });
+  
+    await alert.present();
+  }
   
   public  payWithPaystack(){
     return new Promise( (resolve,reject) => {
-    var handler = PaystackPop.setup({
-      key: 'pk_test_2ae6eeddbe5dded1d9ae213cd0a217686aa7286d',
-      email: this.user.email,
-      ref : this.refCode,
-      amount: this.Amount + "00", 
-      metadata: {
-        custom_fields: [
-          {
-            display_name: "Paid via",
-            variable_name: "paid_via",
-            value: 'Mark Riders'
-          },
-          {
-            display_name: "Mobile Number",
-            variable_name: "mobile_number",
-            value: this.user.phone
-          }
-        ]
+      console.log('Amount',this.Amount)
+    if(this.Amount !== undefined || this.Amount !== ''){
+      var handler = PaystackPop.setup({
+        key: 'pk_test_2ae6eeddbe5dded1d9ae213cd0a217686aa7286d',
+        email: this.user.email,
+        ref : this.refCode,
+        amount: this.Amount + "00", 
+        metadata: {
+          custom_fields: [
+            {
+              display_name: "Paid via",
+              variable_name: "paid_via",
+              value: 'Mark Riders'
+            },
+            {
+              display_name: "Mobile Number",
+              variable_name: "mobile_number",
+              value: this.user.phone
+            }
+          ]
+        },
+        
+        callback:(response) => {
+          let customModel = {
+            email: this.user.email,
+            amount: parseInt(this.Amount, 10) + '00',
+            userId: this.user.id,
+            transactionRef: response.reference
+        }
+        this.loading.showLoader();
+        this.authService.fundwallet(customModel).subscribe((res : any) => {
+          this.loading.closeLoader();
+          this.alertService.showSuccessAlert(res.message);
+          location.reload();
+        }, error => {
+          this.loading.closeLoader();
+          this.alertService.showErrorAlert(error.error.messsage);
+         
+        })
       },
       
-      callback:(response) => {
-        let customModel = {
-          email: this.user.email,
-          amount: parseInt(this.Amount, 10) + '00',
-          userId: this.user.id,
-          transactionRef: response.reference
-      }
-      this.loading.showLoader();
-      this.authService.fundwallet(customModel).subscribe((res : any) => {
-        this.loading.closeLoader();
-        this.alertService.showSuccessAlert(res.message);
-        location.reload();
-      }, error => {
-        this.loading.closeLoader();
-        this.alertService.showErrorAlert(error.error.messsage);
-       
-      })
-    },
+      onClose: function(res){
+        reject(res)
+        this.router.navigate(['dashboard/wallet']).then(()=>{});
+      },
+      
     
-    onClose: function(res){
-      reject(res)
-      this.router.navigate(['dashboard/wallet']).then(()=>{});
-    },
-    
-  
-  });
- 
-  handler.openIframe();
-  this.payStatus = PaystackPop;
+    });
+   
+    handler.openIframe();
+    this.payStatus = PaystackPop;
+    }
+    else {
+      alert('Amount is required');
+    }
 });
   }
 
@@ -471,6 +522,54 @@ export class WalletPage implements OnInit {
     })
   }
 
+
+  async completedDelivery(selected) {
+
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      message: 'What action would you like to be perfrom on this delivery?',
+      buttons: [
+        {
+          text: 'Dispute',
+          cssClass: 'info',
+          handler: () => {
+            this.loading.showLoader();
+            this.authService.getdeliveryitem(selected.id).subscribe((res: any) => {
+              this.loading.closeLoader();
+              localStorage.setItem('deliverydetails', JSON.stringify(res));
+              this.route.navigate(['./dashboard/orders-details']);
+            }, error => {
+              this.loading.closeLoader();
+              this.alertService.showErrorAlert(error.error.message);
+            })
+          }
+        }, {
+          text: 'Complete Delivery',
+          cssClass: 'danger',
+          handler: () => {
+            let model = {
+              appUserId : this.user.id,
+              deliveriesId : selected.deliveryItems[0].deliveryId,
+              rating : 0,
+              ratingcomment : ''
+            }
+            this.loading.showLoader();
+            this.authService.completedelivery(model).subscribe((res: any) => {
+              this.loading.closeLoader();
+              this.alertService.showSuccessAlert(res.message);
+            }, error => {
+              this.loading.closeLoader();
+              this.alertService.showErrorAlert(error.error.message);
+            })
+          }
+        }
+      ]
+    });
+  
+    await alert.present();
+  }
+
+
   deliveryDetail(selected){
     this.loading.showLoader();
     this.authService.getdeliveryitem(selected.id).subscribe((res: any) => {
@@ -479,6 +578,23 @@ export class WalletPage implements OnInit {
       this.route.navigate(['./dashboard/orders-details']);
     }, error => {
       this.alertService.showErrorAlert(error.error.message);
+    })
+  }
+
+  cancelDeliveryByUser1(selected){
+    let data = {
+      userId : this.user.id,
+      deliveriesId : selected.id,
+      reason : ''
+    }
+    this.loading.showLoader();
+    this.authService.canceldeliverybyuser(data).subscribe((res : any) => {
+      this.loading.closeLoader();
+      this.alertService.showSuccessAlert(res.message);
+      location.reload();
+    },error => {
+        this.loading.closeLoader();
+        this.alertService.showErrorAlert(error.error.message);
     })
   }
   

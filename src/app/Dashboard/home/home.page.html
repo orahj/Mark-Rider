@@ -17,12 +17,15 @@
 
             <agm-map [latitude]="latitude" [longitude]="longitude">
               <agm-marker  *ngFor="let data of locations; let i = index"
-              [latitude]="data.lat" [longitude]="data.lng" [iconUrl]="{url:'./assets/images/macriders/marker.png'}">
+              [latitude]="data.lat" [longitude]="data.lng" [label]="data.label" >
+              <agm-info-window>
+                <strong>Label: {{data.label}}</strong><br/>
+              </agm-info-window>
               </agm-marker>
               <agm-direction [origin]="origin" [destination]="destination"
               [renderOptions]="renderOptions" 
-              [markerOptions]="markerOptions"
               ></agm-direction>
+           
             </agm-map>
            
           </ion-col>
@@ -125,7 +128,8 @@
                    <ion-col size="4">
                     <input type="file" class="file-upload2" formControlName="imageUrl"  (change)="onFileChanged($event)">
                     <div id="TheImageContents"></div>
-                    <img src="../../../assets/images/no-image.png" *ngIf="Image == undefined" style="width: 70px;">
+                    <img src="assets/images/no-image.png" *ngIf="Image == undefined" style="width: 70px;">
+                    <!-- <img [src]="item.imageUrl" *ngIf="Image !== undefined" style="width: 70px;"> -->
                    </ion-col>
                   <ion-col size="7">
                     <ion-list>
@@ -244,11 +248,11 @@
                     </div>
                     </ion-col>
                     <ion-col >
-                          <img src="assets/images/macriders/m3.png" class="mark-carriers2"  (click)="getCarrier(2)"  >
+                          <img src="assets/images/macriders/m3.png" class="mark-carriers2"  (click)="notAvailableModal()"  >
                           <input type="hidden" disabled formControlName="carriers">
                     </ion-col>
                     <ion-col>
-                          <img src="assets/images/macriders/m1.png" class="mark-carriers2" (click)="getCarrier(3)"  >
+                          <img src="assets/images/macriders/m1.png" class="mark-carriers2" (click)="notAvailableModal()"  >
                           <input type="hidden" disabled formControlName="carriers">
                     </ion-col>
                   </ion-row>

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { ModalController } from '@ionic/angular';
+import { ModalController} from '@ionic/angular';
 import { TransferPaymentPage } from 'src/app/Modals/transfer-payment/transfer-payment.page';
 import { WalletPaymentPage } from 'src/app/Modals/wallet-payment/wallet-payment.page';
 import { AlertController } from '@ionic/angular';
@@ -49,6 +49,14 @@ export class CheckoutPage implements OnInit {
  
   ngOnInit() {
     this.getWalletBalance();
+  }
+
+  ionViewDidEnter() {
+    this.deliveryObj = JSON.parse(localStorage.getItem('deliveryObj'));
+  } 
+
+  ionViewWillEnter(){
+    this.deliveryObj = JSON.parse(localStorage.getItem('deliveryObj'));
   }
 
   increaseOrder(){
@@ -216,6 +224,7 @@ paywithWallet() {
   this.authService.walletpayment(walletObj).subscribe((res : any) => {
     this.loading.closeLoader();
     this.alert.showSuccessAlert(res.message);
+    localStorage.removeItem('deliveryObj');
     this.paySuccess();
   }, error => {
     this.alert.showErrorAlert(error.error.message);
@@ -233,7 +242,8 @@ public verifyPayment() {
     this.loading.showLoader();
     this.authService.verifytransaction(verifyObj).subscribe((res : any) => {
       this.loading.closeLoader();
-      this.alert.showSuccessAlert(res.message)
+      this.alert.showSuccessAlert(res.message);
+      localStorage.removeItem('deliveryObj');
       this.paySuccess();
     },error => {
       this.loading.closeLoader();

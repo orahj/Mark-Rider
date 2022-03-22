@@ -37,10 +37,16 @@ export class AppComponent implements OnInit{
   }
 
   ngOnInit() {
-   
-    localStorage.setItem('refreshappmenu', 'appmenu');
-    localStorage.removeItem('refreshappmenu');
     this.initializeApp();
+    this.user = JSON.parse(localStorage.getItem('userobj'));
+  }
+
+  ionViewDidEnter() {
+    this.user = JSON.parse(localStorage.getItem('userobj'));
+  } 
+
+  ionViewWillEnter(){
+    this.user = JSON.parse(localStorage.getItem('userobj'));
   }
 
   
@@ -55,10 +61,7 @@ export class AppComponent implements OnInit{
       console.log("Data received:", data);
       this.user = JSON.parse(localStorage.getItem('userobj'));
     })
-  }
-
- 
-  
+  }  
   
   gotoViewProfile(){
     this.route.navigate(['/dashboard/view-profile']);

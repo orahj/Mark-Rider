@@ -18,14 +18,14 @@
             <div class="menu_user_meta_name" >
               {{user.firstName}}
             </div>
-            <div *ngIf="user && user.userTypes === 4 " class="menu_user_meta_link" (click)="gotoViewProfile()">
+            <div *ngIf="user !== undefined && user.userTypes === 4 " class="menu_user_meta_link" (click)="gotoViewProfile()">
               View profile
             </div>
-            <div *ngIf="user && user.userTypes === 3"  class="menu_user_meta_link" (click)="gotoRiderProfile()">
+            <div *ngIf="user !== undefined && user.userTypes === 3"  class="menu_user_meta_link" (click)="gotoRiderProfile()">
               View profile
             </div>
           </ion-col>
-        <ion-col size="3" *ngIf="user && user && user.userTypes === 3" >
+        <ion-col size="3" *ngIf="user !== undefined && user.userTypes === 3" >
           <div class="log_out_text ion-text-center logout" (click) = "logOut()">
             <ion-icon name="power-outline"></ion-icon>
           </div>
@@ -37,7 +37,7 @@
   <ion-content class="ion-no-padding">
   
     <ion-list class="list_padd_bottom">
-      <ion-item *ngIf="user && user.userTypes === 4" (click)="gotoHome()"  lines="none" class="no_item_padd ion-activatable ripple-parent">
+      <ion-item *ngIf="user !== undefined && user.userTypes === 4" (click)="gotoHome()"  lines="none" class="no_item_padd ion-activatable ripple-parent">
         <div class="nav_item_inner_padd">
           <ion-icon name="grid-outline"></ion-icon>
             Home
@@ -45,7 +45,7 @@
         <ion-ripple-effect></ion-ripple-effect>
       </ion-item>
 
-      <ion-item *ngIf="user && user.userTypes === 3" (click)="gotoRiderHome()"  lines="none" class="no_item_padd ion-activatable ripple-parent">
+      <ion-item *ngIf="user !== undefined && user.userTypes === 3" (click)="gotoRiderHome()"  lines="none" class="no_item_padd ion-activatable ripple-parent">
         <div class="nav_item_inner_padd">
           <ion-icon name="grid-outline"></ion-icon>
             Home
@@ -53,7 +53,7 @@
         <ion-ripple-effect></ion-ripple-effect>
       </ion-item>
       
-      <ion-item *ngIf="user && user.userTypes === 4 " (click)="gotoWallet()" lines="none" class="no_item_padd ion-activatable ripple-parent">
+      <ion-item *ngIf="user !== undefined && user.userTypes === 4 " (click)="gotoWallet()" lines="none" class="no_item_padd ion-activatable ripple-parent">
         <div class="nav_item_inner_padd" (click)="gotoWallet()">
           <ion-icon name="wallet-outline"></ion-icon>
             Wallet
@@ -61,7 +61,7 @@
         <ion-ripple-effect></ion-ripple-effect>
       </ion-item>
 
-      <ion-item *ngIf="user && user.userTypes === 4" (click)="trackPrompt()"lines="none" class="no_item_padd ion-activatable ripple-parent">
+      <ion-item *ngIf="user !== undefined && user.userTypes === 4" (click)="trackPrompt()"lines="none" class="no_item_padd ion-activatable ripple-parent">
         <div class="nav_item_inner_padd" >
           <ion-icon name="wallet-outline"></ion-icon>
             Track order

@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar class="ion-text-center ion-no-border">
     <ion-buttons slot="start" class="back-btn">
-      <ion-back-button defaultHref="/dashboard"></ion-back-button>
+      <ion-back-button defaultHref="/dashboard/checkout"></ion-back-button>
     </ion-buttons>
     <ion-title>
       <div class="pawa2_transparent_header">
@@ -27,7 +27,8 @@
              <ion-col size="4" class="the_address_row_handle">
               <input type="file" class="file-upload2" (change)="onFileChanged($event)">
               <div id="TheImageContents"></div>
-              <img src="../../../assets/images/no-image.png" *ngIf="Image == undefined" style="width: 70px;">
+              <img src="assets/images/no-image.png" *ngIf="Image == undefined" style="width: 70px;">
+              <!-- <img [src]="newItem.imageUrl" *ngIf="newItem.imageUrl !== undefined" style="width: 70px;"> -->
              </ion-col>
             <ion-col size="7">
               <ion-list>

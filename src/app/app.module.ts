@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
 import { JwtModule } from '@auth0/angular-jwt';
@@ -19,6 +19,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SectionHeaderModule } from './Partials/section-header/section-header.module';
 import { AgmCoreModule } from '@agm/core';
 import { AgmDirectionModule } from 'agm-direction';
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+// import { NgxSpinnerModule } from "ngx-spinner";
 export function tokenGetter() {
   return localStorage.getItem('token');
 }
@@ -41,6 +43,8 @@ export function tokenGetter() {
       libraries: ['places']
     }),
     AgmDirectionModule,
+    BrowserAnimationsModule,
+    // NgxSpinnerModule,
     IonicStorageModule.forRoot(),
     JwtModule.forRoot({
       config: {
@@ -48,8 +52,10 @@ export function tokenGetter() {
         whitelistedDomains: ['localhost:44369'],
         blacklistedRoutes: ['localhost:44369/account']
       }
-    })
+    }),
+    
   ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [
     StatusBar,
     SplashScreen,
@@ -57,6 +63,7 @@ export function tokenGetter() {
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true  },
     LoadingService,
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  // schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AppModule {}

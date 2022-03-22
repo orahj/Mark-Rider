@@ -42,9 +42,17 @@ _bState = false;
     this.getDelivery();
     this.getSaleRecord();
     this.getCancellationReasons();
-    this.modalController.dismiss();
+    // this.modalController.dismiss();
     
   }
+
+  // ionViewDidEnter() {
+  //   this.modalController.dismiss();
+  // }
+
+  // ionViewWillEnter(){
+  //   this.modalController.dismiss();
+  // }
 
   viewDetails(){
     this.route.navigate(['/dashboard-details']);
@@ -54,7 +62,7 @@ _bState = false;
       const alert = await this.alertController.create({
         header: 'Alert',
         cssClass: 'my-custom-class',
-        message: 'Are you sure you want go online',
+        message: 'Are you sure you want to go online',
         buttons: [
           {
             text: 'Cancel',
@@ -94,12 +102,11 @@ _bState = false;
 }
 
 async actionPrompt(selected) {
-  console.log(selected);
   this.ItemSelected = selected;
   const alert = await this.alertController.create({
     cssClass: 'my-custom-class',
     header: 'Delivery Action',
-    message: 'What action would you like to be perfomed on this delivery?',
+    message: 'What action would you like to be perfrom on this delivery?',
     buttons: [
       {
         text: 'Start',
@@ -109,11 +116,11 @@ async actionPrompt(selected) {
           console.log('Start Delivery');
         }
       }, {
-        text: 'Cancel Delivey',
+        text: 'Cancel Delivery',
         cssClass: 'danger',
         handler: () => {
           this.presentConfirm();
-          console.log('Cancle delivey Okay');
+          console.log('Cancel delivery Okay');
         }
       }
     ]
@@ -283,6 +290,7 @@ getDelivery() {
     this.alertService.showErrorAlert(error.error.message);
   })
 }
+
 getSaleRecord() {
   this.authService.getridersalesrecord(this.user.email).subscribe((res : any) => {
     this.SalesRecord = res.returnedObject;
@@ -344,7 +352,6 @@ endDelivery(){
   this.authService.endelivery(model).subscribe((res : any) => {
     this.loading.closeLoader();
     this.alertService.showSuccessAlert(res.message);
-    location.reload();
   }, error => {
     this.loading.closeLoader();
     this.alertService.showErrorAlert(error.error.message);

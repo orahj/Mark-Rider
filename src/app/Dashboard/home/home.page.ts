@@ -233,8 +233,8 @@ export class HomePage implements OnInit {
       let SenderLocation = JSON.parse(localStorage.getItem('senderlocation'));
       let ReceiverLocation = JSON.parse(localStorage.getItem('receiverlocation'));
       this.locations  = [
-        {lat: SenderLocation.lat, lng: SenderLocation.lng, icon : './assets/images/macriders/marker.png'},
-        {lat: ReceiverLocation.lat, lng: ReceiverLocation.lng, icon : './assets/images/macriders/marker.png'}
+        {lat: SenderLocation.lat, lng: SenderLocation.lng, icon : './assets/images/macriders/marker.png', label: "origin",},
+        {lat: ReceiverLocation.lat, lng: ReceiverLocation.lng, icon : './assets/images/macriders/marker.png', label: "destination",}
       ]
       this.origin = SenderLocation;
       this.destination = ReceiverLocation;
@@ -246,8 +246,7 @@ export class HomePage implements OnInit {
 
 public markerOptions = {
     origin: {
-        icon: './assets/images/macriders/marker.png',
-        draggable: true,
+        icon: './assets/images/macriders/round-pointer.png',
     },
     destination: {
         icon: './assets/images/macriders/marker.png',
@@ -397,6 +396,21 @@ calculateDistance(point1, point2) {
   }
  
   }
+
+
+  async notAvailableModal() {
+
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      message: 'Not available at the moment',
+      buttons: ['OK']
+    });
+  
+    await alert.present();
+  }
+
+
+
   scheduled(){
     this.isscheduled = true;
   }
@@ -416,6 +430,8 @@ async notAvailable(){
   });
  return await modal.present();
 }
+
+
 
 async addresslist(){
     debugger;

@@ -58,6 +58,8 @@ export class TransferPaymentPage implements OnInit {
     this.loading.showLoader();
     this.authService.fileupload(this.Image).subscribe((res : any) => {
       this.loading.closeLoader();
+      let uploadedimg = res.returnedObject.url;
+      document.getElementById("TheImageContents").innerHTML = '<img width="50" height="50"  src="'+uploadedimg+'" />';
       this.alertService.showSuccessAlert(res.message)
     }, error => {
       this.loading.closeLoader();
@@ -78,7 +80,8 @@ export class TransferPaymentPage implements OnInit {
     this.loading.showLoader();
     this.authService.paywithtransfer(transferObj).subscribe((res : any) => {
       this.loading.closeLoader();
-      this.alert.showSuccessAlert(res.message)
+      this.alert.showSuccessAlert(res.message);
+      localStorage.removeItem('deliveryObj');
       this.paySuccess();
     }, error => {
       this.loading.closeLoader();

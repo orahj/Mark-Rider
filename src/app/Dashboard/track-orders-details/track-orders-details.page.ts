@@ -55,6 +55,10 @@ export class TrackOrdersDetailsPage implements OnInit {
     console.log('Tracking Details',this.trackingdetails);
   }
 
+  ionViewDidEnter() {
+    this.modal.dismiss();
+  } 
+
   getLocationDetails(){
     if(this.trackingdetails !== undefined) {
       this.locations =[

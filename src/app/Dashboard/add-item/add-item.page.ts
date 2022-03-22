@@ -38,11 +38,13 @@ export class AddItemPage implements OnInit {
     reader.onload = (_event) => { 
     let TheFileContents = reader.result;
     document.getElementById("TheImageContents").innerHTML = '<img width="50" height="50"  src="'+TheFileContents+'" />';
+    console.log('Image Div',document.getElementById("TheImageContents"))
     this.loading.showLoader();
     this.authService.fileupload( this.Image).subscribe((res : any) => {
       if(res.isSuccessful === true){
           this.newItem.imageUrl = res.returnedObject.url;
           this.Image =  this.newItem.imageUrl;
+          document.getElementById("TheImageContents").innerHTML = '<img width="50" height="50"  src="'+this.newItem.imageUrl+'" />';
       }
       this.loading.closeLoader();
       this.alertService.showSuccessAlert(res.message)
@@ -70,7 +72,9 @@ export class AddItemPage implements OnInit {
     this.newItem.targetLocation = this.receiverAddress;
     this.itemObj.push({...this.newItem});
     localStorage.setItem('deliveryObj', JSON.stringify(this.itemObj));
-    this.router.navigateByUrl('/dashboard/checkout');
+    this.router.navigateByUrl('/dashboard/checkout', {skipLocationChange: true}).then(() => {
+      this.router.navigate(["/dashboard/checkout"]);
+      });
   }
 
 

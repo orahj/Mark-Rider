@@ -1,5 +1,5 @@
+<!-- <ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)" size = "medium" color = "#f59e0b" type = "ball-scale-multiple" [fullScreen] = "true"></ngx-spinner> -->
 <app-header-two [title]="'Wallet'"></app-header-two>
-
 <ion-content class="ion-no-padding gray_background">
   <div class="">
     <ion-grid>
@@ -93,9 +93,10 @@
                   </ion-col>
                   <ion-col size="4" class="ion-text-right">
                     <div class="wallet_transaction_amount">	&#8358;{{delivery.totalAmount}}</div>
-                    <div class="wallet_transaction_status" (click)="cancelDelivery(delivery)" *ngIf="delivery.deliveryItems[0] !== undefined && delivery.deliveryItems[0].deliveryStatus === 'Created'">{{delivery.deliveryItems[0].deliveryStatus}}</div>
+                    <div class="wallet_transaction_status" (click)="cancelDeliveryByUser(delivery)" *ngIf="delivery.deliveryItems[0] !== undefined && delivery.deliveryItems[0].deliveryStatus === 'Created'">{{delivery.deliveryItems[0].deliveryStatus}}</div>
+                    <!-- <div class="wallet_transaction_status" *ngIf="delivery.deliveryItems[0] !== undefined && delivery.deliveryItems[0].deliveryStatus === 'Created'">{{delivery.deliveryItems[0].deliveryStatus}}</div> -->
                     <div class="wallet_transaction_status" (click)="deliveryDetail(delivery)"  *ngIf="delivery.deliveryItems[0] !== undefined && delivery.deliveryItems[0].deliveryStatus === 'Delivered'">{{delivery.deliveryItems[0].deliveryStatus}}</div>
-                    <div class="wallet_transaction_status" (click)="deliveryDetail(delivery)" *ngIf="delivery.deliveryItems[0] !== undefined && delivery.deliveryItems[0].deliveryStatus === 'Completed'">{{delivery.deliveryItems[0].deliveryStatus}}</div>
+                    <div class="wallet_transaction_status" (click)="completedDelivery(delivery)" *ngIf="delivery.deliveryItems[0] !== undefined && delivery.deliveryItems[0].deliveryStatus === 'Completed'">{{delivery.deliveryItems[0].deliveryStatus}}</div>
                     <div class="wallet_transaction_status" *ngIf="delivery.deliveryItems[0] !== undefined && delivery.deliveryItems[0].deliveryStatus !== 'Created'  && delivery.deliveryItems[0].deliveryStatus !== 'Delivered' && delivery.deliveryItems[0].deliveryStatus !== 'Completed'">{{delivery.deliveryItems[0].deliveryStatus}}</div>
 
                   </ion-col>

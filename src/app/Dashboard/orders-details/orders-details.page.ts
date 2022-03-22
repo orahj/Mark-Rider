@@ -31,12 +31,12 @@ export class OrdersDetailsPage implements OnInit {
   gotoOrderDetails(){}
 
   completeDelivery(){
-    if(this.rating !== undefined && this.comment !== undefined){
+    if(this.rating !== undefined){
       let model = {
         appUserId : this.user.id,
         deliveriesId : this.deliveryObj[0].deliveryId,
         rating : this.rating,
-        ratingcomment : this.comment
+        ratingcomment : this.comment 
       }
       this.loading.showLoader();
       this.authService.completedelivery(model).subscribe((res : any) => {
@@ -50,7 +50,7 @@ export class OrdersDetailsPage implements OnInit {
   }
 
   disputeDelivery() {
-    if(this.disputereason !== undefined){
+    if(this.disputereason !== undefined || this.rating !== undefined){
       let model = {
         appUserId : this.user.id,
         deliveriesId : this.deliveryObj[0].deliveryId,

@@ -32,6 +32,14 @@ export class NotificationPage implements OnInit {
     this.route.navigate(['/delivery-details']);
   }
 
+  ionViewDidEnter() {
+    this.modal.dismiss();
+  }
+
+  ionViewWillEnter(){
+    this.modal.dismiss();
+  }
+
   getNotification(){
     this.loading.showLoader();
     this.authService.getnotification(this.user.email).subscribe((res : any) => {
