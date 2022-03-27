@@ -426,6 +426,7 @@ export class WalletPage implements OnInit {
           this.loading.closeLoader();
           this.alertService.showSuccessAlert(res.message);
           location.reload();
+          this.loading.closeLoader();
         }, error => {
           this.loading.closeLoader();
           this.alertService.showErrorAlert(error.error.messsage);
