@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'https://markrider.herokuapp.com/api/'
+  apiUrl: 'https://localhost:44374/api/'
 };
 
 /*

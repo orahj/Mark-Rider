@@ -321,6 +321,7 @@ cancelDelivery(){
     this.loading.closeLoader();
     this.alertService.showSuccessAlert(res.message)
    location.reload();
+   this.loading.closeLoader();
   },error => {
     this.loading.closeLoader();
     this.alertService.showErrorAlert(error.error.message);
@@ -337,6 +338,7 @@ startDelivery() {
     this.loading.closeLoader();
     this.alertService.showSuccessAlert(res.message);
     location.reload();
+    this.loading.closeLoader();
   }, error => {
     this.loading.closeLoader();
     this.alertService.showErrorAlert(error.error.message);
@@ -352,6 +354,8 @@ endDelivery(){
   this.authService.endelivery(model).subscribe((res : any) => {
     this.loading.closeLoader();
     this.alertService.showSuccessAlert(res.message);
+    location.reload();
+    this.loading.closeLoader();
   }, error => {
     this.loading.closeLoader();
     this.alertService.showErrorAlert(error.error.message);

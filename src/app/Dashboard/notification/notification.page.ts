@@ -96,6 +96,7 @@ export class NotificationPage implements OnInit {
       this.loading.closeLoader();
       this.alert.showSuccessAlert(res.message);
       location.reload();
+      this.loading.closeLoader();
     }, error => {
       this.loading.closeLoader();
       this.alert.showErrorAlert(error.error.message);
@@ -108,6 +109,7 @@ export class NotificationPage implements OnInit {
       this.loading.closeLoader();
       this.alert.showSuccessAlert(res.message);
       location.reload();
+      this.loading.closeLoader();
     }, error => {
       this.loading.closeLoader();
       this.alert.showErrorAlert(error.error.message);
@@ -120,6 +122,7 @@ export class NotificationPage implements OnInit {
       this.loading.closeLoader();
       this.alert.showSuccessAlert(res.message);
       location.reload();
+      this.loading.closeLoader();
     }, error => {
       this.loading.closeLoader();
       this.alert.showErrorAlert(error.error.message);
