@@ -24,6 +24,7 @@ export class CheckoutPage implements OnInit {
   public walletRef : string = "WAL-" + Math.floor((Math.random() * 1000000000) + 1);
   public paystackReCode : string = "DP-" + Math.floor((Math.random() * 1000000000) + 1);
   deliveryObj = JSON.parse(localStorage.getItem('deliveryObj'));
+  distance = JSON.parse(localStorage.getItem('distance'));
   firstItemList = this.deliveryObj[0];
   returnedObj;
   user = JSON.parse(localStorage.getItem('userobj'));
@@ -155,8 +156,10 @@ async deleteItem(selected){
         }, {
           text: 'Delete',
           handler: (value) => {
-            this.deliveryObj.splice(selected, 1);
-            localStorage.setItem('deliveryObj', JSON.stringify(this.deliveryObj));
+            let remove = this.deliveryObj.indexOf(selected)
+            this.deliveryObj.splice(remove, 1);
+             // this.deliveryObj.splice(selected, 1);
+             localStorage.setItem('deliveryObj', JSON.stringify(this.deliveryObj));
           }
         }
       ]
@@ -270,7 +273,10 @@ public verifyPayment() {
   }
 
   public DeleteItem(selected) {
-    this.deliveryObj.splice(selected, 1);
+    console.log('Selected....', selected);
+   let remove = this.deliveryObj.indexOf(selected)
+   this.deliveryObj.splice(remove, 1);
+    // this.deliveryObj.splice(selected, 1);
     localStorage.setItem('deliveryObj', JSON.stringify(this.deliveryObj));
   }
 

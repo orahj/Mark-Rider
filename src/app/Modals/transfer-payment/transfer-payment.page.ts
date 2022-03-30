@@ -17,6 +17,7 @@ export class TransferPaymentPage implements OnInit {
   public refCode : string = "TR-" + Math.floor((Math.random() * 1000000000) + 1);
   user = JSON.parse(localStorage.getItem('userobj'));
   public Image : any;
+  imageUrl : any;
 
   constructor(
     private modalController: ModalController,
@@ -48,6 +49,7 @@ export class TransferPaymentPage implements OnInit {
     reader.readAsDataURL(this.Image); 
     reader.onload = (_event) => { 
     let TheFileContents = reader.result;
+    
     document.getElementById("TheImageContents").innerHTML = '<img width="50" height="50"  src="'+TheFileContents+'" />';
     // document.getElementById("TheImageContents").innerHTML = '<img width="100" height="100" src="'+TheFileContents+'" />';
     this.uploadImage();
@@ -59,6 +61,7 @@ export class TransferPaymentPage implements OnInit {
     this.authService.fileupload(this.Image).subscribe((res : any) => {
       this.loading.closeLoader();
       let uploadedimg = res.returnedObject.url;
+      this.imageUrl = res.returnedObject.url;
       document.getElementById("TheImageContents").innerHTML = '<img width="50" height="50"  src="'+uploadedimg+'" />';
       this.alertService.showSuccessAlert(res.message)
     }, error => {

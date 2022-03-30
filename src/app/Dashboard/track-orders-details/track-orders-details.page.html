@@ -2,27 +2,39 @@
 
 <ion-content class="ion-no-padding gray_background">
   <div class="content_padded">
-    <agm-map [latitude]="latitude" [longitude]="longitude">
+    <!-- <agm-map [latitude]="latitude" [longitude]="longitude">
       <agm-marker  *ngFor="let data of locations; let i = index"
       [latitude]="data.lat" [longitude]="data.lng">
       </agm-marker>
+    </agm-map> -->
+
+    <agm-map [latitude]="location.latitude" [longitude]="location.longitude" [zoom]="zoom">
+      <agm-marker *ngFor="let data of locations; let i = index" [latitude]="data.lat" [longitude]="data.lng" [label]="data.label"></agm-marker>
     </agm-map>
+
+     <!-- <agm-map [latitude]="latitude" [longitude]="longitude" [zoom]="zoom">
+              <agm-marker *ngFor="let data of locations; let i = index" [latitude]="data.lat" [longitude]="data.lng" [markerDraggable]="true"
+                ></agm-marker>
+            </agm-map>  -->
+            
     <!-- <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3963.9368487402803!2d3.3929456146558845!3d6.529660495277045!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x103b8d194b40e58d%3A0x325f824343149d63!2sAjileye%20St%2C%20Akoka%2C%20Lagos!5e0!3m2!1sen!2sng!4v1614848072080!5m2!1sen!2sng" width="390" height="130" style="border:0; width: 100%" allowfullscreen="" loading="lazy"></iframe> -->
     <div   class="tracking_order_details_box">
       <ion-grid>
-
-
-      
+        <ion-row>
+          <ion-col size="8"></ion-col>
+          <ion-col size="4">
+              <p class="more-details">More details</p> 
+          </ion-col>
+        </ion-row>
         <ion-row>
           <ion-col size="9">
-           
             <div class="tracking_order_details_box_inner">
               <div class="tracking_order_details_title">
                 <ion-icon class="control_small_ic" name="location-outline"></ion-icon> {{trackingdetails[0].deliveryLocation.targetAddress}}
               </div>
-              <div class="tracking_order_details_time">
+              <!-- <div class="tracking_order_details_time">
                 <ion-icon class="control_small_ic" name="time-outline"></ion-icon> Arrival time: 9:56 AM
-              </div>
+              </div> -->
               <div class="tracking_order_details_phone">
                 <ion-icon class="control_small_ic" name="call-outline"></ion-icon> {{trackingdetails[0].dropOffPhone}}
               </div>

@@ -43,7 +43,7 @@ export class HomePage implements OnInit {
   imageurl : any;
   origin: {};
   destination: {};
-  distance: Number;
+  distance: any;
   
 
   customAlertOptions: any = {
@@ -238,6 +238,8 @@ export class HomePage implements OnInit {
       ]
       this.origin = SenderLocation;
       this.destination = ReceiverLocation;
+      this.distance = this.calculateDistance(this.origin, this.destination)
+      localStorage.setItem('distance', JSON.stringify(this.distance));
   }
 
   public renderOptions = {

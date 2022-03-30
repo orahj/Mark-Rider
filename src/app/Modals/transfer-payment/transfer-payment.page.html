@@ -46,7 +46,8 @@
           <div class="image-upload">
             <ion-icon *ngIf="Image == undefined" name="cloud-upload-outline"></ion-icon>
             <p class="upload-text" *ngIf="Image == undefined">upload the image of your<br> transaction receipt</p>
-            <div id="TheImageContents"></div>
+            <div *ngIf="imageUrl == undefined" id="TheImageContents"></div>
+             <img [src]="imageUrl" *ngIf="imageUrl !== undefined" style="width: 70px;">
             <input class="file-upload" type="file" id="upimgfile" *ngIf="Image == undefined" name="uploadfile" (change)="onFileChanged($event)">
             <button *ngIf="Image == undefined">choose file</button>
           </div>

@@ -97,7 +97,7 @@
                     <!-- <div class="wallet_transaction_status" *ngIf="delivery.deliveryItems[0] !== undefined && delivery.deliveryItems[0].deliveryStatus === 'Created'">{{delivery.deliveryItems[0].deliveryStatus}}</div> -->
                     <div class="wallet_transaction_status" (click)="deliveryDetail(delivery)"  *ngIf="delivery.deliveryItems[0] !== undefined && delivery.deliveryItems[0].deliveryStatus === 'Delivered'">{{delivery.deliveryItems[0].deliveryStatus}}</div>
                     <div class="wallet_transaction_status" (click)="completedDelivery(delivery)" *ngIf="delivery.deliveryItems[0] !== undefined && delivery.deliveryItems[0].deliveryStatus === 'Completed'">{{delivery.deliveryItems[0].deliveryStatus}}</div>
-                    <div class="wallet_transaction_status" *ngIf="delivery.deliveryItems[0] !== undefined && delivery.deliveryItems[0].deliveryStatus !== 'Created'  && delivery.deliveryItems[0].deliveryStatus !== 'Delivered' && delivery.deliveryItems[0].deliveryStatus !== 'Completed'">{{delivery.deliveryItems[0].deliveryStatus}}</div>
+                    <div class="wallet_transaction_status"  *ngIf="delivery.deliveryItems[0] !== undefined && delivery.deliveryItems[0].deliveryStatus !== 'Created'  && delivery.deliveryItems[0].deliveryStatus !== 'Delivered' && delivery.deliveryItems[0].deliveryStatus !== 'Completed'">{{delivery.deliveryItems[0].deliveryStatus}}</div>
 
                   </ion-col>
                 </ion-row>

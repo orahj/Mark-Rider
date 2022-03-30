@@ -22,6 +22,7 @@ export class TrackOrdersDetailsPage implements OnInit {
   }
   senderLocation : [];
   receiverLocation : [];
+  location;
 
   locations : Array<object>;
   constructor(
@@ -42,17 +43,30 @@ export class TrackOrdersDetailsPage implements OnInit {
     }
 }
   ngOnInit() {
+  
+    this.modal.dismiss();
+    // this.setCurrentLocation();
+    // this.getLocationDetails();
+    // this.getAddress();
+    console.log('Tracking Details',this.trackingdetails);
+
+    this.location = {
+      latitude: this.trackingdetails[0].deliveryLocation.xLatitude,
+      longitude: this.trackingdetails[0].deliveryLocation.xLogitude,
+  }
+
+  this.zoom = 8;
+
+    this.locations = [
+      {lat: this.trackingdetails[0].deliveryLocation.xLatitude, lng: this.trackingdetails[0].deliveryLocation.xLogitude, label: "origin",},
+      {lat: this.trackingdetails[0].deliveryLocation.yLatitude, lng: this.trackingdetails[0].deliveryLocation.yLogitude, label: "destination",}
+    ]
     // if(this.trackingdetails !== undefined){
-    //   this.locations =[
+    //   this.locations = [
     //     {lat: this.trackingdetails.deliveryLocation.xLatitude, lng: this.trackingdetails.deliveryLocation.xLogitude},
     //     {lat: this.trackingdetails.deliveryLocation.yLatitude, lng: this.trackingdetails.deliveryLocation.yLogitude}
     //   ]
     // }
-    this.modal.dismiss();
-    this.setCurrentLocation();
-    this.getLocationDetails();
-    // this.getAddress();
-    console.log('Tracking Details',this.trackingdetails);
   }
 
   ionViewDidEnter() {
@@ -60,6 +74,13 @@ export class TrackOrdersDetailsPage implements OnInit {
   } 
 
   getLocationDetails(){
+    console.log('I am here',this.trackingdetails);
+
+    let infoWindow = new google.maps.InfoWindow({});
+    let marker, i;
+
+
+    
     if(this.trackingdetails !== undefined) {
       this.locations =[
             {lat: this.trackingdetails[0].deliveryLocation.xLatitude, lng: this.trackingdetails[0].deliveryLocation.xLogitude},
@@ -68,7 +89,16 @@ export class TrackOrdersDetailsPage implements OnInit {
       console.log('Details',this.trackingdetails[0].deliveryLocation)
       console.log('Locations',this.locations);
     }
+
+    for (i = 0; i < this.locations.length; i++) {  
+      marker = new google.maps.Marker({
+        position: new google.maps.LatLng(this.trackingdetails[0].deliveryLocation.xLatitude, this.trackingdetails[0].deliveryLocation.xLogitude),
+        // map,
+        // icon: this.locations[i].icon
+      });
+
   }
+}
 
   getAddress() {
 

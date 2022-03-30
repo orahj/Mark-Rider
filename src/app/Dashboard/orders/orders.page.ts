@@ -7,7 +7,8 @@ import { Router} from '@angular/router';
   styleUrls: ['./orders.page.scss'],
 })
 export class OrdersPage implements OnInit {
-
+  
+  trackingdetails = JSON.parse(localStorage.getItem('trackorderdetails'));
   constructor(private route: Router) { }
 
   ngOnInit() {

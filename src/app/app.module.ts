@@ -20,6 +20,7 @@ import { SectionHeaderModule } from './Partials/section-header/section-header.mo
 import { AgmCoreModule } from '@agm/core';
 import { AgmDirectionModule } from 'agm-direction';
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+// import { NgxUiLoaderModule } from "ngx-ui-loader";
 // import { NgxSpinnerModule } from "ngx-spinner";
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -42,9 +43,11 @@ export function tokenGetter() {
       apiKey: 'AIzaSyAq84iD_-IGQEzZj5VET55rWthHgh75DSQ',
       libraries: ['places']
     }),
+    // NgxUiLoaderModule,
     AgmDirectionModule,
-    BrowserAnimationsModule,
     // NgxSpinnerModule,
+    BrowserAnimationsModule,
+   
     IonicStorageModule.forRoot(),
     JwtModule.forRoot({
       config: {

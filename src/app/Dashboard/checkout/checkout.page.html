@@ -10,7 +10,7 @@
               <ion-row>
                 <ion-col size="10">
                   <div class="wallet_transaction_ref_date">
-                    Pick Up Address
+                    Pick-up Address
                   </div>
                   <div class="wallet_transaction_ref_date_2">
                     {{item.baseLocation.address}}
@@ -157,8 +157,9 @@
                 </ion-col>
 
                 <ion-col size="12" *ngIf="createshipmentstatus == true">
-                    <p class="checkout_total_text">Size: 34cm×18cm×32cm </p>
-                    <p class="checkout_total_text">Max Weight: 5kg </p>
+                    <p class="checkout_total_text">Distance: {{distance}} KM</p>
+                    <p class="checkout_total_text">Max size: 34cm × 18cm × 32cm </p>
+                    <p class="checkout_total_text">Max weight: 5KG </p>
                 </ion-col>
 
                 <ion-col size="12" *ngIf="createshipmentstatus == true && returnedObj !== undefined">
