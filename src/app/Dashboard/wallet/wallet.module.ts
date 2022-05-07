@@ -9,6 +9,7 @@ import { WalletPageRoutingModule } from './wallet-routing.module';
 import { WalletPage } from './wallet.page';
 import { HeaderTwoComponentModule } from '../../Partials/header-two/header-two.component.module';
 import { NgxCleaveDirectiveModule } from 'ngx-cleave-directive';
+import { HeaderComponentModule } from 'src/app/Partials/header/header.component.module';
 
 @NgModule({
   imports: [
@@ -17,6 +18,7 @@ import { NgxCleaveDirectiveModule } from 'ngx-cleave-directive';
     IonicModule,
     WalletPageRoutingModule,
     HeaderTwoComponentModule,
+    HeaderComponentModule,
     NgxCleaveDirectiveModule
   ],
   declarations: [WalletPage]

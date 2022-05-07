@@ -21,14 +21,19 @@ export class LoadingService {
   // }
 
   async showLoader(){
-    const loading = await this.loadingController.create({
+    this.isLoading = true;
+    return await this.loadingController.create({
       cssClass: 'my-custom-class',
-      spinner: 'circles'
-      // duration: 2000
+      spinner: 'circles',
+      duration: 5000,
+    }).then(a => {
+      a.present().then(() => {
+        console.log('presented');
+        if (!this.isLoading) {
+          a.dismiss().then(() => console.log('abort presenting'));
+        }
+      });
     });
-    await loading.present();
-    const { role, data } = await loading.onDidDismiss();
-    // console.log('Loading dismissed!');
   }
   
   async presentLoading() {
@@ -44,9 +49,8 @@ export class LoadingService {
   }
 
   async closeLoader(){
-     this.loadingController.dismiss({
-      'dismissed': true
-    });
+    this.isLoading = false;
+    return await this.loadingController.dismiss().then(() => console.log('dismissed'));
   }
 
 //   async closeLoader(){

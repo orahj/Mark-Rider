@@ -20,6 +20,7 @@ import { SectionHeaderModule } from './Partials/section-header/section-header.mo
 import { AgmCoreModule } from '@agm/core';
 import { AgmDirectionModule } from 'agm-direction';
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { LoadingInterceptor } from './interceptors/loading.interceptor';
 // import { NgxUiLoaderModule } from "ngx-ui-loader";
 // import { NgxSpinnerModule } from "ngx-spinner";
 export function tokenGetter() {
@@ -64,7 +65,7 @@ export function tokenGetter() {
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true  },
-    LoadingService,
+    { provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true  }
   ],
   bootstrap: [AppComponent],
   // schemas: [CUSTOM_ELEMENTS_SCHEMA]

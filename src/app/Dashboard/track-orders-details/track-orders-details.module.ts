@@ -11,6 +11,8 @@ import { HeaderTwoComponentModule } from '../../Partials/header-two/header-two.c
 import { AgmCoreModule } from '@agm/core';
 import { ReactiveFormsModule} from '@angular/forms';
 import { AgmDirectionModule } from 'agm-direction';
+import { HeaderComponent } from 'src/app/Partials/header/header.component';
+import { HeaderComponentModule } from 'src/app/Partials/header/header.component.module';
 
 @NgModule({
   imports: [
@@ -18,7 +20,7 @@ import { AgmDirectionModule } from 'agm-direction';
     FormsModule,
     IonicModule,
     TrackOrdersDetailsPageRoutingModule,
-    HeaderTwoComponentModule,
+    HeaderComponentModule,
     AgmDirectionModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyAq84iD_-IGQEzZj5VET55rWthHgh75DSQ',

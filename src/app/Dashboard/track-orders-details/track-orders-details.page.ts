@@ -10,8 +10,9 @@ import { ModalController } from '@ionic/angular';
   styleUrls: ['./track-orders-details.page.scss'],
 })
 export class TrackOrdersDetailsPage implements OnInit {
-  trackingdetails = JSON.parse(localStorage.getItem('trackorderdetails'));
+  trackingdetails:any[] = JSON.parse(localStorage.getItem('trackorderdetails'));
   mapdetails = this.trackingdetails;
+  phoneNumber = this.mapdetails[0].dropOffPhone;
   latitude: number;
   longitude: number;
   zoom: number;
@@ -162,5 +163,4 @@ export class TrackOrdersDetailsPage implements OnInit {
     // });
   }
 }
-
 }

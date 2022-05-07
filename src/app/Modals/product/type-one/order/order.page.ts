@@ -34,7 +34,7 @@ export class OrderPage implements OnInit {
     this.modalController.dismiss();
     const modal = await this.modalController.create({
       component: AddToCartPage,
-      cssClass: 'custom_network_modal',
+      cssClass: 'custom_network_modal_2',
       backdropDismiss: true
     });
 

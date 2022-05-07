@@ -23,6 +23,7 @@ export class OrdersDetailsPage implements OnInit {
   ) { }
 
   ngOnInit() {
+    console.log(this.deliveryObj);
   }
 
   submitReview(){

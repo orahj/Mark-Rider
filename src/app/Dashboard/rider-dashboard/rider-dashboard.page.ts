@@ -106,7 +106,7 @@ async actionPrompt(selected) {
   const alert = await this.alertController.create({
     cssClass: 'my-custom-class',
     header: 'Delivery Action',
-    message: 'What action would you like to be perfrom on this delivery?',
+    message: 'What action would you like to be perform on this delivery?',
     buttons: [
       {
         text: 'Start',
@@ -281,12 +281,12 @@ async endeliveryPrompt(selected) {
 }
 
 getDelivery() {
-  this.loading.showLoader();
+  //this.loading.showLoader();
   this.authService.getriderdelivery(this.user.email).subscribe((res : any) => {
     this.DeliveryList = res.returnedObject;
-    this.loading.closeLoader();
+    //this.loading.closeLoader();
   },error => {
-    this.loading.closeLoader();
+   // this.loading.closeLoader();
     this.alertService.showErrorAlert(error.error.message);
   })
 }
@@ -316,14 +316,15 @@ cancelDelivery(){
   // this.cancelModel.appUserId = this.user.id;
   // this.cancelModel.deliveriesId = this.ItemSelected.id;
   // this.cancelModel.reason = this.CancelReason;
-  this.loading.showLoader();
+  //this.loading.showLoader();
   this.authService.canceldelivery(model).subscribe((res : any) => {
-    this.loading.closeLoader();
+    //.loading.closeLoader();
     this.alertService.showSuccessAlert(res.message)
-   location.reload();
-   this.loading.closeLoader();
+   //location.reload();
+   this.ngOnInit();
+   //this.loading.closeLoader();
   },error => {
-    this.loading.closeLoader();
+    //this.loading.closeLoader();
     this.alertService.showErrorAlert(error.error.message);
   })
 }
@@ -333,14 +334,15 @@ startDelivery() {
     appUserId : this.user.id,
     deliveriesId : this.ItemSelected.deliveriesId,
   }
-  this.loading.showLoader();
+  //this.loading.showLoader();
   this.authService.startdelivery(model).subscribe((res : any) => {
-    this.loading.closeLoader();
+    //this.loading.closeLoader();
     this.alertService.showSuccessAlert(res.message);
-    location.reload();
-    this.loading.closeLoader();
+    //location.reload();
+    this.ngOnInit();
+    //this.loading.closeLoader();
   }, error => {
-    this.loading.closeLoader();
+    //this.loading.closeLoader();
     this.alertService.showErrorAlert(error.error.message);
   })
 }
@@ -350,14 +352,15 @@ endDelivery(){
     appUserId : this.user.id,
     deliveriesId : this.ItemSelected.deliveriesId,
   }
-  this.loading.showLoader();
+  //this.loading.showLoader();
   this.authService.endelivery(model).subscribe((res : any) => {
-    this.loading.closeLoader();
+    //this.loading.closeLoader();
     this.alertService.showSuccessAlert(res.message);
-    location.reload();
-    this.loading.closeLoader();
+    //location.reload();
+    this.ngOnInit();
+    //this.loading.closeLoader();
   }, error => {
-    this.loading.closeLoader();
+    //this.loading.closeLoader();
     this.alertService.showErrorAlert(error.error.message);
   })
 }

@@ -9,4 +9,5 @@ export class Item {
     imageUrl: string
     baseLocation: object
     targetLocation: object
+    distance: number
 }

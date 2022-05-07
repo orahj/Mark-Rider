@@ -293,13 +293,15 @@ public verifyPayment() {
           deliveryNo: res.returnedObject.deliveryNo,
           totalAmount : res.returnedObject.totalAmount,
           transactionId : res.returnedObject.transactionId,
-          id : res.returnedObject.id
+          id : res.returnedObject.id,
+          distance: res.returnedObject.deliveryItems[0].deliveryLocation.deliveryDistance
         }
         localStorage.setItem('deliveryReturnedObj', JSON.stringify(returnObj));
         this.loading.closeLoader();
         this.createshipmentstatus = true;
         this.Total = res.returnedObject.totalAmount;
         this.returnedObj = JSON.parse(localStorage.getItem('deliveryReturnedObj'))
+        console.log(this.returnedObj);
       }
      
     })

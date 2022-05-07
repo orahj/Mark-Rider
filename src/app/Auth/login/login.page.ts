@@ -68,12 +68,12 @@ export class LoginPage implements OnInit {
     if(this.formData.invalid){
       return;
     }
-    this.loading.showLoader();
+    //this.loading.showLoader();
     this.model = Object.assign({}, this.formData.value);
     this.authService.login(this.model).subscribe((res) => {
-      this.loading.closeLoader();
+      //this.loading.closeLoader();
     },error => {
-      this.loading.closeLoader();
+      //this.loading.closeLoader();
       this.alert.showErrorAlert(error.error.message);
     })
 

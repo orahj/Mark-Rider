@@ -44,7 +44,7 @@ export class HomePage implements OnInit {
   origin: {};
   destination: {};
   distance: any;
-  
+  NotificationList : any | [];
 
   customAlertOptions: any = {
     header: 'Pizza Toppings',
@@ -90,6 +90,8 @@ export class HomePage implements OnInit {
 
 
   ngOnInit() {
+    debugger;
+    this.loadNotification();
     this.initializeForm();
     this.setCurrentLocation();
   }
@@ -97,7 +99,16 @@ export class HomePage implements OnInit {
   bulkDelivery(){
     this.bulkdelivery = true;
   }
-
+ loadNotification(){
+  //this.loading.showLoader();
+  this.authService.getnotification(this.user.email).subscribe((res : any) => {
+    //this.loading.closeLoader();
+    this.NotificationList = res.returnedObject;
+  }, error => {
+    //this.loading.closeLoader();
+  })
+   
+ }
   fundWallet(){
     this.route.navigate(['/dashboard/fund-wallet']);
   }
@@ -119,7 +130,7 @@ export class HomePage implements OnInit {
     reader.onload = (_event) => { 
     let TheFileContents = reader.result;
     document.getElementById("TheImageContents").innerHTML = '<img width="50" height="50"  src="'+TheFileContents+'" />';
-    this.loading.showLoader();
+    //this.loading.showLoader();
     this.authService.fileupload( this.Image).subscribe((res : any) => {
 
       if(res.isSuccessful === true){
@@ -127,22 +138,22 @@ export class HomePage implements OnInit {
           this.itemList[i].imageUrl = res.returnedObject.url;
         }
       }
-      this.loading.closeLoader();
+      //this.loading.closeLoader();
       this.alertService.showSuccessAlert(res.message)
     }, error => {
-      this.loading.closeLoader();
+      //this.loading.closeLoader();
       this.alertService.showErrorAlert(error.error.message);
     })
     }
   }
 
   uploadImage(){
-    this.loading.showLoader();
+    //this.loading.showLoader();
     this.authService.fileupload(this.Image).subscribe((res : any) => {
-      this.loading.closeLoader();
+      //this.loading.closeLoader();
       this.alertService.showSuccessAlert(res.message)
     }, error => {
-      this.loading.closeLoader();
+      //this.loading.closeLoader();
       this.alertService.showErrorAlert(error.error.message);
     })
   }
@@ -198,8 +209,9 @@ export class HomePage implements OnInit {
       this.geoCoder = new google.maps.Geocoder;
 
       let autocomplete = new google.maps.places.Autocomplete(this.receiverSearchElementRef.nativeElement);
-      autocomplete.addListener("place_changed", () => {
+      autocomplete.addListener("place_changed", () => { 
         this.ngZone.run(() => {
+          debugger;
           //get the place result
           let place: google.maps.places.PlaceResult = autocomplete.getPlace();
 
@@ -240,6 +252,9 @@ export class HomePage implements OnInit {
       this.destination = ReceiverLocation;
       this.distance = this.calculateDistance(this.origin, this.destination)
       localStorage.setItem('distance', JSON.stringify(this.distance));
+      for(let i = 0; i< this.itemList.length; i++){
+        this.itemList[i].distance = this.distance;
+      }
   }
 
   public renderOptions = {
@@ -290,6 +305,7 @@ public markerOptions = {
       {
         zoom: 15,
         center: { lat: this.latitude, lng: this.longitude },
+        mapTypeId: google.maps.MapTypeId.ROADMAP,
       }
     );
 
@@ -461,6 +477,7 @@ serviceNotAvailable(){
 get f() { return this.formData.controls; }
 
 public onSubmit() : void {
+  debugger;
  // console.table(this.formData.value);
   this.submitted = true;
   if(this.formData.invalid){
@@ -468,6 +485,21 @@ public onSubmit() : void {
   }
   localStorage.setItem('deliveryObj', JSON.stringify(this.itemList));
   this.orderProduct();
+  // this.formData.patchValue({
+  //   pickUpItems: '',
+  //   deliveryTpe: '',
+  //   deliveryTime: '',  
+  //   pickUpPhone: '',
+  //   carriers:'',
+  //   deliveryId:'',
+  //   dropOffPhone: '',
+  //   imageUrl: '',
+  //   // scheduledDeliveryDate : [''],
+  //   baseLocation : '',
+  //   targetLocation : ''
+  // });
+  this.formData.reset();
+  this.ngOnInit();
   // let data = {
   //   email: this.user.email,
   //   deliveryItems : this.itemList

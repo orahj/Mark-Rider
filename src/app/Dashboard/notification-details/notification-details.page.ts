@@ -28,10 +28,12 @@ export class NotificationDetailsPage implements OnInit {
   }
 
   patchNotification() {
+    debugger;
     this.loading.showLoader();
     this.authService.readnotificationbyid(this.details.id).subscribe((res : any) => {
         this.loading.closeLoader();
         this.alert.showSuccessAlert(res.message);
+        this.route.navigate(['/dashboard/notification'])
     }, error => {
       this.loading.closeLoader();
       this.alert.showErrorAlert(error.error.message);

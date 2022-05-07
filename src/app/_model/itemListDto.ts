@@ -11,6 +11,7 @@ export const ItemList : Item[] = [
         deliveryId: 0,
         imageUrl: '',
         baseLocation: {},
-        targetLocation: {}
+        targetLocation: {},
+        distance: 0
     }
 ] 

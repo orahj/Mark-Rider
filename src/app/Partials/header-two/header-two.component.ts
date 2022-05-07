@@ -27,7 +27,15 @@ export class HeaderTwoComponent implements OnInit {
   }
   
   gotoHome(){
-    this.route.navigate(['/dashboard']);
+    debugger;
+    const user = JSON.parse(localStorage.getItem('user'));
+    if(user.userTypes === 4) {
+      this.route.navigateByUrl('/dashboard');
+    }
+    else if(user.userTypes === 3) {
+      this.route.navigateByUrl('/rider-dashboard');
+    }
+    //this.route.navigate(['/dashboard']);
   }
 
   focusesInput(){
@@ -43,6 +51,7 @@ export class HeaderTwoComponent implements OnInit {
   }
 
   getNotification(){
+    location.reload;
     this.authService.getnotification(this.user.email).subscribe((res : any) => {
       this.NotificationList = res.returnedObject;
       console.log('Notification List',this.NotificationList);

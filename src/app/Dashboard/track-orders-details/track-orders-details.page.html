@@ -1,4 +1,4 @@
-<app-header-two [title]="'Tracking Order'"></app-header-two>
+<app-header [title]="'Tracking Order'"></app-header>
 
 <ion-content class="ion-no-padding gray_background">
   <div class="content_padded">
@@ -42,7 +42,7 @@
           </ion-col>
           <ion-col size="3">
             <ion-button class="tracking_order_details_btn">
-              <a href="tel:trackingdetails[0].dropOffPhone">
+              <a href="tel:{{phoneNumber}}">
                 <ion-icon class="tracking_order_details_btn_icon" name="call-outline"></ion-icon>
               </a>
             </ion-button>
