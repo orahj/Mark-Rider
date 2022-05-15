@@ -53,6 +53,8 @@ export class NotificationPage implements OnInit {
   }
 
   async actionPrompt(selected) {
+    debugger;
+    console.log(selected);
     this.ItemSelected = selected;
     const alert = await this.alertController.create({
       cssClass: 'my-custom-class',
